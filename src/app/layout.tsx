@@ -46,7 +46,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de" className={`${outfit.variable} ${playfair.variable} ${shareTechMono.variable} antialiased`}>
-      <body className="selection:bg-luxota-accent/30 selection:text-luxota-accent text-[#E5E5E5] bg-[#020203] overflow-x-hidden cursor-none">
+      <body className="selection:bg-luxota-accent/30 selection:text-luxota-accent text-[#E5E5E5] bg-[#020203] overflow-x-hidden lg:cursor-none">
         
         {/* Ambient Light */}
         <div className="ambient-light">

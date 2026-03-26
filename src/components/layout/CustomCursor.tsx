@@ -1,14 +1,20 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 
 export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const outlineRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
+  const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
+    // Detect touch/mobile — skip custom cursor entirely
+    const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    setIsTouch(touch);
+    if (touch) return;
+
     let mouseX = 0;
     let mouseY = 0;
 
@@ -38,10 +44,12 @@ export default function CustomCursor() {
     };
   }, []);
 
+  if (isTouch) return null;
+
   return (
     <>
-      <div ref={dotRef} className="cursor-dot hidden lg:block"></div>
-      <div ref={outlineRef} className="cursor-outline hidden lg:flex">
+      <div ref={dotRef} className="cursor-dot" />
+      <div ref={outlineRef} className="cursor-outline">
         <span ref={textRef} className="cursor-text">MEHR</span>
       </div>
     </>

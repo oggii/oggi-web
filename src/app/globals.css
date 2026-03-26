@@ -291,4 +291,9 @@ iconify-icon {
   display: inline-block;
   width: 1em;
   height: 1em;
+/* Mobile performance overrides — restore native cursor & interactions */
+@media (max-width: 1023px) {
+  .spotlight-card {
+    cursor: auto;
+  }
 }

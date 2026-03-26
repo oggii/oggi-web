@@ -66,7 +66,11 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Lenis Smooth Scroll Setup
+    // Skip Lenis on touch/mobile — native scroll is faster and more fluid
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice) return;
+
+    // Lenis Smooth Scroll Setup (Desktop only)
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -92,7 +96,10 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
       {loading && (pathname === '/' || pathname === '') && <Preloader onComplete={() => setLoading(false)} />}
       
       <div className="fixed inset-0 z-0 bg-[#020203]">
-        <ParticlesBackground />
+        {/* Particles are desktop-only — too heavy for mobile GPU */}
+        <div className="hidden lg:block w-full h-full">
+          <ParticlesBackground />
+        </div>
       </div>
 
       <div className="relative z-10">

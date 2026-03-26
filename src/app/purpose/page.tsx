@@ -4,7 +4,7 @@ import FooterSection from '@/components/sections/FooterSection';
 
 export const metadata: Metadata = {
   title: "Meine Mission — Philosophie hinter den KI-Agenten",
-  description: "Erfahre mehr über meine Vision als Tech-Solopreneur: Wie ich durch intelligente Systeme und gnadenlosen Minimalismus echte Lösungen entwickle.",
+  description: "Erfahre mehr über meine Vision: Wie ich Solopreneure und KMU durch intelligente Systeme und gnadenlosen Minimalismus bei der Skalierung ihres Unternehmens unterstütze.",
 };
 export default function PurposePage() {
   return (

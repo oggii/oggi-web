@@ -23,7 +23,7 @@ export default function HeroSection() {
         </h1>
 
         <p className="text-lg md:text-xl text-luxota-dim max-w-xl mx-auto leading-relaxed mb-14 font-light opacity-0 reveal-hero-fade translate-y-4">
-          Keine generischen Webseiten. Ich baue hochperformante Plattformen und KI-Automatisierungen, die Solopreneuren messbaren Umsatz bringen und 10+ Stunden Routinearbeit pro Woche abnehmen.
+          Keine generischen Webseiten. Ich baue hochperformante Plattformen und KI-Automatisierungen, die Solopreneuren & KMU messbaren Umsatz bringen und 10+ Stunden Routinearbeit pro Woche abnehmen.
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6 opacity-0 reveal-hero-fade">

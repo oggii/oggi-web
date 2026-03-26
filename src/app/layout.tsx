@@ -12,11 +12,11 @@ const shareTechMono = Share_Tech_Mono({ weight: '400', subsets: ['latin'], varia
 export const metadata: Metadata = {
   metadataBase: new URL('https://0ggi.ch'),
   title: {
-    default: "0ggi — High-End Webentwicklung & KI-Agenten für Solopreneure",
+    default: "0ggi — High-End Webentwicklung & KI-Agenten für Solopreneure & KMU",
     template: "%s | 0ggi Web & AI"
   },
-  description: "Digitale Ökosysteme für starkes Wachstum. Ich baue hochperformante Next.js Plattformen & n8n KI-Automatisierungen, die dir 10+ Stunden pro Woche ersetzen.",
-  keywords: ["High-End Webentwicklung", "n8n Automatisierung Schweiz", "Next.js Agentur", "KI Agenten Unternehmen", "Solopreneur Skalierung", "OpenClaw"],
+  description: "Digitale Ökosysteme für Solopreneure und KMU. Ich baue hochperformante Next.js Plattformen & n8n KI-Automatisierungen, die dir 10+ Stunden Routinearbeit pro Woche abnehmen.",
+  keywords: ["High-End Webentwicklung", "n8n Automatisierung Schweiz", "Next.js Agentur", "KI Agenten Unternehmen", "Solopreneur Skalierung", "KMU Automatisierung", "OpenClaw"],
   openGraph: {
     title: "0ggi — High-End Webentwicklung & KI-Agenten",
     description: "Digitale Ökosysteme für starkes Wachstum. Next.js Performance & n8n KI-Workflows.",

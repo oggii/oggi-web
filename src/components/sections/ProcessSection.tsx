@@ -65,7 +65,7 @@ export default function ProcessSection() {
           <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest">[ METHODIK ]</span>
           <h2 className="text-4xl md:text-6xl font-medium tracking-tight text-white mb-8">Der Prozess</h2>
           <p className="text-xl text-luxota-dim font-light leading-relaxed">
-            Ich habe diesen Ablauf über Jahre perfektioniert, um dir als Solopreneur einen <strong className="text-white font-medium">absolut reibungslosen Ablauf</strong> zu garantieren – vom ersten Kickoff bis zum skalierenden System.
+            Ich habe diesen Ablauf über Jahre perfektioniert, um dir – ob Solopreneur oder KMU – einen <strong className="text-white font-medium">absolut reibungslosen Ablauf</strong> zu garantieren – vom ersten Kickoff bis zum skalierenden System.
           </p>
         </div>
 

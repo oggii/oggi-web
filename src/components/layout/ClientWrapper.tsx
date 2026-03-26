@@ -16,9 +16,14 @@ const ParticlesBackground = dynamic(() => import('@/components/ui/ParticlesBackg
 
 export function ClientWrapper({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const pathname = usePathname();
 
   useEffect(() => {
+    // Detect touch device for mobile-specific optimizations
+    const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    setIsTouchDevice(touch);
+
     // Verhindert, dass man mitten in der Seite landet (Next.js Lenis Scroll Memory Fix)
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
 
@@ -96,10 +101,11 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
       {loading && (pathname === '/' || pathname === '') && <Preloader onComplete={() => setLoading(false)} />}
       
       <div className="fixed inset-0 z-0 bg-[#020203]">
-        {/* Particles are desktop-only — too heavy for mobile GPU */}
-        <div className="hidden lg:block w-full h-full">
-          <ParticlesBackground />
-        </div>
+        {/* On mobile: show reduced particles hero-only. On desktop: full background. */}
+        <ParticlesBackground
+          count={isTouchDevice ? 30 : 80}
+          heroOnly={isTouchDevice}
+        />
       </div>
 
       <div className="relative z-10">

@@ -1,0 +1,294 @@
+@import "tailwindcss";
+
+@theme {
+  --color-luxota-bg: #020203;
+  --color-luxota-card: #08080A;
+  --color-luxota-border: rgba(255, 255, 255, 0.031); /* #ffffff08 approximating hex opacity */
+  --color-luxota-accent: #9D4EDD;
+  --color-luxota-accentGlow: rgba(157, 78, 221, 0.25); /* #9D4EDD40 */
+  --color-luxota-dim: #9ca3af;
+  --color-luxota-surface: rgba(255, 255, 255, 0.012); /* #ffffff03 */
+
+  --font-sans: var(--font-outfit), sans-serif;
+  --font-serif: var(--font-playfair), serif;
+  --font-mono: var(--font-share-tech-mono), monospace;
+
+  --tracking-tighter: -0.04em;
+  --tracking-tightest: -0.07em;
+
+  --animate-blob: blob 10s infinite;
+  --animate-text-shimmer: text-shimmer 3s ease-out infinite alternate;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes blob {
+    0% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -50px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.9); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+
+  @keyframes text-shimmer {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --background-image-aurora: conic-gradient(from 180deg at 50% 50%, #0A0A0C 0deg, #111827 120deg, #0A0A0C 360deg);
+}
+
+:root {
+  --cursor-size: 20px;
+}
+
+body {
+  background-color: #020203;
+  color: #E5E5E5;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* Ambient Background blobs */
+.ambient-light {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.4;
+  animation: blob 20s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blob-1 {
+  top: -10%;
+  left: -10%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(79, 209, 197, 0.15) 0%, transparent 70%);
+}
+
+.blob-2 {
+  bottom: -10%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+  animation-delay: -5s;
+}
+
+.blob-3 {
+  top: 40%;
+  left: 40%;
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+  animation-delay: -10s;
+}
+
+/* Preloader */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-color: #020203;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Custom Cursor */
+.cursor-dot,
+.cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: white;
+  box-shadow: 0 0 10px white;
+}
+
+.cursor-outline {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+      height 0.3s cubic-bezier(0.19, 1, 0.22, 1),
+      background-color 0.3s, border-color 0.3s;
+}
+
+.cursor-text {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: black;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Noise Grain */
+.noise {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9000;
+  opacity: 0.035;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.6' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+}
+
+/* Premium Gradient Text */
+.text-gradient-premium {
+  background: linear-gradient(to right, #fff 20%, #9D4EDD 50%, #fff 80%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: text-shimmer 5s ease-in-out infinite alternate;
+}
+
+/* Perspective Grid */
+.perspective-grid {
+  transform: perspective(1000px) rotateX(60deg) translateY(-100px) translateZ(-200px);
+  background-size: 80px 80px;
+  background-image:
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  width: 200vw;
+  height: 200vh;
+  position: absolute;
+  top: 50%;
+  left: -50%;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 50%);
+}
+
+/* Premium Spotlight Card */
+.spotlight-card {
+  background: rgba(255, 255, 255, 0.015);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.3), transparent 40%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.spotlight-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(79, 209, 197, 0.05), transparent 40%);
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+.spotlight-card:hover::before,
+.spotlight-card:hover::after {
+  opacity: 1;
+}
+
+.spotlight-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Lenis */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Typography Utilities */
+.highlight-word {
+  display: inline-block;
+  will-change: transform, opacity, filter;
+}
+
+.faq-content {
+  overflow: hidden;
+  height: 0;
+  opacity: 0;
+}
+
+/* Button Glow */
+.btn-glow {
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #9D4EDD, #ffffff, #9D4EDD);
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s;
+  z-index: -1;
+}
+
+.group:hover .btn-glow {
+  opacity: 0.4;
+}
+
+/* Reveal Utilities */
+.reveal-text {
+  transform: translateY(100%);
+}
+
+/* Iconify Web Component Registration fix for Next.js */
+iconify-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+}

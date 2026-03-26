@@ -1,0 +1,100 @@
+import { Icon } from '@iconify/react';
+import Link from 'next/link';
+export default function FooterSection() {
+  return (
+    <>
+      <section className="min-h-[90vh] flex flex-col items-center justify-center px-6 relative overflow-hidden" id="action">
+        <div className="absolute inset-0 bg-gradient-to-t from-luxota-accent/5 to-transparent pointer-events-none"></div>
+
+        <div className="relative z-10 text-center max-w-5xl">
+          <h2 className="text-6xl md:text-9xl font-medium tracking-tightest text-white mb-10 leading-[0.85]">
+            Starte dein<br /> Projekt — <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/30 italic font-serif">jetzt.</span>
+          </h2>
+
+          <p className="text-xl md:text-2xl text-luxota-dim max-w-2xl mx-auto leading-relaxed mb-16 font-light">
+            Buche ein kostenloses Erstgespräch. Kein klassischer Sales-Pitch, sondern 100% strategische Klarheit für dein digitales Wachstum.
+          </p>
+
+          <div className="flex flex-col items-center gap-10">
+            <a href="mailto:kontakt@0ggi.ch?subject=Projektanfrage" className="group relative bg-white text-black px-16 py-6 rounded-[2rem] font-bold text-xl overflow-hidden inline-flex transition-transform hover:-translate-y-1 shadow-[0_0_60px_-15px_rgba(255,255,255,0.4)] hover:shadow-[0_0_80px_-15px_rgba(157,78,221,0.5)]">
+              <span className="relative z-10 flex items-center gap-3">
+                Termin vereinbaren
+                <span className="iconify-container group-hover:translate-x-1 transition-transform">
+                  <Icon icon="solar:arrow-right-linear" />
+                </span>
+              </span>
+              <div className="absolute inset-0 bg-luxota-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
+            </a>
+
+            <div className="text-sm text-luxota-dim tracking-wide">
+              Noch nicht sicher? 
+              <a href="mailto:kontakt@0ggi.ch" className="text-white border-b border-white/30 pb-0.5 hover:border-white transition-all hover:text-luxota-accent ml-1">
+                Schick mir eine E-Mail
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer className="relative py-24 px-6 border-t border-white/5 bg-[#020203] overflow-hidden">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-luxota-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div className="absolute bottom-[-5%] left-0 right-0 select-none pointer-events-none flex justify-center opacity-[0.03]">
+          <h1 className="text-[18vw] font-bold text-white tracking-tighter leading-none">0GGI.CH</h1>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 mb-24">
+            
+            {/* Services */}
+            <div>
+              <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">Dienstleistungen</h4>
+              <ul className="space-y-5 text-sm text-luxota-dim font-light">
+                <li><Link href="/services" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Web Development</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Speed Performance</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Branding</Link></li>
+              </ul>
+            </div>
+
+            {/* AI */}
+            <div>
+              <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">Automation</h4>
+              <ul className="space-y-5 text-sm text-luxota-dim font-light">
+                <li><Link href="/purpose" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>n8n Automatisierungen</Link></li>
+                <li><Link href="/purpose" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>OpenClaw Agent</Link></li>
+                <li><Link href="/purpose" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Hermes Agent</Link></li>
+              </ul>
+            </div>
+
+            {/* Resources */}
+            <div>
+              <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">Informationen</h4>
+              <ul className="space-y-5 text-sm text-luxota-dim font-light">
+                <li><Link href="/purpose" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Über mich</Link></li>
+                <li><Link href="/portfolio" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Portfolio & Referenzen</Link></li>
+                <li><a href="mailto:kontakt@0ggi.ch" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Kontakt E-Mail</a></li>
+              </ul>
+            </div>
+
+            {/* Legal */}
+            <div>
+              <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">Rechtliches</h4>
+              <ul className="space-y-5 text-sm text-luxota-dim font-light">
+                <li><Link href="/impressum" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Impressum</Link></li>
+                <li><Link href="/datenschutz" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Datenschutz</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-luxota-dim/60 font-mono tracking-wider gap-4">
+            <div className="flex items-center gap-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-luxota-accent animate-pulse"></span>
+              <span className="uppercase">0ggi Web & AI Services</span>
+            </div>
+            <div>© {new Date().getFullYear()} 0ggi.ch | Schweiz. Alle Rechte vorbehalten.</div>
+          </div>
+        </div>
+      </footer>
+    </>
+  );
+}

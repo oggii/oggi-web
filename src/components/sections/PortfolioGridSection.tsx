@@ -1,8 +1,5 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import { useTranslation } from '@/i18n/TranslationContext';
@@ -37,46 +34,17 @@ function getProjects(t: (key: string) => string) {
 }
 
 export default function PortfolioGridSection() {
-  const containerRef = useRef<HTMLElement>(null);
   const { t } = useTranslation();
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray('.portfolio-item').forEach((el: unknown) => {
-        const element = el as HTMLElement;
-        gsap.fromTo(element,
-          { opacity: 0, scale: 0.95, y: 30 },
-          {
-            scrollTrigger: {
-              trigger: element,
-              start: "top 85%",
-            },
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            duration: 1.2,
-            ease: "expo.out"
-          }
-        );
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
   const projects = getProjects(t);
 
   return (
-    <section ref={containerRef} className="py-16 lg:py-24 relative z-10 bg-[#020203]">
+    <section className="py-16 lg:py-24 relative z-10 bg-[#020203]">
       <div className="max-w-7xl mx-auto px-6">
-
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {projects.map((project, idx) => (
             <div
               key={idx}
-              className={`portfolio-item group cursor-pointer aspect-[4/3] rounded-3xl overflow-hidden relative border border-white/5 bg-gradient-to-br ${project.color} ${idx % 2 !== 0 ? 'md:mt-16' : ''}`}
+              className={`reveal-up portfolio-item group cursor-pointer aspect-[4/3] rounded-3xl overflow-hidden relative border border-white/5 bg-gradient-to-br ${project.color} ${idx % 2 !== 0 ? 'md:mt-16' : ''}`}
             >
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02),transparent_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 

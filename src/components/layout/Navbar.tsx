@@ -9,35 +9,39 @@ import { locales, localeNames } from '@/i18n/config';
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const pathname = usePathname();
   const { t, locale, setLocale } = useTranslation();
 
   // Reset header to visible on every page navigation
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsVisible(true);
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setLastScrollY(0);
   }, [pathname]);
 
   // Handle Scroll behavior to hide/show navbar
   useEffect(() => {
+    let lastY = window.scrollY;
+    const threshold = 12; // pixels
+
     const handleScroll = () => {
-      if (menuOpen) return; // don't hide navbar if menu is open
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 80) {
+      if (menuOpen) return;
+      const currentY = window.scrollY;
+      const diff = currentY - lastY;
+
+      // Ignore small jitter
+      if (Math.abs(diff) < threshold) return;
+
+      if (currentY > lastY && currentY > 150) {
         setIsVisible(false);
-      } else if (currentScrollY < lastScrollY) {
+      } else if (currentY < lastY) {
         setIsVisible(true);
       }
-      setLastScrollY(currentScrollY);
+      lastY = currentY;
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [lastScrollY, menuOpen]);
+  }, [menuOpen]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -59,8 +63,8 @@ export default function Navbar() {
   return (
     <>
       <header
-        style={{ top: isVisible || menuOpen ? '' : '-150px' }}
-        className={`fixed top-4 md:top-8 left-0 right-0 z-[100] transition-all duration-[800ms] ease-[cubic-bezier(0.16,1,0.3,1)] reveal-nav pointer-events-none px-4 md:px-8`}
+        style={{ transform: isVisible || menuOpen ? 'translateY(0)' : 'translateY(-180%)' }}
+        className={`fixed top-4 md:top-8 left-0 right-0 z-[100] transition-transform duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)] reveal-nav pointer-events-none px-4 md:px-8`}
       >
         {/* DESKTOP NAV */}
         <div className="hidden md:flex justify-center items-center pointer-events-auto relative">

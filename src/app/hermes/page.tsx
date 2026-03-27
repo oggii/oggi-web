@@ -98,28 +98,6 @@ const useCases = [
       'Wissensartikel und FAQs aus Gesprächsprotokollen aufbauen',
     ],
   },
-  {
-    industry: 'Handwerk & Lokale Services',
-    icon: 'solar:tools-bold-duotone',
-    saving: '~18 Std./Woche',
-    tasks: [
-      'Kundenanfragen automatisch qualifizieren und zurückmelden',
-      'Terminkoordination und Erinnerungen vollständig übernehmen',
-      'Auftragsbestätigungen und Rechnungsentwürfe erzeugen',
-      'Kundenbewertungen sammeln und strukturiert auswerten',
-    ],
-  },
-  {
-    industry: 'Gesundheit & Wellness',
-    icon: 'solar:heart-pulse-bold-duotone',
-    saving: '~8 Std./Woche',
-    tasks: [
-      'Buchungsanfragen rund um die Uhr entgegennehmen',
-      'Klientenhistorie vor Terminen komprimiert aufbereiten',
-      'Nachsorge-Kommunikation und Check-ins automatisieren',
-      'Informationsmaterialien personalisiert versenden',
-    ],
-  },
 ];
 
 const selfLearningSteps = [
@@ -148,21 +126,21 @@ const selfLearningSteps = [
 export default function HermesPage() {
   return (
     <main className="min-h-screen">
-      {/* Hero — consistent with /services and /portfolio pattern */}
-      <div className="pt-40 max-w-7xl mx-auto px-6 mb-24 relative z-10">
-        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-luxota-accent/30 bg-luxota-accent/5 backdrop-blur-md mb-8 opacity-0 reveal-hero-fade">
+      {/* Hero */}
+      <div className="pt-40 max-w-7xl mx-auto px-6 mb-24 relative z-10 reveal-up">
+        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-luxota-accent/30 bg-luxota-accent/5 backdrop-blur-md mb-8">
           <span className="w-1.5 h-1.5 bg-luxota-accent rounded-full shadow-[0_0_10px_#9D4EDD] animate-pulse" />
           <span className="text-[10px] uppercase tracking-widest text-luxota-accent font-mono font-medium">KI Agent — Selbstlernend</span>
         </div>
-        <h1 className="text-5xl md:text-8xl font-medium tracking-tight text-white mb-6 opacity-0 reveal-hero-fade leading-[1.05]">
+        <h1 className="text-5xl md:text-8xl font-medium tracking-tight text-white mb-6 leading-[1.05]">
           Hermes Agent:<br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxota-accent to-white/40 italic font-serif">Der Agent, der wächst.</span>
         </h1>
-        <p className="text-lg md:text-xl text-luxota-dim max-w-3xl font-light opacity-0 reveal-hero-fade leading-relaxed">
+        <p className="text-lg md:text-xl text-luxota-dim max-w-3xl font-light leading-relaxed">
           Hermes lernt eigenständig aus jeder Aufgabe, erstellt eigene Fähigkeiten und wird mit der Zeit messbar intelligenter — für Ihr spezifisches Business, Ihre Prozesse, Ihre Sprache.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 mt-12 opacity-0 reveal-hero-fade">
+        <div className="flex flex-col sm:flex-row gap-4 mt-12">
           <a href="/#action" className="group relative px-9 py-4 bg-white text-luxota-bg rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(255,255,255,0.4)] inline-flex">
             <span className="relative z-10 text-sm font-bold flex items-center gap-2">
               Kostenloses Erstgespräch
@@ -176,7 +154,7 @@ export default function HermesPage() {
         </div>
 
         {/* Stats row */}
-        <div className="flex flex-col sm:flex-row gap-8 sm:gap-20 mt-20 opacity-0 reveal-hero-fade">
+        <div className="flex flex-col sm:flex-row gap-8 sm:gap-20 mt-20">
           {[
             { value: '40+', label: 'Eingebaute Fähigkeiten' },
             { value: '3x', label: 'Gedächtnisschichten' },
@@ -194,7 +172,7 @@ export default function HermesPage() {
       <section className="py-24 px-6 bg-[#020203] border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
+            <div className="reveal-up">
               <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest">[ DAS ALLEINSTELLUNGSMERKMAL ]</span>
               <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-8 leading-[1.1]">
                 Ein Agent, der sich<br />
@@ -208,7 +186,7 @@ export default function HermesPage() {
               </p>
               <div className="border-l-2 border-luxota-accent pl-6">
                 <p className="text-white/80 italic text-lg leading-relaxed">
-                  &ldquo;Repeatinge Winning Behaviour — Hermes merkt sich, was funktioniert, und wiederholt es.&rdquo;
+                  &ldquo;Repeating Winning Behaviour — Hermes merkt sich, was funktioniert, und wiederholt es.&rdquo;
                 </p>
               </div>
             </div>
@@ -219,7 +197,7 @@ export default function HermesPage() {
                 <div className="w-full h-full bg-gradient-to-b from-luxota-accent to-transparent" />
               </div>
               {selfLearningSteps.map((step, i) => (
-                <div key={step.step} className="group cursor-default hover:translate-x-2 transition-transform">
+                <div key={step.step} className="group cursor-default hover:translate-x-2 transition-transform reveal-up">
                   <div className="text-[10px] font-mono text-luxota-dim mb-2 group-hover:text-luxota-accent transition-colors tracking-widest">SCHRITT {step.step}</div>
                   <h3 className="text-2xl text-white mb-2 font-medium">{step.title}</h3>
                   <p className="text-base text-luxota-dim/70 leading-relaxed">{step.desc}</p>
@@ -233,7 +211,7 @@ export default function HermesPage() {
       {/* Superpowers */}
       <section className="py-24 px-6 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 reveal-up">
             <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest">[ FÄHIGKEITEN ]</span>
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-4">
               Was Hermes nativ kann
@@ -244,7 +222,7 @@ export default function HermesPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {superPowers.map((sp) => (
-              <div key={sp.title} className="spotlight-card rounded-3xl p-8 border border-white/10 bg-white/[0.02] group hover:border-luxota-accent/30 transition-all duration-500">
+              <div key={sp.title} className="spotlight-card rounded-3xl p-8 border border-white/10 bg-white/[0.02] group hover:border-luxota-accent/30 transition-all duration-500 reveal-up">
                 <div className="w-12 h-12 rounded-2xl bg-luxota-accent/10 border border-luxota-accent/20 flex items-center justify-center mb-6 group-hover:bg-luxota-accent/20 transition-colors">
                   <Icon icon={sp.icon} className="text-2xl text-luxota-accent" />
                 </div>
@@ -261,10 +239,10 @@ export default function HermesPage() {
         </div>
       </section>
 
-      {/* Use Cases — industry grid */}
+      {/* Use Cases */}
       <section className="py-24 px-6 bg-[#020203] border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 reveal-up">
             <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest">[ ANWENDUNGSFÄLLE ]</span>
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-4">
               Für jede Branche konfigurierbar
@@ -275,7 +253,7 @@ export default function HermesPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {useCases.map((uc) => (
-              <div key={uc.industry} className="spotlight-card rounded-3xl p-8 border border-white/10 bg-white/[0.02] group hover:border-luxota-accent/30 transition-all duration-500">
+              <div key={uc.industry} className="reveal-up spotlight-card rounded-3xl p-8 border border-white/10 bg-white/[0.02] group hover:border-luxota-accent/30 transition-all duration-500">
                 <div className="flex items-start justify-between mb-6">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
@@ -304,58 +282,8 @@ export default function HermesPage() {
         </div>
       </section>
 
-      {/* Comparison teaser */}
-      <section className="py-24 px-6 border-t border-white/5">
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest">[ WARUM HERMES? ]</span>
-            <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight">
-              Was Hermes anders macht
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="rounded-3xl p-8 border border-white/5 bg-white/[0.01]">
-              <h3 className="text-lg font-medium text-white/40 mb-6 uppercase tracking-widest text-sm font-mono">Gewöhnlicher KI-Assistent</h3>
-              <ul className="space-y-4">
-                {[
-                  'Vergisst alles nach jedem Gespräch',
-                  'Macht dieselben Fehler immer wieder',
-                  'Benötigt manuelle Konfiguration für jede Fähigkeit',
-                  'Führt geplante Aufgaben unzuverlässig aus',
-                  'Keine Browser-Nutzung ohne komplexe Einrichtung',
-                  'Teuer durch hohen Token-Verbrauch',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-luxota-dim/50">
-                    <Icon icon="solar:close-circle-linear" className="text-white/20 text-lg shrink-0 mt-0.5" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="rounded-3xl p-8 border border-luxota-accent/20 bg-luxota-accent/[0.03]">
-              <h3 className="text-lg font-medium text-luxota-accent mb-6 uppercase tracking-widest text-sm font-mono">Hermes Agent</h3>
-              <ul className="space-y-4">
-                {[
-                  'Dreistufiges Langzeitgedächtnis — vergisst nichts',
-                  'Lernt eigenständig aus Aufgaben und verbessert sich',
-                  'Erstellt Fähigkeiten selbständig nach erfolgreicher Ausführung',
-                  'Cron-Planung, die tatsächlich funktioniert',
-                  'Nativer Browser-Zugriff und visuelle Analyse',
-                  'Kosteneffizient — ein Monat Arbeit für wenige Franken',
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-white/80">
-                    <Icon icon="solar:check-circle-bold" className="text-luxota-accent text-lg shrink-0 mt-0.5" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA */}
-      <section className="py-32 px-6 text-center border-t border-white/5 relative overflow-hidden bg-[#020203]">
+      <section className="py-32 px-6 text-center border-t border-white/5 relative overflow-hidden bg-[#020203] reveal-up">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(157,78,221,0.08),transparent_70%)]" />
         <div className="relative z-10 max-w-3xl mx-auto">
           <span className="text-xs text-luxota-accent font-mono mb-6 block tracking-widest">[ NÄCHSTER SCHRITT ]</span>

@@ -85,21 +85,21 @@ const useCases = [
 export default function OpenClawPage() {
   return (
     <main className="min-h-screen">
-      {/* Hero — consistent with /services and /portfolio pattern */}
-      <div className="pt-40 max-w-7xl mx-auto px-6 mb-24 relative z-10">
-        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-luxota-accent/30 bg-luxota-accent/5 backdrop-blur-md mb-8 opacity-0 reveal-hero-fade">
+      {/* Hero */}
+      <div className="pt-40 max-w-7xl mx-auto px-6 mb-24 relative z-10 reveal-up">
+        <div className="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-luxota-accent/30 bg-luxota-accent/5 backdrop-blur-md mb-8">
           <span className="w-1.5 h-1.5 bg-luxota-accent rounded-full shadow-[0_0_10px_#9D4EDD] animate-pulse" />
           <span className="text-[10px] uppercase tracking-widest text-luxota-accent font-mono font-medium">KI Agent — Massgeschneidert</span>
         </div>
-        <h1 className="text-5xl md:text-8xl font-medium tracking-tight text-white mb-6 opacity-0 reveal-hero-fade leading-[1.05]">
+        <h1 className="text-5xl md:text-8xl font-medium tracking-tight text-white mb-6 leading-[1.05]">
           OpenClaw:<br />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxota-accent to-white/40 italic font-serif">Ihr 24/7 KI-Mitarbeiter</span>
         </h1>
-        <p className="text-lg md:text-xl text-luxota-dim max-w-3xl font-light opacity-0 reveal-hero-fade leading-relaxed">
+        <p className="text-lg md:text-xl text-luxota-dim max-w-3xl font-light leading-relaxed">
           Ein massgeschneiderter KI-Agent, der in Ihrer Sprache kommuniziert, Ihre Tools kennt und Routineaufgaben eigenständig erledigt — für jede Branche, jeden Prozess, jederzeit.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 mt-12 opacity-0 reveal-hero-fade">
+        <div className="flex flex-col sm:flex-row gap-4 mt-12">
           <a href="/#action" className="group relative px-9 py-4 bg-white text-luxota-bg rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(255,255,255,0.4)] inline-flex">
             <span className="relative z-10 text-sm font-bold flex items-center gap-2">
               Kostenloses Erstgespräch
@@ -113,7 +113,7 @@ export default function OpenClawPage() {
         </div>
 
         {/* Stats row */}
-        <div className="flex flex-col sm:flex-row gap-8 sm:gap-20 mt-20 opacity-0 reveal-hero-fade">
+        <div className="flex flex-col sm:flex-row gap-8 sm:gap-20 mt-20">
           {[{ value: '24/7', label: 'Verfügbarkeit' }, { value: '< 2s', label: 'Antwortzeit' }, { value: '100%', label: 'Datensicherheit' }].map((stat) => (
             <div key={stat.label} className="border-l border-white/10 pl-6">
               <div className="text-3xl font-medium text-white tracking-tight">{stat.value}</div>
@@ -126,7 +126,7 @@ export default function OpenClawPage() {
       {/* What is it */}
       <section className="py-24 px-6 bg-[#020203] border-t border-white/5">
         <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div>
+          <div className="reveal-up">
             <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest">[ WAS IST OPENCLAW? ]</span>
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-8 leading-[1.1]">
               Der KI-Agent, den Sie<br />
@@ -146,7 +146,7 @@ export default function OpenClawPage() {
           </div>
 
           {/* Visual orbital */}
-          <div className="relative aspect-square max-w-md mx-auto">
+          <div className="relative aspect-square max-w-md mx-auto reveal-up">
             <div className="absolute inset-0 bg-luxota-accent/5 rounded-3xl border border-white/10" />
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="relative w-24 h-24">
@@ -186,13 +186,13 @@ export default function OpenClawPage() {
       {/* Capabilities */}
       <section className="py-24 px-6 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 reveal-up">
             <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest">[ FÄHIGKEITEN ]</span>
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight">Was OpenClaw für Sie tut</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {capabilities.map((cap) => (
-              <div key={cap.title} className="spotlight-card rounded-3xl p-8 border border-white/10 bg-white/[0.02] group hover:border-luxota-accent/30 transition-all duration-500">
+              <div key={cap.title} className="reveal-up spotlight-card rounded-3xl p-8 border border-white/10 bg-white/[0.02] group hover:border-luxota-accent/30 transition-all duration-500">
                 <div className="w-12 h-12 rounded-2xl bg-luxota-accent/10 border border-luxota-accent/20 flex items-center justify-center mb-6 group-hover:bg-luxota-accent/20 transition-colors">
                   <Icon icon={cap.icon} className="text-2xl text-luxota-accent" />
                 </div>
@@ -212,14 +212,14 @@ export default function OpenClawPage() {
       {/* Use Cases */}
       <section className="py-24 px-6 bg-[#020203] border-t border-white/5">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 reveal-up">
             <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest">[ ANWENDUNGSFÄLLE ]</span>
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-4">Für jede Branche einsetzbar</h2>
             <p className="text-luxota-dim max-w-2xl mx-auto">OpenClaw wird nicht von der Stange geliefert — er wird auf Ihren Betrieb zugeschnitten.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {useCases.map((uc) => (
-              <div key={uc.industry} className="spotlight-card rounded-3xl p-8 border border-white/10 bg-white/[0.02] group hover:border-luxota-accent/30 transition-all duration-500">
+              <div key={uc.industry} className="reveal-up spotlight-card rounded-3xl p-8 border border-white/10 bg-white/[0.02] group hover:border-luxota-accent/30 transition-all duration-500">
                 <div className="flex items-start justify-between mb-6">
                   <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
                     <Icon icon={uc.icon} className="text-2xl text-white/60 group-hover:text-luxota-accent transition-colors duration-300" />

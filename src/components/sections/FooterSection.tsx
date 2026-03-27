@@ -9,7 +9,7 @@ export default function FooterSection() {
       <section className="min-h-[90vh] flex flex-col items-center justify-center px-6 relative overflow-hidden" id="action">
         <div className="absolute inset-0 bg-gradient-to-t from-luxota-accent/5 to-transparent pointer-events-none"></div>
 
-        <div className="relative z-10 text-center max-w-5xl">
+        <div className="relative z-10 text-center max-w-5xl reveal-up">
           <h2 className="text-6xl md:text-9xl font-medium tracking-tightest text-white mb-10 leading-[0.85]">
             {t('footer.title1')}<br /> {t('footer.title2')} <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/30 italic font-serif">{t('footer.title3')}</span>
           </h2>
@@ -47,7 +47,7 @@ export default function FooterSection() {
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 mb-24">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 mb-24 reveal-up">
 
             {/* Services */}
             <div>

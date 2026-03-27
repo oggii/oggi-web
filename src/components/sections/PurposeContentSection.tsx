@@ -19,18 +19,15 @@ export default function PurposeContentSection() {
       gsap.utils.toArray('.parallax-scrub').forEach((el: unknown) => {
         const element = el as HTMLElement;
         const speed = element.dataset.speed ? parseFloat(element.dataset.speed) : 1;
-        gsap.fromTo(element,
-          { y: 120 * speed },
-          {
-            y: -80 * speed,
-            scrollTrigger: {
-              trigger: element,
-              start: "top 95%",
-              end: "bottom 10%",
-              scrub: 1,
-            }
+        gsap.to(element, {
+          y: -80 * speed,
+          scrollTrigger: {
+            trigger: element,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1,
           }
-        );
+        });
       });
 
       gsap.utils.toArray('.card-stop').forEach((el: unknown) => {
@@ -80,8 +77,8 @@ export default function PurposeContentSection() {
     <section ref={containerRef} className="pb-20 relative z-10 bg-transparent">
       <div className="max-w-7xl mx-auto px-6 mt-6 space-y-32">
 
-        {/* Mid-sized Editorial Image Placeholder */}
-        <div className="opacity-0 reveal-hero-fade relative w-full aspect-[21/9] md:aspect-[2.5/1] rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl">
+        {/* Mid-sized Editorial Image */}
+        <div className="reveal-up relative w-full aspect-[21/9] md:aspect-[2.5/1] rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl">
           <div className="parallax-scrub absolute inset-[-20%] w-[140%] h-[140%] bg-black" data-speed="0.8">
             <Image
               src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2800&auto=format&fit=crop"
@@ -97,12 +94,12 @@ export default function PurposeContentSection() {
         </div>
 
         {/* Primary Mission Info */}
-        <div className="max-w-4xl pt-10">
-          <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-medium tracking-tight text-white leading-[1.1] mb-12 opacity-0 reveal-hero-fade">
+        <div className="max-w-4xl pt-10 reveal-up">
+          <h2 className="text-3xl md:text-5xl lg:text-[3.5rem] font-medium tracking-tight text-white leading-[1.1] mb-12">
             {t('purpose.missionTitle')} <span className="text-luxota-accent italic font-serif">{t('purpose.missionHighlight')}</span> {t('purpose.missionEnd')}<br />
             <span className="text-white block mt-6">{t('purpose.missionTime')}</span>
           </h2>
-          <p className="text-xl md:text-2xl text-luxota-dim font-light leading-relaxed max-w-3xl pl-6 border-l-2 border-white/10 opacity-0 reveal-hero-fade">
+          <p className="text-xl md:text-2xl text-luxota-dim font-light leading-relaxed max-w-3xl pl-6 border-l-2 border-white/10">
             {t('purpose.missionDesc')} <strong className="text-white font-medium">{t('purpose.missionDescBold1')}</strong> {t('purpose.missionDescMid')} <strong className="text-white font-medium">{t('purpose.missionDescBold2')}</strong> {t('purpose.missionDescEnd')}<br /><br />
             {t('purpose.missionDescFinal')}
           </p>
@@ -110,7 +107,7 @@ export default function PurposeContentSection() {
 
         {/* Dynamic Project/Initiatives Cards */}
         <div className="space-y-16">
-          <div className="flex items-center gap-4 stagger-fade-in opacity-0">
+          <div className="flex items-center gap-4 reveal-up">
             <span className="text-xs text-luxota-accent font-mono tracking-widest uppercase">{t('purpose.initiativesTag')}</span>
             <div className="h-px w-24 bg-luxota-accent/30"></div>
           </div>
@@ -169,7 +166,7 @@ export default function PurposeContentSection() {
         </div>
 
         {/* Collaboration CTA */}
-        <div className="stagger-fade-in opacity-0 pt-10 pb-32 border-t border-white/10">
+        <div className="pt-10 pb-32 border-t border-white/10 reveal-up">
           <div className="parallax-scrub" data-speed="0.7">
             <p className="text-3xl md:text-4xl text-white font-medium leading-tight mb-12 max-w-3xl">
               {t('purpose.collab')}

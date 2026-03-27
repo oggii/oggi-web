@@ -5,8 +5,10 @@ import { Icon } from '@iconify/react';
 import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslation } from '@/i18n/TranslationContext';
 
 export default function PricingMaturitySection() {
+  const { t } = useTranslation();
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
@@ -27,21 +29,21 @@ export default function PricingMaturitySection() {
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="lg:sticky lg:top-32 self-start">
-            <span className="text-xs text-luxota-accent font-mono mb-6 block tracking-widest">[ 03 — DIAGNOSE ]</span>
+            <span className="text-xs text-luxota-accent font-mono mb-6 block tracking-widest">{t('maturity.tag')}</span>
             <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight mb-8 leading-[1.1]">
-              Wie ist dein Business <br /> aufgestellt?
+              {t('maturity.title')} <br /> {t('maturity.titleBr')}
             </h2>
             <p className="text-luxota-dim text-lg leading-relaxed mb-12">
-              Wachstum ist nicht nur Skalierung, es bedarf reibungsloser Prozesse und Systeme. Ich helfe dir dabei, Ineffizienzen zu überwinden. <br/><br/>
-              <span className="text-white/80 border-l-2 border-luxota-accent pl-4 block">Die meisten Unternehmen verlieren wertvolle Zeit bei sich wiederholenden Abläufen.</span>
+              {t('maturity.desc1')}<br /><br />
+              <span className="text-white/80 border-l-2 border-luxota-accent pl-4 block">{t('maturity.desc2')}</span>
             </p>
 
             <a href="#action" className="group inline-flex items-center gap-3 text-white text-sm font-medium hover:text-luxota-accent transition-colors">
               <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-luxota-accent group-hover:bg-luxota-accent/10 transition-all bg-white/5">
-                
+
                 <Icon icon="solar:arrow-right-linear" className="group-hover:translate-x-0.5 transition-transform"></Icon>
               </div>
-              <span className="border-b border-transparent group-hover:border-luxota-accent/50 transition-all">Starte deine Analyse</span>
+              <span className="border-b border-transparent group-hover:border-luxota-accent/50 transition-all">{t('maturity.btn')}</span>
             </a>
           </div>
 
@@ -51,31 +53,31 @@ export default function PricingMaturitySection() {
             </div>
 
             <div className="group cursor-pointer transition-all hover:translate-x-2">
-              <div className="text-xs font-mono text-luxota-dim mb-2 group-hover:text-luxota-accent transition-colors">LEVEL 0</div>
-              <h3 className="text-2xl text-white mb-2 font-medium">Manuelle Prozesse</h3>
-              <p className="text-base text-luxota-dim/60">Tagesgeschäft wird von Ineffizienz und Streuverlusten dominiert. Keine Automatisierung vorhanden.</p>
+              <div className="text-xs font-mono text-luxota-dim mb-2 group-hover:text-luxota-accent transition-colors">{t('maturity.l0b')}</div>
+              <h3 className="text-2xl text-white mb-2 font-medium">{t('maturity.l0t')}</h3>
+              <p className="text-base text-luxota-dim/60">{t('maturity.l0d')}</p>
             </div>
 
             <div className="group cursor-pointer transition-all hover:translate-x-2">
-              <div className="text-xs font-mono text-luxota-dim mb-2 group-hover:text-luxota-accent transition-colors">LEVEL 1</div>
-              <h3 className="text-2xl text-white mb-2 font-medium">Digitale Präsenz</h3>
-              <p className="text-base text-luxota-dim/60">Die Website steht, aber Integrationen in Prozesse und Systemlandschaften sind limitiert.</p>
+              <div className="text-xs font-mono text-luxota-dim mb-2 group-hover:text-luxota-accent transition-colors">{t('maturity.l1b')}</div>
+              <h3 className="text-2xl text-white mb-2 font-medium">{t('maturity.l1t')}</h3>
+              <p className="text-base text-luxota-dim/60">{t('maturity.l1d')}</p>
             </div>
 
             <div className="group cursor-pointer transition-all hover:translate-x-2">
-              <div className="text-xs font-mono text-luxota-dim mb-2 group-hover:text-luxota-accent transition-colors">LEVEL 2</div>
-              <h3 className="text-2xl text-white mb-2 font-medium">Verbundenes Business</h3>
-              <p className="text-base text-luxota-dim/60">Tools sind miteinander verknüpft. Datenaustausch funktioniert reibungslos über APIs.</p>
+              <div className="text-xs font-mono text-luxota-dim mb-2 group-hover:text-luxota-accent transition-colors">{t('maturity.l2b')}</div>
+              <h3 className="text-2xl text-white mb-2 font-medium">{t('maturity.l2t')}</h3>
+              <p className="text-base text-luxota-dim/60">{t('maturity.l2d')}</p>
             </div>
 
             <div className="group cursor-pointer transition-all hover:translate-x-2">
-              <div className="text-xs font-mono text-luxota-accent mb-2">LEVEL 3</div>
+              <div className="text-xs font-mono text-luxota-accent mb-2">{t('maturity.l3b')}</div>
               <h3 className="text-2xl text-white mb-2 font-medium flex items-center gap-3">
-                Das Skalierte Business
-                <span className="text-[10px] px-2.5 py-1 rounded-full bg-luxota-accent/10 text-luxota-accent border border-luxota-accent/20 font-medium tracking-wide uppercase">Zielstufe</span>
+                {t('maturity.l3t')}
+                <span className="text-[10px] px-2.5 py-1 rounded-full bg-luxota-accent/10 text-luxota-accent border border-luxota-accent/20 font-medium tracking-wide uppercase">{t('maturity.l3Tag')}</span>
               </h3>
               <p className="text-base text-luxota-dim">
-                Betriebsabläufe sind strukturiert. KI Agenten erledigen Tasks und unterstützen massiv beim Wachstum.
+                {t('maturity.l3d')}
               </p>
             </div>
           </div>

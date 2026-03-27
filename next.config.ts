@@ -1,8 +1,20 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
   reactCompiler: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'cdn.jsdelivr.net',
+        pathname: '/gh/homarr-labs/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'hermes-agent.nousresearch.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

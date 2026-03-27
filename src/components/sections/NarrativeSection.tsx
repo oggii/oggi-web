@@ -3,9 +3,11 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslation } from '@/i18n/TranslationContext';
 
 export default function NarrativeSection() {
   const containerRef = useRef<HTMLElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -13,7 +15,7 @@ export default function NarrativeSection() {
 
     const ctx = gsap.context(() => {
       const words = gsap.utils.toArray('.highlight-word');
-      
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
@@ -45,27 +47,33 @@ export default function NarrativeSection() {
 
   return (
     <div className="pin-spacer">
-      <section ref={containerRef} className="h-screen flex items-center justify-center bg-luxota-bg relative overflow-hidden z-20" id="narrative-section">
+      <section ref={containerRef} className="min-h-[100svh] flex items-center justify-center bg-luxota-bg relative overflow-hidden z-20" id="narrative-section">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(157,78,221,0.05),transparent_60%)] pointer-events-none"></div>
 
         <div className="max-w-6xl mx-auto px-6 text-center relative z-10" id="narrative-content">
-          <p className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-normal leading-tight tracking-tight text-white flex flex-wrap justify-center gap-x-3 md:gap-x-6 gap-y-2 md:gap-y-4 break-words">
-            <span className="highlight-word opacity-20 blur-sm text-white">Viele</span>
-            <span className="highlight-word opacity-20 blur-sm text-white">Agenturen</span>
-            <span className="highlight-word opacity-20 blur-sm text-white">bauen</span>
-            <span className="highlight-word opacity-20 blur-sm text-white font-medium">isolierte</span>
-            <span className="highlight-word opacity-20 blur-sm text-white font-medium">Tools.</span>
-            <span className="highlight-word opacity-20 blur-sm text-white">Ich</span>
-            <span className="highlight-word opacity-20 blur-sm text-white">schaffe</span>
-            <span className="highlight-word opacity-20 blur-sm text-luxota-accent">Systeme.</span>
-            <span className="highlight-word opacity-20 blur-sm text-white">Ich</span>
-            <span className="highlight-word opacity-20 blur-sm text-white">löse</span>
-            <span className="highlight-word opacity-20 blur-sm text-white">nicht</span>
-            <span className="highlight-word opacity-20 blur-sm text-white">nur</span>
-            <span className="highlight-word opacity-20 blur-sm text-white">Probleme;</span>
-            <span className="highlight-word opacity-20 blur-sm text-white">ich</span>
-            <span className="highlight-word opacity-20 blur-sm text-white">automatisiere</span>
-            <span className="highlight-word opacity-20 blur-sm text-luxota-accent italic font-serif">Skalierung.</span>
+          <p className="text-3xl sm:text-4xl md:text-5xl lg:text-[4.5rem] xl:text-[5.25rem] font-medium leading-[1.15] tracking-tight text-white flex flex-wrap justify-center gap-x-2 md:gap-x-4 lg:gap-x-6 gap-y-2 lg:gap-y-4 break-words">
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w1')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w2')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w3')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w4')}</span>
+            <span className="highlight-word opacity-0 text-white font-medium">{t('narrative.w5')}</span>
+            <span className="highlight-word opacity-0 text-white font-medium">{t('narrative.w6')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w7')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w8')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w9')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w10')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w11')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w12')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w13')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w14')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w15')}</span>
+            <span className="highlight-word opacity-0 text-luxota-accent">{t('narrative.w16')}</span>
+            <span className="highlight-word opacity-0 text-luxota-accent">{t('narrative.w17')}</span>
+            <span className="highlight-word opacity-0 text-luxota-accent">{t('narrative.w18')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w19')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w20')}</span>
+            <span className="highlight-word opacity-0 text-white">{t('narrative.w21')}</span>
+            <span className="highlight-word opacity-0 text-luxota-accent italic font-serif">{t('narrative.w22')}</span>
           </p>
         </div>
       </section>

@@ -1,6 +1,9 @@
+'use client';
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
+import { useTranslation } from '@/i18n/TranslationContext';
 export default function FooterSection() {
+  const { t } = useTranslation();
   return (
     <>
       <section className="min-h-[90vh] flex flex-col items-center justify-center px-6 relative overflow-hidden" id="action">
@@ -8,17 +11,17 @@ export default function FooterSection() {
 
         <div className="relative z-10 text-center max-w-5xl">
           <h2 className="text-6xl md:text-9xl font-medium tracking-tightest text-white mb-10 leading-[0.85]">
-            Starte dein<br /> Projekt — <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/30 italic font-serif">jetzt.</span>
+            {t('footer.title1')}<br /> {t('footer.title2')} <span className="text-transparent bg-clip-text bg-gradient-to-b from-white to-white/30 italic font-serif">{t('footer.title3')}</span>
           </h2>
 
           <p className="text-xl md:text-2xl text-luxota-dim max-w-2xl mx-auto leading-relaxed mb-16 font-light">
-            Buche ein kostenloses Erstgespräch. Kein klassischer Sales-Pitch, sondern 100% strategische Klarheit für dein digitales Wachstum.
+            {t('footer.desc')}
           </p>
 
           <div className="flex flex-col items-center gap-10">
             <a href="mailto:kontakt@0ggi.ch?subject=Projektanfrage" className="group relative bg-white text-black px-16 py-6 rounded-[2rem] font-bold text-xl overflow-hidden inline-flex transition-transform hover:-translate-y-1 shadow-[0_0_60px_-15px_rgba(255,255,255,0.4)] hover:shadow-[0_0_80px_-15px_rgba(157,78,221,0.5)]">
               <span className="relative z-10 flex items-center gap-3">
-                Termin vereinbaren
+                {t('footer.btn')}
                 <span className="iconify-container group-hover:translate-x-1 transition-transform">
                   <Icon icon="solar:arrow-right-linear" />
                 </span>
@@ -27,9 +30,9 @@ export default function FooterSection() {
             </a>
 
             <div className="text-sm text-luxota-dim tracking-wide">
-              Noch nicht sicher? 
+              {t('footer.sub')}
               <a href="mailto:kontakt@0ggi.ch" className="text-white border-b border-white/30 pb-0.5 hover:border-white transition-all hover:text-luxota-accent ml-1">
-                Schick mir eine E-Mail
+                {t('footer.mail')}
               </a>
             </div>
           </div>
@@ -45,43 +48,43 @@ export default function FooterSection() {
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-12 mb-24">
-            
+
             {/* Services */}
             <div>
-              <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">Dienstleistungen</h4>
+              <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col1')}</h4>
               <ul className="space-y-5 text-sm text-luxota-dim font-light">
-                <li><Link href="/services" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Web Development</Link></li>
-                <li><Link href="/services" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Speed Performance</Link></li>
-                <li><Link href="/services" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Branding</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.webdev')}</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.speed')}</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.branding')}</Link></li>
               </ul>
             </div>
 
             {/* AI */}
             <div>
-              <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">Automation</h4>
+              <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col2')}</h4>
               <ul className="space-y-5 text-sm text-luxota-dim font-light">
-                <li><Link href="/purpose" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>n8n Automatisierungen</Link></li>
-                <li><Link href="/purpose" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>OpenClaw Agent</Link></li>
-                <li><Link href="/purpose" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Hermes Agent</Link></li>
+                <li><Link href="/services" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.n8n')}</Link></li>
+                <li><Link href="/openclaw" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>OpenClaw Agent</Link></li>
+                <li><Link href="/hermes" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Hermes Agent</Link></li>
               </ul>
             </div>
 
             {/* Resources */}
             <div>
-              <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">Informationen</h4>
+              <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col3')}</h4>
               <ul className="space-y-5 text-sm text-luxota-dim font-light">
-                <li><Link href="/purpose" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Über mich</Link></li>
-                <li><Link href="/portfolio" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Portfolio & Referenzen</Link></li>
-                <li><a href="mailto:kontakt@0ggi.ch" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Kontakt E-Mail</a></li>
+                <li><Link href="/purpose" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.aboutMe')}</Link></li>
+                <li><Link href="/portfolio" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.portfolioRef')}</Link></li>
+                <li><a href="mailto:kontakt@0ggi.ch" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.contactEmail')}</a></li>
               </ul>
             </div>
 
             {/* Legal */}
             <div>
-              <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">Rechtliches</h4>
+              <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col4')}</h4>
               <ul className="space-y-5 text-sm text-luxota-dim font-light">
-                <li><Link href="/impressum" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Impressum</Link></li>
-                <li><Link href="/datenschutz" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Datenschutz</Link></li>
+                <li><Link href="/impressum" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.impressum')}</Link></li>
+                <li><Link href="/datenschutz" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.privacy')}</Link></li>
               </ul>
             </div>
           </div>
@@ -91,7 +94,7 @@ export default function FooterSection() {
               <span className="w-1.5 h-1.5 rounded-full bg-luxota-accent animate-pulse"></span>
               <span className="uppercase">0ggi Web & AI Services</span>
             </div>
-            <div>© {new Date().getFullYear()} 0ggi.ch | Schweiz. Alle Rechte vorbehalten.</div>
+            <div>© {new Date().getFullYear()} 0ggi.ch | {t('footer.rights')}</div>
           </div>
         </div>
       </footer>

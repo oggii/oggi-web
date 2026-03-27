@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
@@ -14,18 +14,27 @@ const ParticlesBackground = dynamic(() => import('@/components/ui/ParticlesBackg
   ssr: false,
 });
 
+import { TranslationProvider } from '@/i18n/TranslationContext';
+
 export function ClientWrapper({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const pathname = usePathname();
+  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
     // Detect touch device for mobile-specific optimizations
     const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     setIsTouchDevice(touch);
 
-    // Verhindert, dass man mitten in der Seite landet (Next.js Lenis Scroll Memory Fix)
+    // Always scroll native window to top first (works on mobile & as fallback)
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    // Also reset Lenis if it's running (desktop smooth scroll)
+    if (lenisRef.current) {
+      lenisRef.current.scrollTo(0, { immediate: true });
+    }
+    // Refresh ScrollTrigger after navigation so pinned sections recalc
+    ScrollTrigger.refresh();
 
     // Wenn man direkt auf einer Unterseite landet, ignoriere den Preloader, damit GSAP startet.
     if (pathname !== '/' && pathname !== '') {
@@ -57,7 +66,7 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
           },
         );
       });
-      
+
       const tl = gsap.timeline();
       tl.fromTo('.reveal-nav', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' })
         .to('.reveal-text', { y: '0%', duration: 1.2, stagger: 0.05, ease: 'power4.out' }, '-=0.8')
@@ -84,6 +93,8 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any);
 
+    lenisRef.current = lenis;
+
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
@@ -91,16 +102,17 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
     gsap.ticker.lagSmoothing(0);
 
     return () => {
+      lenisRef.current = null;
       lenis.destroy();
       gsap.ticker.remove((time) => lenis.raf(time * 1000));
     };
   }, []);
 
   return (
-    <>
+    <TranslationProvider>
       {loading && (pathname === '/' || pathname === '') && <Preloader onComplete={() => setLoading(false)} />}
-      
-      <div className="fixed inset-0 z-0 bg-[#020203]">
+
+      <div className="fixed inset-0 z-0 bg-luxota-bg">
         {/* On mobile: show reduced particles hero-only. On desktop: full background. */}
         <ParticlesBackground
           count={isTouchDevice ? 30 : 80}
@@ -108,12 +120,14 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
         />
       </div>
 
+      <div className="noise pointer-events-none opacity-[0.035] mix-blend-overlay fixed inset-0 z-[1]"></div>
+
       <div className="relative z-10">
         <CustomCursor />
         <Navbar />
         {/* PAGE CONTENT */}
         {children}
       </div>
-    </>
+    </TranslationProvider>
   );
 }

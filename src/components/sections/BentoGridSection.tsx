@@ -1,8 +1,9 @@
 'use client';
 import { Icon } from '@iconify/react';
-
+import { useTranslation } from '@/i18n/TranslationContext';
 
 export default function BentoGridSection() {
+  const { t } = useTranslation();
   return (
     <section className="py-40 relative z-10 px-4 md:px-6" id="trust">
       <div className="max-w-7xl mx-auto">
@@ -15,21 +16,21 @@ export default function BentoGridSection() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-luxota-accent opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-luxota-accent"></span>
               </span>
-              <span className="text-xs text-luxota-accent font-mono tracking-[0.2em] uppercase">Fundament</span>
+              <span className="text-xs text-luxota-accent font-mono tracking-[0.2em] uppercase">{t('bento.tag')}</span>
             </div>
             <h2 className="text-4xl md:text-5xl font-medium tracking-tight text-white mb-8 leading-[1.1]">
-              Entwickelt für <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">Kundenwachstum.</span>
+              {t('bento.title1')} <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">{t('bento.title2')}</span>
             </h2>
             <p className="text-luxota-dim text-base mb-10 leading-relaxed border-l border-white/10 pl-6">
-              Mein Ziel ist es nicht nur schöne Webseiten zu bauen. Ich entwickle ein skalierbares Ökosystem für deine Marke, das Neukunden konvertiert und interne Prozesse vollautomatisiert.
+              {t('bento.desc')}
             </p>
             <a href="#action" className="group inline-flex items-center gap-3 text-white text-sm font-medium hover:text-luxota-accent transition-colors">
               <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-luxota-accent group-hover:bg-luxota-accent/10 transition-all bg-white/5">
-                
+
                 <Icon icon="solar:arrow-right-linear" className="group-hover:translate-x-0.5 transition-transform"></Icon>
               </div>
-              <span className="border-b border-transparent group-hover:border-luxota-accent/50 transition-all">Zum Netzwerk</span>
+              <span className="border-b border-transparent group-hover:border-luxota-accent/50 transition-all">{t('bento.link')}</span>
             </a>
           </div>
 
@@ -39,7 +40,7 @@ export default function BentoGridSection() {
             {/* Card 1: Experience */}
             <div className="spotlight-card rounded-[2rem] p-10 flex flex-col justify-between group cursor-none h-full min-h-[400px]">
               <div className="absolute right-0 top-0 p-10 opacity-10 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-12">
-                
+
                 <Icon icon="solar:rocket-linear" className="text-[12rem] text-white"></Icon>
               </div>
               <div className="relative z-10">
@@ -47,8 +48,8 @@ export default function BentoGridSection() {
                   <span className="text-7xl font-medium text-white tracking-tighter">100</span>
                   <span className="text-luxota-accent text-5xl font-light mt-1">%</span>
                 </div>
-                <div className="text-xl text-white font-medium mt-2 mb-1">Performance & Speed</div>
-                <p className="text-sm text-luxota-dim">Core Web Vitals im 99er-Bereich. Damit deine Kunden kaufen, bevor die Konkurrenz-Website überhaupt geladen hat.</p>
+                <div className="text-xl text-white font-medium mt-2 mb-1">{t('bento.c1Title')}</div>
+                <p className="text-sm text-luxota-dim">{t('bento.c1Desc')}</p>
               </div>
 
               <div className="relative w-full h-1.5 bg-white/5 rounded-full mt-10 overflow-hidden">
@@ -69,10 +70,10 @@ export default function BentoGridSection() {
                   </div>
                   <div className="flex items-center gap-2 mb-4">
                     <span className="w-1.5 h-1.5 rounded-full bg-luxota-accent animate-pulse"></span>
-                    <span className="text-xs font-mono text-luxota-accent uppercase tracking-wider">KI Agenten</span>
+                    <span className="text-xs font-mono text-luxota-accent uppercase tracking-wider">{t('bento.c2Tag')}</span>
                   </div>
                   <p className="text-sm text-luxota-dim leading-relaxed">
-                    OpenClaw und Hermes bearbeiten Kundensupport und Lead-Qualifizierung 24/7 autonom – ohne Gehalt zu verlangen.
+                    {t('bento.c2Desc')}
                   </p>
                 </div>
               </div>
@@ -90,12 +91,12 @@ export default function BentoGridSection() {
                 <div className="relative z-10 bg-gradient-to-t from-[#08080A] via-[#08080A]/80 to-transparent pt-10">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="p-2 rounded-full bg-white/5 border border-white/10">
-                      
+
                       <Icon icon="solar:network-linear" className="text-luxota-accent text-lg"></Icon>
                     </div>
-                    <span className="text-xl font-medium text-white">n8n Automatisierung</span>
+                    <span className="text-xl font-medium text-white">{t('bento.c3Title')}</span>
                   </div>
-                  <p className="text-sm text-luxota-dim">Verbindet deine CRMs, E-Mails und Tools, sodass kein Datensatz mehr manuell kopiert werden muss.</p>
+                  <p className="text-sm text-luxota-dim">{t('bento.c3Desc')}</p>
                 </div>
               </div>
 

@@ -1,0 +1,109 @@
+import { Dictionary } from './de';
+
+export const it: Dictionary = {
+    nav: { home: 'Home', services: 'Servizi', projects: 'Portfolio', about: 'Mission', contact: 'Contatti', contactUs: 'Contatti', footerAction: 'Vedi i Risultati' },
+    hero: { titleTop: 'Alte Prestazioni', titleMid: 'per la tua', titleBot: 'Crescita', subtitle: 'Nessun sito web standard. Costruisco piattaforme performanti e automazioni AI che conferiscono visibilità, generano lead mirati e riducono il lavoro di routine.', actionAudit: 'Audit di sistema gratuito', actionResults: 'Vedi i Risultati', scroll: 'Scorri' },
+    narrative: { w1: 'Stavi', w2: 'cercando', w3: 'un', w4: 'esperto', w5: 'di', w6: 'Webdesign', w7: '?', w8: 'Non', w9: 'vuoi', w10: 'solo', w11: 'un', w12: 'bel', w13: 'design.', w14: 'Vuoi', w15: 'essere', w16: 'trovato', w17: 'online.', w18: 'Costruisco', w19: 'sistemi', w20: 'che', w21: 'generano', w22: 'vendite.' },
+    bento: { tag: 'Il Nostro Concetto', title1: 'Il Mio Concetto per', title2: 'il Tuo Successo.', desc: 'Il mio obiettivo non è solo costruire bei siti. Il cliente ideale è al centro: La piattaforma parla ai tuoi clienti, offre soluzioni, assicura i primati su Google e automatizza i tuoi processi.', link: 'Vai al network', c1Title: 'Visibilità & Velocità', c1Desc: 'Un sito ultra-veloce si posiziona meglio su Google. Misure SEO tecniche e velocità garantiscono più clienti.', c2Tag: 'Conversione e AI', c2Desc: 'La psicologia pubblicitaria mirata incontra la qualificazione 24/7 tramite agenti AI autonomi.', c3Title: 'Processi Automatizzati', c3Desc: 'Integrazione sistemica di strumenti e minimizzazione degli ostacoli verso il primo contatto.' },
+    architecture: {
+        tag: '[ 02 — SERVIZI ]', title: 'I 3 Pilastri',
+        b1Title: 'Webdesign', b1Desc: 'L\'alta qualità del tuo servizio si riflette nel tuo aspetto digitale. Le architetture Headless garantiscono un design moderno.', b1Item1: 'Next.js & React', b1Item2: 'Branding & UI/UX',
+        b2Title: 'Visibilità (SEO)', b2Desc: 'Affinché tu sia trovato online. Ottimizzo ogni metrica per massimizzare le conversioni.', b2Item1: 'Ottimizzazione Asset', b2Item2: 'SEO & Accessibilità',
+        b3Title: 'Strategia Online', b3Desc: 'La giusta strategia online. Con agenti AI affinati e flussi n8n, automatizzo il tuo successo aziendale.', b3Item1: 'Flussi n8n', b3Item2: 'Agenti AI Ottimizzati',
+        p1: 'SCORRI PER SCOPRIRE', p2: 'AUTOMATIZZATO',
+        fallback1Desc: 'Senza tempo, bello e ad alta conversione.', fallback2Desc: 'Tempi di caricamento ultra-rapidi per Google.', fallback3Desc: 'Processi intelligenti per attrarre nuovi clienti.'
+    },
+    servicesOverview: {
+        tag: '[ 02 — SERVIZI ]', title1: 'Webdesign, SEO e ', title2: 'Automazione AI', scrollHint: 'SCORRI PER SCOPRIRE',
+        c1Pillar: 'WEBDESIGN E PERFORMANCE', c1Title: 'Webdesign Next.js', c1Desc: 'La qualità dei tuoi servizi deve riflettersi nella tua presenza digitale. Piattaforme ad alte prestazioni dal design senza tempo che convertono 24/7.', c1Item1: 'Architettura Next.js & React', c1Item2: 'Design UI / UX', c1Item3: 'Branding e Identità', c1Btn: 'Scopri il Webdesign',
+        c2Pillar: 'RICERCA E POSIZIONAMENTO ORGANICO', c2Title: 'Visibilità e SEO', c2Desc: 'Affinché i clienti giusti ti trovino prima della concorrenza. SEO Tecnico, Core Web Vitals al 99% e strategie sostenibili.', c2Item1: 'Ricerca & SEO Tecnico', c2Item2: 'Ottimizzazione Velocità (Score 99)', c2Item3: 'Consulenza Tech & Roadmap', c2Btn: 'Vedi i servizi SEO',
+        c3Pillar: 'AGENTE AI — ASSISTENTE PERSONALE', c3Title: 'Agente OpenClaw', c3Desc: 'Il tuo impiegato AI 24/7: comunica con voce e testo, svolge attività autonomamente, conosce i tuoi processi — sicuro nel tuo ambiente.', c3Item1: 'Comunicazione Vocale & Testo', c3Item2: 'Memoria a Lungo Termine (3 Livelli)', c3Item3: 'Integrazione Strumenti & Heartbeat', c3Btn: 'Scopri OpenClaw',
+        c4Pillar: 'AGENTE AI — AUTO-APPRENDIMENTO', c4Title: 'Agente Hermes', c4Desc: 'L\'agente che cresce con te: impara da ogni attività, crea abilità e diviene più capace nel tempo.', c4Item1: 'Auto-Apprendimento', c4Item2: 'Coordinamento Multi-Agente', c4Item3: 'Browser Nativo e Pianificazione Cron', c4Btn: 'Scopri Hermes'
+    },
+    maturity: {
+        tag: '[ 03 — DIAGNOSI ]', title: 'A che punto è la tua', titleBr: 'azienda oggi?',
+        desc1: 'Potresti costruire il tuo sito da solo. Ma se preferisci un esperto che imposti tutto correttamente, ti aiuterò a creare le giuste strutture.',
+        desc2: 'La maggior parte delle aziende si ferma a metà strada. Il mio obiettivo è la tua piena visibilità e automazione.',
+        btn: 'Inizia l\'analisi',
+        l0b: 'LIVELLO 0', l0t: 'Nessuna Presenza', l0d: 'Ti affidi alle raccomandazioni. Nessuno ti trova online – stai cedendo clienti alla concorrenza.',
+        l1b: 'LIVELLO 1', l1t: 'Sito Semplice', l1d: 'Hai una presenza web basata su template. Non sei trovato su Google e il design non convince.',
+        l2b: 'LIVELLO 2', l2t: 'Visibile', l2d: 'Design moderno e tempi di caricamento perfetti. I clienti ti trovano su Google e si fidano.',
+        l3b: 'LIVELLO 3', l3t: 'Macchina', l3Tag: 'Obiettivo', l3d: 'Sei in prima pagina, il tuo design vende e le automazioni AI ti alleggeriscono 24/7.'
+    },
+    commercial: {
+        tag: '[ 04 — L\'OFFERTA ]', title1: 'Dal Webdesign', title2: 'alla Visibilità.',
+        s1t: '1. Offerta Iniziale', s1d: 'Partiamo con una configurazione trasparente per il tuo web design premium e l\'ottimizzazione SEO necessaria.',
+        s2t: '2. Posizionamento & Fatturato', s2d: 'Con agenti AI autonomi trasformiamo i visitatori in clienti fedeli – e tu diventi leader di mercato.',
+        btn: 'Richiedi Preventivo', badge1: 'Risparmio', badge1Val: '+20 Ore/Set', badge2: 'Velocità', badge2Val: '99/100'
+    },
+    faq: {
+        tag: '[ 05 — RICHIESTE ]', title: 'Domande Frequenti',
+        q1: 'Qual è la differenza tra un Agente AI e un normale chatbot?', a1: 'Un chatbot risponde solo basandosi su regole rigide. Agenti AI autonomi come OpenClaw e Hermes, invece, completano attivamente flussi di lavoro complessi. Hanno memoria a lungo termine, usano autonomamente i tuoi strumenti (come CRM o Email) e imparano da ogni compito per migliorare continuamente.',
+        q2: 'Perché sviluppi siti web esclusivamente con Next.js e non con WordPress?', a2: 'Next.js consente architetture frontend di alto livello con Core Web Vitals perfetti (punteggio del 99+). Questo si traduce in caricamenti fulminei, migliori posizionamenti su Google (SEO) e un design premium interattivo che WordPress semplicemente non può eguagliare senza pesanti plugin.',
+        q3: 'Quali processi aziendali possono essere realmente automatizzati con n8n e AI?', a3: 'Quasi ogni processo digitale ripetitivo. L\'uso comune per Solopreneur e PMI include gestione dei lead, onboarding dei clienti, elaborazione intelligente delle fatture, comunicazioni email personalizzate e creazione di contenuti. Se avviene su uno schermo, probabilmente può essere automatizzato.',
+        q4: 'Quanto sono sicuri i dati aziendali quando si utilizzano OpenClaw o Hermes?', a4: 'La sicurezza è la nostra priorità. I nostri agenti AI sono integrati in modo sicuro nel tuo ambiente senza alcun "vendor lock-in". OpenClaw ed Hermes fungono da backend operativo, mantenendo le tue conoscenze aziendali (tramite architettura RAG sicura) rigorosamente isolate e private.',
+        q5: 'Quanto tempo ci vuole per implementare un nuovo sito web o un agente AI?', a5: 'Poiché costruisco ecosistemi digitali altamente personalizzati, le tempistiche dipendono dalla complessità. Un sito Next.js premium richiede tipicamente 4-8 settimane, mentre l\'integrazione di agenti AI specializzati (OpenClaw/Hermes) va da 2 a 6 settimane, in base ai processi da automatizzare.'
+    },
+    footer: {
+        title1: 'Inizia il tuo', title2: 'Progetto —', title3: 'ora.',
+        desc: 'Prenota una consulenza iniziale gratuita. Strategie esclusive per la tua crescita digitale.',
+        btn: 'Prenota un appuntamento', sub: 'Non sei sicuro?', mail: 'Mandami una email',
+        col1: 'Servizi', col2: 'Automazione', col3: 'Informazioni', col4: 'Legale',
+        webdev: 'Sviluppo Web', speed: 'Performance', branding: 'Branding',
+        n8n: 'Automatizzazioni n8n', aboutMe: 'Chi sono', portfolioRef: 'Portfolio e Referenze', contactEmail: 'Email di contatto',
+        impressum: 'Note legali', privacy: 'Privacy',
+        rights: 'Svizzera. Tutti i diritti riservati.'
+    },
+    cta: { tag: '[ TUTTI I SERVIZI ]', title: 'Pronto per il prossimo passo?', desc: 'Scopri tutti i servizi in dettaglio — dal Webdesign alla SEO, fino al tuo agente AI personale.', btn: 'Vedi tutti i servizi', link1: 'Agente OpenClaw', link2: 'Agente Hermes', link3: 'Consulenza gratuita' },
+    servicesList: {
+        s1Cat: 'Webdesign', s1Sub: 'Esperienze digitali di alto livello, orientate alla performance e alla conversione.',
+        s1i1t: 'Architetture Next.js', s1i1d: 'Applicazioni web ultra-veloci e ottimizzate SEO che stabiliscono standard moderni.',
+        s1i2t: 'Design UI / UX', s1i2d: 'Percorsi utente estetici e logici che mettono in risalto il tuo brand e creano fiducia.',
+        s1i3t: 'Branding & Identità', s1i3d: 'Dal logo al sistema visivo completo – definiamo il carattere del tuo brand nello spazio digitale.',
+        s2Cat: 'Visibilità (SEO)', s2Sub: 'Scalabilità sostenibile e posizionamento per una crescita misurabile.',
+        s2i1t: 'Search & SEO', s2i1d: 'Posizionamento organico solido grazie alla perfezione tecnica e all\'HTML semantico.',
+        s2i2t: 'Ottimizzazione Velocità', s2i2d: 'Core Web Vitals nella zona 99. Tempi di caricamento rapidissimi che minimizzano il tasso di rimbalzo.',
+        s2i3t: 'Consulenza Tech', s2i3d: 'Workshop e supporto pratico per darti passi chiari verso la visibilità digitale.',
+        s3Cat: 'Strategia Online', s3Sub: 'Sistemi intelligenti che risolvono attività ripetitive e generano nuovi clienti.',
+        s3i1t: 'Flussi n8n', s3i1d: 'Automatizzazioni su misura che collegano i tuoi processi interni ed eliminano il lavoro manuale.',
+        s3i2t: 'Agenti AI', s3i2d: 'Integrazione di OpenAI e modelli personalizzati per gestire le richieste dei clienti 24/7 in autonomia.',
+        s3i3t: 'Architettura di Sistema', s3i3d: 'Consulenza strategica per costruire il tuo ecosistema digitale, tutti gli strumenti in perfetta sincronia.',
+        openclawLink: 'Scopri Agente OpenClaw', hermesLink: 'Scopri Agente Hermes'
+    },
+    process: {
+        tag: '[ METODOLOGIA ]', title: 'Il Processo',
+        desc: 'Ho perfezionato questo flusso di lavoro per garantirti – solopreneur o PMI – un', descBold: 'percorso assolutamente fluido',
+        s1t: 'Analisi & Strategia', s1d: 'Comprensione profonda del tuo setup. Valutiamo i colli di bottiglia e definiamo un\'architettura esatta.',
+        s2t: 'Concept & Design', s2d: 'L\'estetica incontra la conversione. Sviluppo identità visive e percorsi utente che creano fiducia.',
+        s3t: 'Sviluppo & Integrazione', s3d: 'Codice che performa. Dall\'architettura frontend Next.js all\'integrazione di n8n, OpenAI e CMS Headless.',
+        s4t: 'Lancio & Scalabilità', s4d: 'Test rigorosi, Core Web Vitals 99, e un go-live pulito – con ottimizzazioni continue della tua infrastruttura.'
+    },
+    purpose: {
+        pageTag: '[ Filosofia ]', pageTitle: 'Scopo.',
+        missionTitle: 'La mia missione è utilizzare le mie competenze creative e tecniche per dare a', missionHighlight: 'solopreneur e PMI',
+        missionEnd: 'la risorsa più preziosa attraverso l\'automazione intelligente:', missionTime: 'Tempo.',
+        missionDesc: 'Il mio focus è la fusione di', missionDescBold1: 'Sviluppo Web di Alto Livello',
+        missionDescMid: 'e la costruzione della tua', missionDescBold2: 'forza lavoro AI (OpenClaw & Hermes)',
+        missionDescEnd: '— ecosistemi digitali scalabili e agenti autonomi che alleggeriscono e scalano la tua attività operativa.',
+        missionDescFinal: 'Per i creatori & visionari.',
+        initiativesTag: '[ INIZIATIVE ]',
+        i1t: 'Aura AI', i1d: 'Una pipeline autonoma di generazione e qualificazione lead. Aura lavora 24/7 e converte i prospect senza intervento umano.',
+        i2t: 'OpenClaw', i2d: 'Il tuo backend operativo. Questi flussi automatizzano contabilità, fatture, contratti e onboarding in background.',
+        i3t: 'Hermes AI', i3d: 'Il tuo assistente digitale di supporto e vendite. Hermes accede a tutte le conoscenze aziendali (RAG) e risolve i problemi dei clienti.',
+        i4t: 'LuxotaOS', i4d: 'Un framework Next.js su misura che serve come fondazione ultra-veloce e scalabile per tutti i tuoi agenti e portali clienti.',
+        collab: 'Sono sempre alla ricerca di partner, fondatori e visionari ambiziosi per trasformare nuove idee in realtà insieme.',
+        collabCta: 'Pronto per la tua forza lavoro digitale?'
+    },
+    portfolio: {
+        pageTag: '[ PORTFOLIO ]', pageTitle1: 'Risultati,', pageTitle2: 'che generano impatto.',
+        pageDesc: 'Una selezione di trasformazioni di successo, progetti web di alto livello e agenti AI integrati che creano valore misurabile.',
+        p1t: 'Agente Aura AI', p1c: 'Automazione n8n & Next.js',
+        p2t: 'EcoSphere Health', p2c: 'E-Commerce di Alto Livello',
+        p3t: 'Swiss Trust Capital', p3c: 'Sviluppo Web & UI/UX',
+        p4t: 'Nova Automations', p4c: 'Architettura di Sistema'
+    },
+    servicesPage: {
+        tag: '[ SERVIZI ]', title1: 'Sistemi per la', title2: 'Scalabilità.',
+        desc: 'Non costruisco solo bei siti web. Costruisco ecosistemi digitali altamente performanti che risparmiano tempo e garantiscono crescita attraverso architetture Next.js e automatizzazioni n8n intelligenti.'
+    }
+};

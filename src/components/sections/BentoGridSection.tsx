@@ -5,7 +5,7 @@ import { useTranslation } from '@/i18n/TranslationContext';
 export default function BentoGridSection() {
   const { t } = useTranslation();
   return (
-    <section className="py-40 relative z-10 px-4 md:px-6" id="trust">
+    <section className="py-16 lg:py-40 relative z-10 px-4 md:px-6" id="trust">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
 

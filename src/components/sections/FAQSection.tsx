@@ -36,7 +36,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="py-40 bg-luxota-bg border-t border-white/5" id="faq">
+    <section className="py-16 lg:py-40 bg-luxota-bg border-t border-white/5" id="faq">
       {/* SEO Structured Data */}
       <script
         type="application/ld+json"

@@ -39,7 +39,7 @@ export default function FooterSection() {
         </div>
       </section>
 
-      <footer className="relative py-24 px-6 border-t border-white/5 bg-[#020203] overflow-hidden">
+      <footer className="relative py-16 lg:py-24 px-6 border-t border-white/5 bg-[#020203] overflow-hidden">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[300px] h-[200px] md:w-[600px] md:h-[400px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(157,78,221,0.08) 0%, transparent 70%)' }}></div>
 
         <div className="absolute bottom-[-5%] left-0 right-0 select-none pointer-events-none flex justify-center opacity-[0.03]">

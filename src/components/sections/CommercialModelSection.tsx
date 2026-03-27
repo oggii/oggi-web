@@ -54,7 +54,7 @@ export default function CommercialModelSection() {
   }, []);
 
   return (
-    <section className="py-32 relative z-10 px-4 md:px-6 bg-[#020203]" id="commercial">
+    <section className="py-16 lg:py-32 relative z-10 px-4 md:px-6 bg-[#020203]" id="commercial">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(157,78,221,0.05),transparent_50%)] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto">

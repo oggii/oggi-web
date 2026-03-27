@@ -69,7 +69,7 @@ export default function PortfolioGridSection() {
   const projects = getProjects(t);
 
   return (
-    <section ref={containerRef} className="py-24 relative z-10 bg-[#020203]">
+    <section ref={containerRef} className="py-16 lg:py-24 relative z-10 bg-[#020203]">
       <div className="max-w-7xl mx-auto px-6">
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">

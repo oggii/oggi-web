@@ -345,15 +345,15 @@ export default function ServicesOverviewSection() {
         <div className="pin-spacer relative w-full">
           <section ref={pinSectionRef} className="h-[100svh] min-h-[600px] lg:h-[100svh] relative bg-luxota-bg flex flex-col">
             {/* ── Pinned header ── */}
-            <div className="absolute top-0 left-0 right-0 z-20 px-5 md:px-12 pt-24 md:pt-32 lg:pt-14 flex justify-between items-start pointer-events-none">
+            <div className="absolute lg:top-0 top-6 left-0 right-0 z-20 px-5 md:px-12 pt-24 md:pt-32 lg:pt-14 flex justify-between lg:items-start items-center pointer-events-none">
               <div>
                 <span className="text-[10px] text-luxota-accent font-mono mb-1 md:mb-2 block tracking-widest">{t('servicesOverview.tag')}</span>
                 <h2 className="text-2xl md:text-3xl lg:text-4xl font-medium text-white tracking-tight leading-tight">
                   {t('servicesOverview.title1')}
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxota-accent to-white/30">{t('servicesOverview.title2')}</span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxota-accent to-white/30 block lg:inline">{t('servicesOverview.title2')}</span>
                 </h2>
               </div>
-              <div className="hidden sm:flex items-center gap-2 text-white/30 mt-1">
+              <div className="hidden sm:flex items-center gap-2 text-white/30 lg:mt-1">
                 <div className="w-7 h-7 rounded-full border border-white/10 flex items-center justify-center">
                   <Icon icon="solar:mouse-circle-linear" className="animate-bounce text-base" />
                 </div>
@@ -364,12 +364,10 @@ export default function ServicesOverviewSection() {
             {/* ── Horizontal track ── */}
             <div
               ref={trackRef}
-              className="flex w-full lg:w-max h-full lg:h-full items-center overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none hide-scrollbar lg:pl-[clamp(1.25rem,8vw,12rem)]"
+              className="flex w-full lg:w-max h-full lg:h-full items-center overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none hide-scrollbar lg:pl-[clamp(1.25rem,8vw,12rem)] pt-[160px] pb-[40px] lg:pt-[180px] lg:pb-[30px]"
               style={{
-                paddingTop: '180px',
-                paddingBottom: '30px',
                 paddingRight: 'clamp(1.25rem, 4vw, 6rem)',
-                gap: 'clamp(0.75rem, 2vw, 2.5rem)',
+                gap: 'clamp(1rem, 2vw, 2.5rem)',
               }}
             >
               {cards.map((card, idx) => {
@@ -378,12 +376,12 @@ export default function ServicesOverviewSection() {
                   <div
                     key={card.num}
                     className="
-                      w-[82vw] max-w-[340px]
+                      w-[85vw] max-w-[340px]
                       lg:w-[60vw] lg:max-w-[700px]
-                      h-full lg:max-h-[600px] max-h-[calc(100svh-180px)]
+                      h-[520px] lg:h-full lg:max-h-[600px]
                       spotlight-card rounded-[1.75rem] lg:rounded-[2rem]
-                      p-6 pb-8 lg:p-10
-                      shrink-0 relative flex lg:ml-0 ml-[clamp(1.25rem,8vw,12rem)] first:ml-[clamp(1.25rem,8vw,12rem)] lg:first:ml-0 snap-center
+                      p-5 pb-6 lg:p-10
+                      shrink-0 relative flex first:ml-5 lg:first:ml-0 snap-center
                       border border-white/10 bg-[#050507] group
                     "
                   >
@@ -442,10 +440,10 @@ export default function ServicesOverviewSection() {
             </div>
 
             {/* Mobile scroll hint */}
-            <div className="absolute bottom-4 left-0 right-0 flex justify-center sm:hidden pointer-events-none">
+            <div className="absolute bottom-6 left-0 right-0 flex justify-center sm:hidden pointer-events-none">
               <div className="flex items-center gap-2 text-white/20">
                 <Icon icon="solar:hand-swipe-right-linear" className="text-lg" />
-                <span className="text-[9px] font-mono tracking-widest">{t('servicesOverview.scrollHint')}</span>
+                <span className="text-[9px] font-mono tracking-widest">{t('servicesOverview.scrollHint').replace('SCROLLEN', 'SWIPEN')}</span>
               </div>
             </div>
           </section>

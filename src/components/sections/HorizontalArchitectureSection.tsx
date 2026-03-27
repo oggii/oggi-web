@@ -193,7 +193,7 @@ export default function HorizontalArchitectureSection() {
       </div>
 
       {/* Mobile Vertical Fallback */}
-      <section className="block lg:hidden px-6 py-20 space-y-8 bg-luxota-bg border-t border-white/5">
+      <section className="block lg:hidden px-6 py-16 lg:py-20 space-y-8 bg-luxota-bg border-t border-white/5">
         <span className="text-xs text-luxota-accent font-mono mb-2 block tracking-widest">{t('architecture.tag')}</span>
         <div className="spotlight-card rounded-3xl p-8 border border-white/10">
           <h3 className="text-2xl text-white font-medium mb-2">{t('architecture.b1Title')}</h3>

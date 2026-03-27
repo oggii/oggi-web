@@ -47,7 +47,7 @@ export default function ProcessSection() {
   const steps = getSteps(t);
 
   return (
-    <section ref={containerRef} className="py-32 relative z-10 bg-[#020203]" id="process">
+    <section ref={containerRef} className="py-16 lg:py-32 relative z-10 bg-[#020203]" id="process">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_100%_0%,rgba(157,78,221,0.05),transparent_40%)] pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-6">

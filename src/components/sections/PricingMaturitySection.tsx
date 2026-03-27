@@ -25,7 +25,7 @@ export default function PricingMaturitySection() {
   }, []);
 
   return (
-    <section className="py-40 bg-[#020203] border-t border-white/5 relative z-20" id="maturity">
+    <section className="py-16 lg:py-40 bg-[#020203] border-t border-white/5 relative z-20" id="maturity">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
           <div className="lg:sticky lg:top-32 self-start">

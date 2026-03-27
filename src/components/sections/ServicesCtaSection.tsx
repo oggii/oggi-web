@@ -7,7 +7,7 @@ export default function ServicesCtaSection() {
   const { t } = useTranslation();
 
   return (
-    <section className="relative py-24 px-6 flex flex-col items-center justify-center text-center bg-luxota-bg border-t border-white/5 overflow-hidden">
+    <section className="relative py-16 lg:py-24 px-6 flex flex-col items-center justify-center text-center bg-luxota-bg border-t border-white/5 overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_100%,rgba(157,78,221,0.07),transparent)] pointer-events-none" />
 

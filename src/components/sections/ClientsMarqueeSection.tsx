@@ -8,7 +8,7 @@ export default function ClientsMarqueeSection() {
   const duplicatedTech = [...technologies, ...technologies, ...technologies];
 
   return (
-    <section className="py-24 relative overflow-hidden bg-[#020203] border-y border-white/5">
+    <section className="py-12 lg:py-24 relative overflow-hidden bg-[#020203] border-y border-white/5">
       <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#020203] to-transparent z-10 pointer-events-none"></div>
       <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#020203] to-transparent z-10 pointer-events-none"></div>
 

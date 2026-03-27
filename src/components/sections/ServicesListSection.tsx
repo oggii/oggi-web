@@ -73,7 +73,7 @@ export default function ServicesListSection() {
   const services = getServices(t);
 
   return (
-    <section ref={containerRef} className="py-24 relative z-10 bg-[#020203]">
+    <section ref={containerRef} className="py-16 lg:py-24 relative z-10 bg-[#020203]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="space-y-32">
           {services.map((service, idx) => (

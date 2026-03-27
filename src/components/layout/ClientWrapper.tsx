@@ -44,10 +44,12 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
   }, [pathname]);
 
   useEffect(() => {
-    if (loading) return;
-
     const ctx = gsap.context(() => {
+      // Set initial invisibility via GSAP immediately on mount to avoid flash
       gsap.set('.reveal-text', { y: '100%' });
+      gsap.set('.reveal-hero-fade', { y: 20, opacity: 0 });
+
+      if (loading) return;
 
       // Parallax text
       gsap.utils.toArray('.parallax-text').forEach((el: unknown) => {
@@ -67,11 +69,11 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
         );
       });
 
-      const tl = gsap.timeline();
+      const tl = gsap.timeline({ delay: 0.1 }); 
       tl.fromTo('.reveal-nav', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' })
         .to('.reveal-text', { y: '0%', duration: 1.2, stagger: 0.05, ease: 'power4.out' }, '-=0.8')
-        .fromTo('.reveal-hero-fade', { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out' }, '-=0.8')
-        .add(() => ScrollTrigger.refresh(), "+=0.1"); // Refresh after DOM is stable
+        .to('.reveal-hero-fade', { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out' }, '-=0.8')
+        .add(() => ScrollTrigger.refresh(), "+=0.1");
     });
 
     return () => ctx.revert();
@@ -112,21 +114,23 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
     <TranslationProvider>
       {loading && (pathname === '/' || pathname === '') && <Preloader onComplete={() => setLoading(false)} />}
 
-      <div className="fixed inset-0 z-0 bg-luxota-bg">
-        {/* On mobile: show reduced particles hero-only. On desktop: full background. */}
-        <ParticlesBackground
-          count={isTouchDevice ? 30 : 80}
-          heroOnly={isTouchDevice}
-        />
-      </div>
+      <div className={`transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
+        <div className="fixed inset-0 z-0 bg-luxota-bg">
+          {/* On mobile: show reduced particles hero-only. On desktop: full background. */}
+          <ParticlesBackground
+            count={isTouchDevice ? 30 : 80}
+            heroOnly={isTouchDevice}
+          />
+        </div>
 
-      <div className="noise pointer-events-none opacity-[0.035] mix-blend-overlay fixed inset-0 z-[1]"></div>
+        <div className="noise pointer-events-none opacity-[0.035] mix-blend-overlay fixed inset-0 z-[1]"></div>
 
-      <div className="relative z-10">
-        <CustomCursor />
-        <Navbar />
-        {/* PAGE CONTENT */}
-        {children}
+        <div className="relative z-10">
+          <CustomCursor />
+          <Navbar />
+          {/* PAGE CONTENT */}
+          {children}
+        </div>
       </div>
     </TranslationProvider>
   );

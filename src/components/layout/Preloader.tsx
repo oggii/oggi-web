@@ -10,9 +10,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
   useEffect(() => {
     if (!preloaderRef.current || !circleRef.current || !textRef.current) return;
 
-    const preloaderTl = gsap.timeline({
-      onComplete: () => onComplete(),
-    });
+    const preloaderTl = gsap.timeline();
 
     // Circle stroke draw animation
     preloaderTl
@@ -27,7 +25,15 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       // Shrink circle
       .to(circleRef.current, { scale: 0, opacity: 0, duration: 0.5, ease: 'power3.in' }, "<")
       // Slide up the entire splash screen
-      .to(preloaderRef.current, { yPercent: -100, duration: 1, ease: 'power4.inOut' });
+      .to(preloaderRef.current, { 
+        yPercent: -100, 
+        duration: 1.2, 
+        ease: 'power4.inOut',
+        onStart: () => {
+          // Trigger content reveal 200ms into the slide-up for fluidity
+          gsap.delayedCall(0.2, onComplete);
+        }
+      });
 
     return () => {
       preloaderTl.kill();

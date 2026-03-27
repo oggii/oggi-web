@@ -345,10 +345,10 @@ export default function ServicesOverviewSection() {
         <div className="pin-spacer relative w-full">
           <section ref={pinSectionRef} className="h-[100svh] min-h-[600px] lg:h-[100svh] relative bg-luxota-bg flex flex-col">
             {/* ── Pinned header ── */}
-            <div className="absolute lg:top-0 top-4 lg:top-6 left-0 right-0 z-20 px-5 md:px-12 pt-20 md:pt-32 lg:pt-14 flex justify-between lg:items-start items-center pointer-events-none">
+            <div className="absolute lg:top-0 top-2 lg:top-6 left-0 right-0 z-20 px-5 md:px-12 pt-14 md:pt-32 lg:pt-14 flex justify-between lg:items-start items-center pointer-events-none">
               <div>
-                <span className="text-[10px] text-luxota-accent font-mono mb-1 md:mb-2 block tracking-widest">{t('servicesOverview.tag')}</span>
-                <h2 className="text-xl md:text-3xl lg:text-4xl font-medium text-white tracking-tight leading-tight">
+                <span className="text-[9px] md:text-[10px] text-luxota-accent font-mono mb-1 md:mb-2 block tracking-widest">{t('servicesOverview.tag')}</span>
+                <h2 className="text-lg md:text-3xl lg:text-4xl font-medium text-white tracking-tight leading-snug">
                   {t('servicesOverview.title1')}
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxota-accent to-white/30 block lg:inline">{t('servicesOverview.title2')}</span>
                 </h2>
@@ -364,10 +364,10 @@ export default function ServicesOverviewSection() {
             {/* ── Horizontal track ── */}
             <div
               ref={trackRef}
-              className="flex w-full lg:w-max h-full lg:h-full items-center overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none hide-scrollbar lg:pl-[clamp(1.25rem,8vw,12rem)] pt-[120px] pb-[40px] lg:pt-[180px] lg:pb-[30px]"
+              className="flex w-full lg:w-max h-full lg:h-full items-center overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none hide-scrollbar lg:pl-[clamp(1.25rem,8vw,12rem)] pt-[160px] pb-[60px] lg:pt-[180px] lg:pb-[30px]"
               style={{
                 paddingRight: 'clamp(1.25rem, 4vw, 6rem)',
-                gap: 'clamp(1rem, 2vw, 2.5rem)',
+                gap: 'clamp(1.25rem, 2vw, 2.5rem)',
               }}
             >
               {cards.map((card, idx) => {
@@ -378,7 +378,7 @@ export default function ServicesOverviewSection() {
                     className="
                       w-[85vw] max-w-[340px]
                       lg:w-[60vw] lg:max-w-[700px]
-                      h-[calc(100svh-210px)] min-h-[460px] max-h-[520px] lg:h-full lg:max-h-[600px]
+                      h-[calc(100svh-250px)] min-h-[440px] max-h-[520px] lg:h-full lg:max-h-[600px]
                       spotlight-card rounded-[1.75rem] lg:rounded-[2rem]
                       p-5 pb-6 lg:p-10
                       shrink-0 relative flex first:ml-5 lg:first:ml-0 snap-center

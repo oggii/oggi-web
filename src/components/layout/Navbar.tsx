@@ -140,7 +140,7 @@ export default function Navbar() {
 
       {/* FULL SCREEN MOBILE OVERLAY MENU */}
       <div
-        className={`fixed inset-0 z-[110] bg-luxota-accent flex flex-col md:hidden transition-all duration-500 origin-top overflow-y-auto ${menuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'}`}
+        className={`fixed inset-0 z-[110] bg-[#0a0216] flex flex-col md:hidden transition-all duration-500 origin-top overflow-y-auto ${menuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'}`}
       >
         <div className="px-6 py-6 flex items-center justify-between border-b border-white/10">
           {/* Top Left Logo in Overlay */}

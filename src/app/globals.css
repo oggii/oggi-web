@@ -389,8 +389,14 @@ iconify-icon {
   padding: 0 1.5rem 1.5rem;
 }
 
-.mobile-scroll-track::-webkit-scrollbar {
+.mobile-scroll-track::-webkit-scrollbar,
+.hide-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .mobile-scroll-track>* {

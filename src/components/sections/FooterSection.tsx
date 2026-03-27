@@ -40,7 +40,7 @@ export default function FooterSection() {
       </section>
 
       <footer className="relative py-24 px-6 border-t border-white/5 bg-[#020203] overflow-hidden">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-luxota-accent/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[300px] h-[200px] md:w-[600px] md:h-[400px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(157,78,221,0.08) 0%, transparent 70%)' }}></div>
 
         <div className="absolute bottom-[-5%] left-0 right-0 select-none pointer-events-none flex justify-center opacity-[0.03]">
           <h1 className="text-[18vw] font-bold text-white tracking-tighter leading-none">0GGI.CH</h1>

@@ -9,7 +9,7 @@ export default function HeroSection() {
   return (
     <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden" id="os">
       <div className="perspective-grid opacity-30"></div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-luxota-accent/10 rounded-full blur-[150px] pointer-events-none"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(157,78,221,0.15) 0%, transparent 70%)' }}></div>
 
       <div className="relative z-10 text-center max-w-7xl px-6">
         <h1 className="text-[12vw] sm:text-5xl md:text-7xl lg:text-[7rem] font-medium tracking-tightest text-white leading-[1.1] md:leading-[0.95] mb-10 w-full whitespace-nowrap overflow-hidden text-clip flex flex-col items-center">

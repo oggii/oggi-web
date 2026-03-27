@@ -15,31 +15,44 @@ export default function NarrativeSection() {
 
     const ctx = gsap.context(() => {
       const words = gsap.utils.toArray('.highlight-word');
+      const mm = gsap.matchMedia();
 
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: '+=150%',
-          pin: true,
-          anticipatePin: 1,
-          scrub: 1,
-        }
+      mm.add({
+        isDesktop: "(min-width: 1024px)",
+        isMobile: "(max-width: 1023px)"
+      }, (context) => {
+        const { isDesktop } = context.conditions as any;
+        
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top top',
+            end: '+=150%',
+            pin: true,
+            anticipatePin: 1,
+            scrub: 1,
+          }
+        });
+
+        tl.fromTo(words,
+          { 
+            opacity: 0.1, 
+            filter: isDesktop ? "blur(8px)" : "blur(0px)", 
+            y: 20, 
+            scale: 0.95 
+          },
+          {
+            opacity: 1,
+            filter: "blur(0px)",
+            y: 0,
+            scale: 1,
+            stagger: 0.1,
+            color: (i, target) => (target as HTMLElement).classList.contains("text-luxota-accent") ? "#9D4EDD" : "#ffffff",
+            duration: 1,
+            ease: "power2.out"
+          }
+        );
       });
-
-      tl.fromTo(words,
-        { opacity: 0.1, filter: "blur(8px)", y: 20, scale: 0.95 },
-        {
-          opacity: 1,
-          filter: "blur(0px)",
-          y: 0,
-          scale: 1,
-          stagger: 0.1,
-          color: (i, target) => (target as HTMLElement).classList.contains("text-luxota-accent") ? "#9D4EDD" : "#ffffff",
-          duration: 1,
-          ease: "power2.out"
-        }
-      );
     }, containerRef);
 
     return () => ctx.revert();

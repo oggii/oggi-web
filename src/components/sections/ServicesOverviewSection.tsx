@@ -299,22 +299,23 @@ export default function ServicesOverviewSection() {
     const cardGraphics = document.querySelectorAll('.svc-card-graphic > *');
     const getScrollAmount = () => -(track.scrollWidth - window.innerWidth + 80);
 
-    const tween = gsap.to(track, {
-      x: getScrollAmount,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: pinSection,
-        start: 'top top',
-        end: () => `+=${track.scrollWidth - window.innerWidth + 80}`,
-        pin: true,
-        scrub: 1,
-        invalidateOnRefresh: true,
-      },
-    });
+    const matchMedia = gsap.matchMedia();
 
-    // Parallax on desktop graphic columns only
-    const isDesktop = window.innerWidth >= 1024;
-    if (isDesktop) {
+    matchMedia.add('(min-width: 1024px)', () => {
+      const tween = gsap.to(track, {
+        x: getScrollAmount,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: pinSection,
+          start: 'top top',
+          end: () => `+=${track.scrollWidth - window.innerWidth + 80}`,
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      // Parallax on desktop graphic columns only
       gsap.to(cardGraphics, {
         x: -70,
         ease: 'none',
@@ -325,12 +326,14 @@ export default function ServicesOverviewSection() {
           scrub: 1,
         },
       });
-    }
 
-    return () => {
-      tween.kill();
-      ScrollTrigger.getAll().forEach((st) => st.kill());
-    };
+      return () => {
+        tween.kill();
+        ScrollTrigger.getAll().forEach((st) => st.kill());
+      };
+    });
+
+    return () => matchMedia.revert();
   }, []);
 
   return (
@@ -340,7 +343,7 @@ export default function ServicesOverviewSection() {
 
       <div className="relative z-30 bg-luxota-bg border-t border-white/5">
         <div className="pin-spacer relative w-full">
-          <section ref={pinSectionRef} className="h-[100svh] relative bg-luxota-bg flex flex-col">
+          <section ref={pinSectionRef} className="h-[100svh] min-h-[600px] lg:h-[100svh] relative bg-luxota-bg flex flex-col">
             {/* ── Pinned header ── */}
             <div className="absolute top-0 left-0 right-0 z-20 px-5 md:px-12 pt-24 md:pt-32 lg:pt-14 flex justify-between items-start pointer-events-none">
               <div>
@@ -361,11 +364,10 @@ export default function ServicesOverviewSection() {
             {/* ── Horizontal track ── */}
             <div
               ref={trackRef}
-              className="flex w-max h-full items-center"
+              className="flex w-full lg:w-max h-full lg:h-full items-center overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none hide-scrollbar lg:pl-[clamp(1.25rem,8vw,12rem)]"
               style={{
                 paddingTop: '180px',
                 paddingBottom: '30px',
-                paddingLeft: 'clamp(1.25rem, 8vw, 12rem)',
                 paddingRight: 'clamp(1.25rem, 4vw, 6rem)',
                 gap: 'clamp(0.75rem, 2vw, 2.5rem)',
               }}
@@ -381,7 +383,7 @@ export default function ServicesOverviewSection() {
                       h-full lg:max-h-[600px] max-h-[calc(100svh-180px)]
                       spotlight-card rounded-[1.75rem] lg:rounded-[2rem]
                       p-6 pb-8 lg:p-10
-                      shrink-0 relative flex
+                      shrink-0 relative flex lg:ml-0 ml-[clamp(1.25rem,8vw,12rem)] first:ml-[clamp(1.25rem,8vw,12rem)] lg:first:ml-0 snap-center
                       border border-white/10 bg-[#050507] group
                     "
                   >

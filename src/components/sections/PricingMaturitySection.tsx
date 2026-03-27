@@ -28,7 +28,7 @@ export default function PricingMaturitySection() {
     <section className="py-16 lg:py-40 bg-[#020203] border-t border-white/5 relative z-20" id="maturity">
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
-          <div className="lg:sticky lg:top-32 self-start">
+          <div className="lg:sticky lg:top-32 self-start reveal-up">
             <span className="text-xs text-luxota-accent font-mono mb-6 block tracking-widest">{t('maturity.tag')}</span>
             <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight mb-8 leading-[1.1]">
               {t('maturity.title')} <br /> {t('maturity.titleBr')}
@@ -52,25 +52,25 @@ export default function PricingMaturitySection() {
               <div className="w-full h-0 bg-luxota-accent shadow-[0_0_15px_#9D4EDD]" id="maturity-bar" style={{ height: '0%' }}></div>
             </div>
 
-            <div className="group cursor-pointer transition-all hover:translate-x-2">
+            <div className="group cursor-pointer transition-all hover:translate-x-2 reveal-up">
               <div className="text-xs font-mono text-luxota-dim mb-2 group-hover:text-luxota-accent transition-colors">{t('maturity.l0b')}</div>
               <h3 className="text-2xl text-white mb-2 font-medium">{t('maturity.l0t')}</h3>
               <p className="text-base text-luxota-dim/60">{t('maturity.l0d')}</p>
             </div>
 
-            <div className="group cursor-pointer transition-all hover:translate-x-2">
+            <div className="group cursor-pointer transition-all hover:translate-x-2 reveal-up">
               <div className="text-xs font-mono text-luxota-dim mb-2 group-hover:text-luxota-accent transition-colors">{t('maturity.l1b')}</div>
               <h3 className="text-2xl text-white mb-2 font-medium">{t('maturity.l1t')}</h3>
               <p className="text-base text-luxota-dim/60">{t('maturity.l1d')}</p>
             </div>
 
-            <div className="group cursor-pointer transition-all hover:translate-x-2">
+            <div className="group cursor-pointer transition-all hover:translate-x-2 reveal-up">
               <div className="text-xs font-mono text-luxota-dim mb-2 group-hover:text-luxota-accent transition-colors">{t('maturity.l2b')}</div>
               <h3 className="text-2xl text-white mb-2 font-medium">{t('maturity.l2t')}</h3>
               <p className="text-base text-luxota-dim/60">{t('maturity.l2d')}</p>
             </div>
 
-            <div className="group cursor-pointer transition-all hover:translate-x-2">
+            <div className="group cursor-pointer transition-all hover:translate-x-2 reveal-up">
               <div className="text-xs font-mono text-luxota-accent mb-2">{t('maturity.l3b')}</div>
               <h3 className="text-2xl text-white mb-2 font-medium flex items-center gap-3">
                 {t('maturity.l3t')}

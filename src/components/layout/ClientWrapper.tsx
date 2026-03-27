@@ -74,6 +74,21 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
         .to('.reveal-text', { y: '0%', duration: 1.2, stagger: 0.05, ease: 'power4.out' }, '-=0.8')
         .to('.reveal-hero-fade', { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out' }, '-=0.8')
         .add(() => ScrollTrigger.refresh(), "+=0.1");
+
+      // Global Scroll Reveal for all other pages/sections
+      gsap.utils.toArray('.reveal-up').forEach((el: any) => {
+        gsap.to(el, {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          }
+        });
+      });
     });
 
     return () => ctx.revert();

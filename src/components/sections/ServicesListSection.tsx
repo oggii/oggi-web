@@ -1,10 +1,7 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Link from 'next/link';
 import { useTranslation } from '@/i18n/TranslationContext';
+import Link from 'next/link';
 
 function getServices(t: (key: string) => string) {
   return [
@@ -42,45 +39,18 @@ function getServices(t: (key: string) => string) {
 }
 
 export default function ServicesListSection() {
-  const containerRef = useRef<HTMLElement>(null);
   const { t } = useTranslation();
-
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray('.service-item').forEach((el: unknown) => {
-        const element = el as HTMLElement;
-        gsap.fromTo(element,
-          { opacity: 0, y: 50 },
-          {
-            scrollTrigger: {
-              trigger: element,
-              start: "top 85%",
-            },
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power3.out"
-          }
-        );
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
-  }, []);
-
   const services = getServices(t);
 
   return (
-    <section ref={containerRef} className="py-16 lg:py-24 relative z-10 bg-[#020203]">
+    <section className="py-16 lg:py-24 relative z-10 bg-[#020203]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="space-y-32">
           {services.map((service, idx) => (
-            <div key={idx} className="service-category grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start border-t border-white/10 pt-16 hover:border-luxota-accent transition-colors duration-700">
+            <div key={idx} className="service-category grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start border-t border-white/10 pt-16 hover:border-luxota-accent transition-colors duration-700 reveal-up">
 
-              {/* Left Column: Number & Subtitle (Sticky ideally) */}
-              <div className="lg:col-span-5 lg:sticky lg:top-32">
+              {/* Left Column: Number & Subtitle */}
+              <div className="lg:col-span-5 lg:sticky lg:top-32 reveal-up">
                 <div className="flex items-center gap-4 mb-6">
                   <span className="text-luxota-accent font-mono text-sm tracking-widest">{service.num}.</span>
                   <h2 className="text-3xl md:text-5xl font-medium tracking-tight text-white">{service.category}</h2>
@@ -105,7 +75,7 @@ export default function ServicesListSection() {
               {/* Right Column: Service Items */}
               <div className="lg:col-span-7 space-y-16">
                 {service.items.map((item, i) => (
-                  <div key={i} className="group cursor-default">
+                  <div key={i} className="group cursor-default reveal-up">
                     <h3 className="text-2xl text-white font-medium mb-4 group-hover:text-luxota-accent transition-colors duration-300">
                       {item.title}
                     </h3>

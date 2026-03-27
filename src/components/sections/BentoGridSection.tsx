@@ -10,7 +10,7 @@ export default function BentoGridSection() {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
 
           {/* Title Block */}
-          <div className="md:col-span-4 flex flex-col justify-center p-6 lg:sticky lg:top-32 self-start">
+          <div className="md:col-span-4 flex flex-col justify-center p-6 lg:sticky lg:top-32 self-start reveal-up">
             <div className="inline-flex items-center gap-3 mb-6">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-luxota-accent opacity-75"></span>
@@ -38,7 +38,7 @@ export default function BentoGridSection() {
           <div className="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
 
             {/* Card 1: Experience */}
-            <div className="spotlight-card rounded-[2rem] p-10 flex flex-col justify-between group cursor-none h-full min-h-[400px]">
+            <div className="reveal-up spotlight-card rounded-[2rem] p-10 flex flex-col justify-between group cursor-none h-full min-h-[400px]">
               <div className="absolute right-0 top-0 p-10 opacity-10 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-12">
 
                 <Icon icon="solar:rocket-linear" className="text-[12rem] text-white"></Icon>
@@ -62,7 +62,7 @@ export default function BentoGridSection() {
             <div className="flex flex-col gap-6">
 
               {/* Card 2: AI */}
-              <div className="spotlight-card rounded-[2rem] p-10 flex flex-col justify-center group cursor-none min-h-[220px]">
+              <div className="reveal-up spotlight-card rounded-[2rem] p-10 flex flex-col justify-center group cursor-none min-h-[220px]">
                 <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#fff 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
                 <div className="relative z-10">
                   <div className="flex items-baseline gap-3 mb-2">
@@ -79,7 +79,7 @@ export default function BentoGridSection() {
               </div>
 
               {/* Card 3: Global (Map) */}
-              <div className="spotlight-card rounded-[2rem] p-10 flex-1 min-h-[240px] flex flex-col justify-end group cursor-none">
+              <div className="reveal-up spotlight-card rounded-[2rem] p-10 flex-1 min-h-[240px] flex flex-col justify-end group cursor-none">
                 <div className="absolute inset-0 opacity-20 group-hover:opacity-40 transition-opacity duration-1000">
                   <svg className="w-full h-full object-cover" viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice">
                     <path d="M50,100 Q100,50 150,100 T250,100 T350,100" fill="none" stroke="white" strokeWidth="0.5" strokeDasharray="4 4" className="group-hover:animate-pulse"></path>

@@ -44,14 +44,14 @@ export default function FAQSection() {
       />
       
       <div className="max-w-4xl mx-auto px-6">
-        <div className="text-center mb-20">
+        <div className="text-center mb-20 reveal-up">
           <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest">{t('faq.tag')}</span>
           <h2 className="text-3xl md:text-4xl font-medium text-white tracking-tight">{t('faq.title')}</h2>
         </div>
 
         <div className="space-y-4">
           {faqs.map((faq, idx) => (
-            <div key={idx} className={`faq-item group border border-white/5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.04] transition-all overflow-hidden ${openIndex === idx ? 'active' : ''}`}>
+            <div key={idx} className={`reveal-up faq-item group border border-white/5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.04] transition-all overflow-hidden ${openIndex === idx ? 'active' : ''}`}>
               <button
                 onClick={() => toggleFAQ(idx)}
                 className="w-full flex justify-between items-center p-6 text-left focus:outline-none"

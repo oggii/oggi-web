@@ -34,6 +34,13 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
 
     return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   });
+  const [hasFinePointer] = useState(() => {
+    if (typeof window === 'undefined') {
+      return true;
+    }
+
+    return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  });
   const pathname = usePathname();
   const routePath = stripLocaleFromPathname(pathname ?? '');
   const lenisRef = useRef<Lenis | null>(null);
@@ -165,7 +172,7 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
         <div className="noise pointer-events-none opacity-[0.035] mix-blend-overlay fixed inset-0 z-[1]"></div>
 
         <div className="relative z-10">
-          <CustomCursor />
+          {hasFinePointer && <CustomCursor />}
           <Navbar key={pathname} />
           {/* PAGE CONTENT */}
           {children}

@@ -7,14 +7,14 @@ export default function CustomCursor() {
   const dotRef = useRef<HTMLDivElement>(null);
   const outlineRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
-  const [isTouch, setIsTouch] = useState(false);
+  const [isDesktopCursor, setIsDesktopCursor] = useState(false);
 
   useEffect(() => {
-    const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
     const frame = window.requestAnimationFrame(() => {
-      setIsTouch(touch);
+      setIsDesktopCursor(hasFinePointer);
     });
-    if (touch) return () => window.cancelAnimationFrame(frame);
+    if (!hasFinePointer) return () => window.cancelAnimationFrame(frame);
 
     let mouseX = 0;
     let mouseY = 0;
@@ -46,7 +46,7 @@ export default function CustomCursor() {
     };
   }, []);
 
-  if (isTouch) return null;
+  if (!isDesktopCursor) return null;
 
   return (
     <>

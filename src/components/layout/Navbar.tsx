@@ -80,7 +80,7 @@ export default function Navbar() {
       width={width}
       height={height}
       className="invert"
-      priority
+      loading="eager"
     />
   );
 

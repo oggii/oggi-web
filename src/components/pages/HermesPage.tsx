@@ -256,8 +256,8 @@ export default function HermesPage() {
               <div key={uc.industry} className="reveal-up spotlight-card rounded-3xl p-8 border border-white/10 bg-white/[0.02] group hover:border-luxota-accent/30 transition-all duration-500">
                 <div className="flex items-start justify-between mb-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                      <Icon icon={uc.icon} className="text-2xl text-white/60 group-hover:text-luxota-accent transition-colors duration-300" />
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-luxota-accent/20 bg-luxota-accent/10 transition-colors duration-300 group-hover:bg-luxota-accent/20">
+                      <Icon icon={uc.icon} className="text-2xl text-luxota-accent" />
                     </div>
                     <h3 className="text-xl font-medium text-white">{uc.industry}</h3>
                   </div>

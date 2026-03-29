@@ -287,7 +287,7 @@ const graphics = [WebdesignGraphic, SeoGraphic, OpenClawGraphic, HermesGraphic, 
 export default function ServicesOverviewSection() {
   const pinSectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const { t } = useTranslation();
+  const { t, href } = useTranslation();
   const cards = getCards(t);
 
   useEffect(() => {
@@ -375,15 +375,7 @@ export default function ServicesOverviewSection() {
                 return (
                   <div
                     key={card.num}
-                    className="
-                      w-[85vw] max-w-[340px]
-                      lg:w-[60vw] lg:max-w-[700px]
-                      h-[calc(100svh-250px)] min-h-[440px] max-h-[520px] lg:h-full lg:max-h-[600px]
-                      spotlight-card rounded-[1.75rem] lg:rounded-[2rem]
-                      p-5 pb-6 lg:p-10
-                      shrink-0 relative flex first:ml-5 lg:first:ml-0 snap-center
-                      border border-white/10 bg-[#050507] group
-                    "
+                    className="w-[85vw] max-w-[340px] lg:w-[60vw] lg:max-w-[700px] h-[calc(100svh-250px)] min-h-[440px] max-h-[520px] lg:h-full lg:max-h-[600px] spotlight-card rounded-[1.75rem] lg:rounded-[2rem] p-5 pb-6 lg:p-10 shrink-0 relative flex first:ml-5 lg:first:ml-0 snap-center border border-white/10 bg-[#050507] group"
                   >
                     {/* Left content col */}
                     <div className="w-full lg:w-[45%] flex flex-col justify-between relative z-10 h-full">
@@ -421,7 +413,7 @@ export default function ServicesOverviewSection() {
                           ))}
                         </ul>
 
-                        <Link href={card.link}>
+                        <Link href={href(card.link)}>
                           <button className="svc-discover-btn w-full lg:w-auto justify-center py-2.5 lg:py-3 font-bold">
                             <span>{card.linkLabel}</span>
                             <Icon icon="solar:arrow-right-linear" className="text-luxota-accent text-sm" />

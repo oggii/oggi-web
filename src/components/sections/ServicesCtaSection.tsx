@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react';
 import { useTranslation } from '@/i18n/TranslationContext';
 
 export default function ServicesCtaSection() {
-  const { t } = useTranslation();
+  const { t, href } = useTranslation();
 
   return (
     <section className="relative py-16 lg:py-24 px-6 flex flex-col items-center justify-center text-center bg-luxota-bg border-t border-white/5 overflow-hidden">
@@ -23,7 +23,7 @@ export default function ServicesCtaSection() {
       </p>
 
       {/* Shimmer CTA Button */}
-      <Link href="/services" className="reveal-up">
+          <Link href={href('/services')} className="reveal-up">
         <button className="shimmer-btn inline-flex items-center gap-3">
           <span className="shimmer-text flex items-center gap-3">
             <Icon icon="solar:layers-bold-duotone" className="text-xl" />
@@ -36,17 +36,17 @@ export default function ServicesCtaSection() {
 
       {/* Secondary ghost link */}
       <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 text-sm text-luxota-dim">
-        <Link href="/openclaw" className="hover:text-white transition-colors flex items-center gap-1.5 group">
+        <Link href={href('/openclaw')} className="hover:text-white transition-colors flex items-center gap-1.5 group">
           <span className="w-1.5 h-1.5 rounded-full bg-luxota-accent/60 group-hover:bg-luxota-accent transition-colors" />
           {t('cta.link1')}
         </Link>
         <span className="hidden sm:block text-white/10">·</span>
-        <Link href="/hermes" className="hover:text-white transition-colors flex items-center gap-1.5 group">
+        <Link href={href('/hermes')} className="hover:text-white transition-colors flex items-center gap-1.5 group">
           <span className="w-1.5 h-1.5 rounded-full bg-luxota-accent/60 group-hover:bg-luxota-accent transition-colors" />
           {t('cta.link2')}
         </Link>
         <span className="hidden sm:block text-white/10">·</span>
-        <Link href="/#action" className="hover:text-white transition-colors flex items-center gap-1.5 group">
+        <Link href={href('/contact')} className="hover:text-white transition-colors flex items-center gap-1.5 group">
           <span className="w-1.5 h-1.5 rounded-full bg-luxota-accent/60 group-hover:bg-luxota-accent transition-colors" />
           {t('cta.link3')}
         </Link>

@@ -9,6 +9,9 @@ import CustomCursor from './CustomCursor';
 import Navbar from './Navbar';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
+import type { Locale } from '@/i18n/config';
+import type { Dictionary } from '@/i18n/dictionaries';
+import { stripLocaleFromPathname } from '@/i18n/routing';
 
 const ParticlesBackground = dynamic(() => import('@/components/ui/ParticlesBackground'), {
   ssr: false,
@@ -16,10 +19,17 @@ const ParticlesBackground = dynamic(() => import('@/components/ui/ParticlesBackg
 
 import { TranslationProvider } from '@/i18n/TranslationContext';
 
-export function ClientWrapper({ children }: { children: React.ReactNode }) {
+type ClientWrapperProps = {
+  children: React.ReactNode;
+  locale: Locale;
+  dictionary: Dictionary;
+};
+
+export function ClientWrapper({ children, locale, dictionary }: ClientWrapperProps) {
   const [loading, setLoading] = useState(true);
   const [isTouchDevice, setIsTouchDevice] = useState(false);
   const pathname = usePathname();
+  const routePath = stripLocaleFromPathname(pathname ?? '');
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
@@ -37,17 +47,24 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
     ScrollTrigger.refresh();
 
     // Wenn man direkt auf einer Unterseite landet, ignoriere den Preloader, damit GSAP startet.
-    if (pathname !== '/' && pathname !== '') {
+    if (routePath !== '') {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       setLoading(false);
     }
-  }, [pathname]);
+  }, [pathname, routePath]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      const revealText = gsap.utils.toArray<HTMLElement>('.reveal-text');
+      const revealHeroFade = gsap.utils.toArray<HTMLElement>('.reveal-hero-fade');
+
       // Set initial invisibility via GSAP immediately on mount to avoid flash
-      gsap.set('.reveal-text', { y: '100%' });
-      gsap.set('.reveal-hero-fade', { y: 20, opacity: 0 });
+      if (revealText.length > 0) {
+        gsap.set(revealText, { y: '100%' });
+      }
+      if (revealHeroFade.length > 0) {
+        gsap.set(revealHeroFade, { y: 20, opacity: 0 });
+      }
 
       if (loading) return;
 
@@ -70,10 +87,17 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
       });
 
       const tl = gsap.timeline({ delay: 0.1 }); 
-      tl.fromTo('.reveal-nav', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' })
-        .to('.reveal-text', { y: '0%', duration: 1.2, stagger: 0.05, ease: 'power4.out' }, '-=0.8')
-        .to('.reveal-hero-fade', { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out' }, '-=0.8')
-        .add(() => ScrollTrigger.refresh(), "+=0.1");
+      tl.fromTo('.reveal-nav', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' });
+
+      if (revealText.length > 0) {
+        tl.to(revealText, { y: '0%', duration: 1.2, stagger: 0.05, ease: 'power4.out' }, '-=0.8');
+      }
+
+      if (revealHeroFade.length > 0) {
+        tl.to(revealHeroFade, { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out' }, '-=0.8');
+      }
+
+      tl.add(() => ScrollTrigger.refresh(), "+=0.1");
 
       // Global Scroll Reveal for all other pages/sections
       gsap.utils.toArray('.reveal-up').forEach((el: any) => {
@@ -126,8 +150,8 @@ export function ClientWrapper({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <TranslationProvider>
-      {loading && (pathname === '/' || pathname === '') && <Preloader onComplete={() => setLoading(false)} />}
+    <TranslationProvider locale={locale} dictionary={dictionary}>
+      {loading && routePath === '' && <Preloader onComplete={() => setLoading(false)} />}
 
       <div className={`transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         <div className="fixed inset-0 z-0 bg-luxota-bg">

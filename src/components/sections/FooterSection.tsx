@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import Link from 'next/link';
 import { useTranslation } from '@/i18n/TranslationContext';
 export default function FooterSection() {
-  const { t } = useTranslation();
+  const { t, href } = useTranslation();
   return (
     <>
       <section className="min-h-[90vh] flex flex-col items-center justify-center px-6 relative overflow-hidden" id="action">
@@ -19,7 +19,7 @@ export default function FooterSection() {
           </p>
 
           <div className="flex flex-col items-center gap-10">
-            <a href="mailto:kontakt@0ggi.ch?subject=Projektanfrage" className="group relative bg-white text-black px-16 py-6 rounded-[2rem] font-bold text-xl overflow-hidden inline-flex transition-transform hover:-translate-y-1 shadow-[0_0_60px_-15px_rgba(255,255,255,0.4)] hover:shadow-[0_0_80px_-15px_rgba(157,78,221,0.5)]">
+            <Link href={href('/contact')} className="group relative bg-white text-black px-16 py-6 rounded-[2rem] font-bold text-xl overflow-hidden inline-flex transition-transform hover:-translate-y-1 shadow-[0_0_60px_-15px_rgba(255,255,255,0.4)] hover:shadow-[0_0_80px_-15px_rgba(157,78,221,0.5)]">
               <span className="relative z-10 flex items-center gap-3">
                 {t('footer.btn')}
                 <span className="iconify-container group-hover:translate-x-1 transition-transform">
@@ -27,7 +27,7 @@ export default function FooterSection() {
                 </span>
               </span>
               <div className="absolute inset-0 bg-luxota-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo z-0"></div>
-            </a>
+            </Link>
 
             <div className="text-sm text-luxota-dim tracking-wide">
               {t('footer.sub')}
@@ -53,9 +53,9 @@ export default function FooterSection() {
             <div>
               <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col1')}</h4>
               <ul className="space-y-5 text-sm text-luxota-dim font-light">
-                <li><Link href="/services" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.webdev')}</Link></li>
-                <li><Link href="/services" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.speed')}</Link></li>
-                <li><Link href="/services" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.branding')}</Link></li>
+                <li><Link href={href('/services')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.webdev')}</Link></li>
+                <li><Link href={href('/services')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.speed')}</Link></li>
+                <li><Link href={href('/services')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.branding')}</Link></li>
               </ul>
             </div>
 
@@ -63,9 +63,9 @@ export default function FooterSection() {
             <div>
               <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col2')}</h4>
               <ul className="space-y-5 text-sm text-luxota-dim font-light">
-                <li><Link href="/services" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.n8n')}</Link></li>
-                <li><Link href="/openclaw" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>OpenClaw Agent</Link></li>
-                <li><Link href="/hermes" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Hermes Agent</Link></li>
+                <li><Link href={href('/services')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.n8n')}</Link></li>
+                <li><Link href={href('/openclaw')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>OpenClaw Agent</Link></li>
+                <li><Link href={href('/hermes')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Hermes Agent</Link></li>
               </ul>
             </div>
 
@@ -73,8 +73,8 @@ export default function FooterSection() {
             <div>
               <h4 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col3')}</h4>
               <ul className="space-y-5 text-sm text-luxota-dim font-light">
-                <li><Link href="/purpose" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.aboutMe')}</Link></li>
-                <li><Link href="/portfolio" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.portfolioRef')}</Link></li>
+                <li><Link href={href('/purpose')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.aboutMe')}</Link></li>
+                <li><Link href={href('/portfolio')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.portfolioRef')}</Link></li>
                 <li><a href="mailto:kontakt@0ggi.ch" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.contactEmail')}</a></li>
               </ul>
             </div>

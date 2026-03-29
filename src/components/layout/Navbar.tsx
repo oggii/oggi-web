@@ -1,34 +1,34 @@
 'use client';
+
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { Icon } from '@iconify/react';
 import { useTranslation } from '@/i18n/TranslationContext';
 import { locales, localeNames } from '@/i18n/config';
+import { localizePath, stripLocaleFromPathname } from '@/i18n/routing';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const pathname = usePathname();
-  const { t, locale, setLocale } = useTranslation();
+  const { t, locale, href } = useTranslation();
 
-  // Reset header to visible on every page navigation
   useEffect(() => {
     setIsVisible(true);
   }, [pathname]);
 
-  // Handle Scroll behavior to hide/show navbar
   useEffect(() => {
     let lastY = window.scrollY;
-    const threshold = 12; // pixels
+    const threshold = 12;
 
     const handleScroll = () => {
       if (menuOpen) return;
       const currentY = window.scrollY;
       const diff = currentY - lastY;
 
-      // Ignore small jitter
       if (Math.abs(diff) < threshold) return;
 
       if (currentY > lastY && currentY > 150) {
@@ -43,7 +43,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [menuOpen]);
 
-  // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden';
@@ -52,64 +51,100 @@ export default function Navbar() {
     }
   }, [menuOpen]);
 
+  const currentRoute = stripLocaleFromPathname(pathname ?? '');
   const navLinks = [
-    { num: '01', title: t('nav.home'), href: '/' },
-    { num: '02', title: t('nav.services'), href: '/services' },
-    { num: '03', title: t('nav.projects'), href: '/portfolio' },
-    { num: '04', title: t('nav.about'), href: '/purpose' },
-    { num: '05', title: t('nav.contact'), href: '/#action' },
+    { num: '01', title: t('nav.home'), href: href('/') },
+    { num: '02', title: t('nav.services'), href: href('/services') },
+    { num: '03', title: t('nav.projects'), href: href('/portfolio') },
+    { num: '04', title: t('nav.about'), href: href('/purpose') },
   ];
+  const contactLink = { num: '05', title: t('nav.contact'), href: href('/contact') };
+  const mobileNavLinks = [...navLinks, contactLink];
+  const isContactActive = pathname === contactLink.href || pathname?.startsWith(`${contactLink.href}/`);
+
+  const getFlag = (value: (typeof locales)[number]) =>
+    value === 'de' ? 'https://flagcdn.com/w20/ch.png' : `https://flagcdn.com/w20/${value === 'en' ? 'us' : value}.png`;
+
+  const renderFlag = (value: (typeof locales)[number]) => (
+    <Image
+      src={getFlag(value)}
+      alt=""
+      width={20}
+      height={15}
+      className="rounded-sm brightness-90 saturate-150"
+      style={{ width: '14px', height: 'auto' }}
+      unoptimized
+    />
+  );
+
+  const renderLogo = (width: number, height: number) => (
+    <Image
+      src="/oggi_logo_n.svg"
+      alt="0GGI Logo"
+      width={width}
+      height={height}
+      className="invert"
+      priority
+    />
+  );
 
   return (
     <>
       <header
         style={{ transform: isVisible || menuOpen ? 'translateY(0)' : 'translateY(-180%)' }}
-        className={`fixed top-4 md:top-8 left-0 right-0 z-[100] transition-transform duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)] reveal-nav pointer-events-none px-4 md:px-8`}
+        className="fixed top-4 md:top-8 left-0 right-0 z-[100] transition-transform duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)] reveal-nav pointer-events-none px-4 md:px-8"
       >
-        {/* DESKTOP NAV */}
         <div className="hidden md:flex justify-center items-center pointer-events-auto relative">
-          {/* Language Dropdown (Top Left) */}
           <div className="absolute left-0 top-1/2 -translate-y-1/2 z-50">
             <div
               onClick={() => setLangDropdownOpen(!langDropdownOpen)}
               className="bg-[#1A1A1A]/95 backdrop-blur-md border border-white/5 rounded-full px-4 py-2 flex items-center shadow-lg cursor-pointer transition-all hover:bg-white/10"
             >
-              <button className="flex items-center gap-2">
+              <button className="flex items-center gap-2" aria-label="Sprache wechseln">
                 <span className="text-[10px] font-bold text-white tracking-widest mt-[1px]">{localeNames[locale]}</span>
-                <img src={locale === 'de' ? 'https://flagcdn.com/w20/ch.png' : `https://flagcdn.com/w20/${locale === 'en' ? 'us' : locale}.png`} alt="" className="w-3.5 h-auto rounded-sm brightness-90 saturate-150" />
+                {renderFlag(locale)}
                 <Icon icon="mdi:chevron-down" className={`text-xs text-white/60 transition-transform duration-500 ${langDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
             </div>
 
-            {/* Dropdown Options */}
             <div className={`absolute top-[calc(100%+8px)] left-0 bg-[#1A1A1A]/95 backdrop-blur-md border border-white/5 rounded-2xl p-2 w-max shadow-2xl transition-all duration-300 origin-top flex flex-col gap-1 ${langDropdownOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
-              {locales.map(l => (
-                <button
-                  key={l}
-                  onClick={() => { setLocale(l); setLangDropdownOpen(false); }}
-                  className={`flex items-center gap-3 text-[10px] font-bold tracking-widest px-4 py-2.5 rounded-xl text-left transition-colors ${locale === l ? 'bg-white/10 text-white' : 'text-white/50 hover:bg-white/5 hover:text-white'}`}>
-                  <span>{localeNames[l]}</span>
-                  <img src={l === 'de' ? 'https://flagcdn.com/w20/ch.png' : `https://flagcdn.com/w20/${l === 'en' ? 'us' : l}.png`} alt="" className="w-3.5 h-auto rounded-sm brightness-90 saturate-150" />
-                </button>
+              {locales.map((value) => (
+                <Link
+                  key={value}
+                  href={localizePath(value, currentRoute)}
+                  onClick={() => setLangDropdownOpen(false)}
+                  className={`flex items-center gap-3 text-[10px] font-bold tracking-widest px-4 py-2.5 rounded-xl text-left transition-colors ${locale === value ? 'bg-white/10 text-white' : 'text-white/50 hover:bg-white/5 hover:text-white'}`}
+                >
+                  <span>{localeNames[value]}</span>
+                  {renderFlag(value)}
+                </Link>
               ))}
             </div>
           </div>
 
-          {/* Center Unified Pill */}
-          <div className="bg-[#1A1A1A]/95 backdrop-blur-md border border-white/5 rounded-full p-1.5 pl-6 flex items-center shadow-2xl h-14">
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 z-40">
+            <Link
+              href={contactLink.href}
+              className={`rounded-full px-5 py-3 text-xs font-semibold shadow-2xl transition-all ${
+                isContactActive
+                  ? 'bg-white text-luxota-bg border border-white'
+                  : 'bg-[#1A1A1A]/95 backdrop-blur-md border border-white/10 text-white hover:bg-white hover:text-luxota-bg hover:shadow-[0_0_20px_rgba(255,255,255,0.18)]'
+              }`}
+            >
+              {contactLink.title}
+            </Link>
+          </div>
 
-            {/* Logo */}
-            <Link href="/" className="flex items-center mr-6 hover:opacity-80 transition-opacity shrink-0">
-              <img src="/oggi_logo_n.svg" alt="0GGI Logo" className="h-5 w-auto invert" />
+          <div className="bg-[#1A1A1A]/95 backdrop-blur-md border border-white/5 rounded-full p-1.5 pl-6 flex items-center shadow-2xl h-14">
+            <Link href={href('/')} className="flex items-center mr-6 hover:opacity-80 transition-opacity shrink-0">
+              {renderLogo(74, 20)}
             </Link>
 
-            {/* Divider */}
             <div className="w-px h-6 bg-white/10 mx-2 shrink-0"></div>
 
-            {/* Links */}
             <div className="flex items-center gap-1 ml-4 mr-1">
               {navLinks.map((link) => {
-                const isActive = pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href));
+                const isActive = pathname === link.href || (link.href !== href('/') && pathname?.startsWith(link.href));
                 return (
                   <Link
                     key={link.href}
@@ -124,16 +159,13 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* MOBILE NAV PILL (Matches Graffico Style) */}
         {!menuOpen && (
           <div className="md:hidden absolute top-0 left-1/2 -translate-x-1/2 pointer-events-auto w-max mt-2">
             <div className="bg-[#1A1A1A]/95 backdrop-blur-md border border-white/5 rounded-full px-6 py-2.5 flex items-center gap-8 shadow-2xl">
-              {/* Logo */}
-              <Link href="/" className="flex items-center">
-                <img src="/oggi_logo_n.svg" alt="0GGI Logo" className="h-6 w-auto invert" />
+              <Link href={href('/')} className="flex items-center">
+                {renderLogo(89, 24)}
               </Link>
 
-              {/* Hamburger */}
               <button onClick={() => setMenuOpen(true)} className="text-white/80 hover:text-white flex items-center justify-center -mr-1">
                 <Icon icon="solar:hamburger-menu-linear" className="text-2xl" />
               </button>
@@ -142,38 +174,34 @@ export default function Navbar() {
         )}
       </header>
 
-      {/* FULL SCREEN MOBILE OVERLAY MENU */}
       <div
         className={`fixed inset-0 z-[110] bg-[#0a0216] flex flex-col md:hidden transition-all duration-500 origin-top overflow-y-auto ${menuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'}`}
       >
         <div className="px-6 py-6 flex items-center justify-between border-b border-white/10">
-          {/* Top Left Logo in Overlay */}
-          <Link onClick={() => setMenuOpen(false)} href="/" className="flex items-center">
-            <img src="/oggi_logo_n.svg" alt="0GGI Logo" className="h-8 w-auto invert" />
+          <Link onClick={() => setMenuOpen(false)} href={href('/')} className="flex items-center">
+            {renderLogo(118, 32)}
           </Link>
 
-          {/* Mobile Locales Selector */}
           <div className="flex bg-white/5 rounded-full p-1 ml-auto mr-4">
-            {locales.map(l => (
-              <button
-                key={l}
-                onClick={() => setLocale(l)}
-                className={`text-[9px] font-bold tracking-widest px-3 py-1.5 rounded-full transition-colors ${locale === l ? 'bg-white text-luxota-bg' : 'text-white/50 hover:text-white'}`}>
-                {localeNames[l]}
-              </button>
+            {locales.map((value) => (
+              <Link
+                key={value}
+                href={localizePath(value, currentRoute)}
+                className={`text-[9px] font-bold tracking-widest px-3 py-1.5 rounded-full transition-colors ${locale === value ? 'bg-white text-luxota-bg' : 'text-white/50 hover:text-white'}`}
+              >
+                {localeNames[value]}
+              </Link>
             ))}
           </div>
 
-          {/* Top Right Close Button */}
           <button onClick={() => setMenuOpen(false)} className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shrink-0">
             <Icon icon="mdi:close" className="text-xl" />
           </button>
         </div>
 
-        {/* Navigation Links */}
         <div className="flex-1 px-6 py-10 flex flex-col justify-center gap-8">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href || (link.href !== '/' && pathname?.startsWith(link.href));
+          {mobileNavLinks.map((link) => {
+            const isActive = pathname === link.href || (link.href !== href('/') && pathname?.startsWith(link.href));
             return (
               <Link
                 key={link.href}
@@ -189,7 +217,6 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Bottom Contact / Socials */}
         <div className="px-6 py-8 border-t border-white/10 flex justify-between items-end mt-auto">
           <div className="flex flex-col gap-2">
             <span className="text-[10px] font-bold tracking-widest text-white/50 uppercase">{t('nav.contactUs')}</span>

@@ -22,7 +22,7 @@ export default function NotFound() {
           Diese Sektion existiert im aktuellen Dateisystem nicht mehr. Der Server meldet einen Broken Link.
         </p>
         <Link 
-          href="/" 
+          href="/de" 
           className="group inline-flex items-center gap-3 text-white text-sm font-medium hover:text-luxota-accent transition-colors"
         >
           <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-luxota-accent group-hover:bg-luxota-accent/10 transition-all bg-white/5">

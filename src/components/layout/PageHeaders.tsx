@@ -48,3 +48,20 @@ export function PurposePageHeader() {
         </div>
     );
 }
+
+export function ContactPageHeader() {
+    const { t } = useTranslation();
+
+    return (
+        <div className="max-w-7xl mx-auto px-6 mb-16 md:mb-20 relative z-10 reveal-up">
+            <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest uppercase">{t('contactPage.tag')}</span>
+            <h1 className="text-4xl sm:text-5xl md:text-8xl font-medium tracking-tight text-white mb-6 leading-[1.05]">
+                {t('contactPage.title1')}<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-luxota-accent">{t('contactPage.title2')}</span>
+            </h1>
+            <p className="text-lg md:text-xl text-luxota-dim max-w-3xl font-light leading-relaxed">
+                {t('contactPage.intro')}
+            </p>
+        </div>
+    );
+}

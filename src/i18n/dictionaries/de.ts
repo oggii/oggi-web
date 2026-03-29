@@ -118,6 +118,42 @@ export const de = {
     servicesPage: {
         tag: '[ SERVICES ]', title1: 'Systeme für', title2: 'Skalierung.',
         desc: 'Ich entwickle nicht nur schöne Websites. Ich baue hochgradig performante digitale Ökosysteme, die durch Next.js Frontend-Architekturen und intelligente n8n-Automatisierungen (OpenClaw) Zeit sparen und Wachstum garantieren.'
+    },
+    contactPage: {
+        tag: '[ KONTAKT ]',
+        title1: 'Lernen wir',
+        title2: 'uns kennen.',
+        intro: 'Du möchtest mit deinem Unternehmen online durchstarten, hast eine konkrete Idee oder willst zuerst Klarheit über den besten nächsten Schritt? Schreib mir, ruf mich an oder nutze das Formular. Ich freue mich darauf, mehr über dein Projekt zu erfahren.',
+        formTag: 'Direkte Anfrage',
+        formTitle: 'Sende mir eine Nachricht',
+        formIntro: 'Ich melde mich in der Regel innerhalb von einem Werktag bei dir zurück. Wenn du schon Ziele, Fragen oder eine erste Projektidee hast, kannst du mir alles direkt mitgeben.',
+        formFirstName: 'Vorname',
+        formLastName: 'Nachname',
+        formFirstNamePlaceholder: 'Max',
+        formLastNamePlaceholder: 'Muster',
+        formEmail: 'E-Mail',
+        formPhone: 'Telefonnummer',
+        formTopic: 'Zu welchem Thema kontaktierst du mich?',
+        formTopicPlaceholder: 'Bitte Thema wählen',
+        topicWebsite: 'Webseite',
+        topicMarketing: 'Online-Marketing',
+        topicAi: 'KI-Agenten',
+        formMessage: 'Deine Nachricht an mich',
+        formMessagePlaceholder: 'Erzähl mir kurz, worum es geht, wo du gerade stehst und wobei du Unterstützung suchst.',
+        formSubmit: 'Absenden',
+        formDisclaimer: 'Ich prüfe jede Anfrage persönlich und melde mich in der Regel innerhalb von einem Werktag bei dir zurück.',
+        formSending: 'Deine Anfrage wird gerade gesendet.',
+        formSuccess: 'Perfekt. Deine Anfrage ist angekommen und ich melde mich bald bei dir zurück.',
+        formError: 'Beim Senden ist etwas schiefgelaufen. Bitte versuche es gleich noch einmal.',
+        mailSubjectPrefix: 'Projektanfrage',
+        detailsTag: 'Direkter Kontakt',
+        detailsTitle: 'Ich bin erreichbar',
+        detailsIntro: 'Wenn du lieber direkt sprichst statt lange Mails zu schreiben, bin ich auch telefonisch erreichbar. Für kurze Rückfragen oder ein unverbindliches Erstgespräch ist das oft der schnellste Weg.',
+        phoneLabel: 'Telefon',
+        emailLabel: 'E-Mail',
+        addressLabel: 'Standort',
+        mapTag: 'Vor Ort',
+        mapTitle: 'Standort in Liestal'
     }
 };
 

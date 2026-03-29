@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react';
 import { useTranslation } from '@/i18n/TranslationContext';
 
 export default function HeroSection() {
-  const { t } = useTranslation();
+  const { t, href } = useTranslation();
 
   return (
     <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden" id="os">
@@ -35,7 +35,7 @@ export default function HeroSection() {
             </span>
             <div className="absolute inset-0 bg-luxota-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo"></div>
           </a>
-          <a href="/portfolio" className="px-9 py-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all text-white font-medium text-sm hover:border-white/30 hover:shadow-lg">
+          <a href={href('/portfolio')} className="px-9 py-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all text-white font-medium text-sm hover:border-white/30 hover:shadow-lg">
             {t('hero.actionResults')}
           </a>
         </div>

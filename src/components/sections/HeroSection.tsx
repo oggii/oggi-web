@@ -1,6 +1,6 @@
 'use client';
 
-import Icon from '@/components/ui/SiteIcon';
+import { Icon } from '@iconify/react';
 import { useTranslation } from '@/i18n/TranslationContext';
 
 export default function HeroSection() {
@@ -8,20 +8,17 @@ export default function HeroSection() {
 
   return (
     <section className="relative h-screen flex flex-col items-center justify-center overflow-hidden" id="os">
-      <div className="perspective-grid opacity-20 md:opacity-30"></div>
-      <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[220px] h-[220px] md:w-[600px] md:h-[600px] rounded-full pointer-events-none hero-spotlight"
-        style={{ background: 'radial-gradient(circle, rgba(157,78,221,0.12) 0%, transparent 70%)' }}
-      ></div>
+      <div className="perspective-grid opacity-30"></div>
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(157,78,221,0.15) 0%, transparent 70%)' }}></div>
 
       <div className="relative z-10 text-center max-w-7xl px-6">
         <h1 className="text-[12vw] sm:text-5xl md:text-7xl lg:text-[7rem] font-medium tracking-tightest text-white leading-[1.1] md:leading-[0.95] mb-10 w-full whitespace-nowrap overflow-hidden text-clip flex flex-col items-center">
           <div className="py-[0.1em]"><span className="block reveal-text drop-shadow-2xl px-2">{t('hero.titleTop')}</span></div>
           <div className="flex justify-center gap-2 md:gap-4 items-center flex-wrap md:flex-nowrap py-[0.1em]">
             <span className="block reveal-text text-white/30 italic font-serif tracking-tight pr-2 md:pr-4 text-[0.8em]">{t('hero.titleMid')}</span>
-              <span className="block reveal-text text-gradient-premium hero-gradient-static">{t('hero.titleBot')}</span>
-            </div>
-          </h1>
+            <span className="block reveal-text text-gradient-premium">{t('hero.titleBot')}</span>
+          </div>
+        </h1>
 
         <p className="text-lg md:text-xl text-luxota-dim max-w-xl mx-auto leading-relaxed mb-14 font-light opacity-0 reveal-hero-fade translate-y-4">
           {t('hero.subtitle')}

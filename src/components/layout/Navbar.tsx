@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import Icon from '@/components/ui/SiteIcon';
+import { Icon } from '@iconify/react';
 import { useTranslation } from '@/i18n/TranslationContext';
 import { locales, localeNames } from '@/i18n/config';
 import { localizePath, stripLocaleFromPathname } from '@/i18n/routing';
@@ -58,10 +58,19 @@ export default function Navbar() {
   const mobileNavLinks = [...navLinks, contactLink];
   const isContactActive = pathname === contactLink.href || pathname?.startsWith(`${contactLink.href}/`);
 
-  const renderLocaleBadge = (value: (typeof locales)[number]) => (
-    <span className="inline-flex min-w-7 items-center justify-center rounded-full border border-white/10 bg-white/5 px-1.5 py-0.5 text-[9px] font-bold tracking-[0.16em] text-white/75">
-      {localeNames[value]}
-    </span>
+  const getFlag = (value: (typeof locales)[number]) =>
+    value === 'de' ? 'https://flagcdn.com/w20/ch.png' : `https://flagcdn.com/w20/${value === 'en' ? 'us' : value}.png`;
+
+  const renderFlag = (value: (typeof locales)[number]) => (
+    <Image
+      src={getFlag(value)}
+      alt=""
+      width={20}
+      height={15}
+      className="rounded-sm brightness-90 saturate-150"
+      style={{ width: '14px', height: 'auto' }}
+      unoptimized
+    />
   );
 
   const renderLogo = (width: number, height: number) => (
@@ -87,9 +96,9 @@ export default function Navbar() {
               onClick={() => setLangDropdownOpen(!langDropdownOpen)}
               className="bg-[#1A1A1A]/95 backdrop-blur-md border border-white/5 rounded-full px-4 py-2 flex items-center shadow-lg cursor-pointer transition-all hover:bg-white/10"
             >
-              <button className="flex items-center gap-2" type="button">
+              <button className="flex items-center gap-2" aria-label="Sprache wechseln">
                 <span className="text-[10px] font-bold text-white tracking-widest mt-[1px]">{localeNames[locale]}</span>
-                {renderLocaleBadge(locale)}
+                {renderFlag(locale)}
                 <Icon icon="mdi:chevron-down" className={`text-xs text-white/60 transition-transform duration-500 ${langDropdownOpen ? 'rotate-180' : ''}`} />
               </button>
             </div>
@@ -99,12 +108,11 @@ export default function Navbar() {
                 <Link
                   key={value}
                   href={localizePath(value, currentRoute)}
-                  prefetch={false}
                   onClick={() => setLangDropdownOpen(false)}
                   className={`flex items-center gap-3 text-[10px] font-bold tracking-widest px-4 py-2.5 rounded-xl text-left transition-colors ${locale === value ? 'bg-white/10 text-white' : 'text-white/50 hover:bg-white/5 hover:text-white'}`}
                 >
                   <span>{localeNames[value]}</span>
-                  {renderLocaleBadge(value)}
+                  {renderFlag(value)}
                 </Link>
               ))}
             </div>
@@ -113,7 +121,6 @@ export default function Navbar() {
           <div className="absolute right-0 top-1/2 -translate-y-1/2 z-40">
             <Link
               href={contactLink.href}
-              prefetch={false}
               className={`rounded-full px-5 py-3 text-xs font-semibold shadow-2xl transition-all ${
                 isContactActive
                   ? 'bg-white text-luxota-bg border border-white'
@@ -125,7 +132,7 @@ export default function Navbar() {
           </div>
 
           <div className="bg-[#1A1A1A]/95 backdrop-blur-md border border-white/5 rounded-full p-1.5 pl-6 flex items-center shadow-2xl h-14">
-            <Link href={href('/')} prefetch={false} className="flex items-center mr-6 hover:opacity-80 transition-opacity shrink-0">
+            <Link href={href('/')} className="flex items-center mr-6 hover:opacity-80 transition-opacity shrink-0">
               {renderLogo(74, 20)}
             </Link>
 
@@ -138,7 +145,6 @@ export default function Navbar() {
                   <Link
                     key={link.href}
                     href={link.href}
-                    prefetch={false}
                     className={`px-5 py-2.5 text-xs rounded-full transition-all ${isActive ? 'font-bold text-luxota-bg bg-white shadow-[0_0_15px_rgba(255,255,255,0.15)]' : 'font-medium text-white/70 hover:text-white hover:bg-white/5'}`}
                   >
                     {link.title}
@@ -152,11 +158,11 @@ export default function Navbar() {
         {!menuOpen && (
           <div className="md:hidden absolute top-0 left-1/2 -translate-x-1/2 pointer-events-auto w-max mt-2">
             <div className="bg-[#1A1A1A]/95 backdrop-blur-md border border-white/5 rounded-full px-6 py-2.5 flex items-center gap-8 shadow-2xl">
-              <Link href={href('/')} prefetch={false} className="flex items-center">
+              <Link href={href('/')} className="flex items-center">
                 {renderLogo(89, 24)}
               </Link>
 
-              <button onClick={() => setMenuOpen(true)} aria-label="Menü öffnen" className="text-white/80 hover:text-white flex items-center justify-center -mr-1">
+              <button onClick={() => setMenuOpen(true)} className="text-white/80 hover:text-white flex items-center justify-center -mr-1">
                 <Icon icon="solar:hamburger-menu-linear" className="text-2xl" />
               </button>
             </div>
@@ -168,7 +174,7 @@ export default function Navbar() {
         className={`fixed inset-0 z-[110] bg-[#0a0216] flex flex-col md:hidden transition-all duration-500 origin-top overflow-y-auto ${menuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'}`}
       >
         <div className="px-6 py-6 flex items-center justify-between border-b border-white/10">
-          <Link onClick={() => setMenuOpen(false)} href={href('/')} prefetch={false} className="flex items-center">
+          <Link onClick={() => setMenuOpen(false)} href={href('/')} className="flex items-center">
             {renderLogo(118, 32)}
           </Link>
 
@@ -177,7 +183,6 @@ export default function Navbar() {
               <Link
                 key={value}
                 href={localizePath(value, currentRoute)}
-                prefetch={false}
                 className={`text-[9px] font-bold tracking-widest px-3 py-1.5 rounded-full transition-colors ${locale === value ? 'bg-white text-luxota-bg' : 'text-white/50 hover:text-white'}`}
               >
                 {localeNames[value]}
@@ -185,7 +190,7 @@ export default function Navbar() {
             ))}
           </div>
 
-          <button onClick={() => setMenuOpen(false)} aria-label="Menü schließen" className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shrink-0">
+          <button onClick={() => setMenuOpen(false)} className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shrink-0">
             <Icon icon="mdi:close" className="text-xl" />
           </button>
         </div>
@@ -197,7 +202,6 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                prefetch={false}
                 onClick={() => setMenuOpen(false)}
                 className="flex items-center gap-6 group"
               >

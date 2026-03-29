@@ -10,7 +10,7 @@ export default function CustomCursor() {
   const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
-    const touch = !window.matchMedia('(pointer:fine)').matches || 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     const frame = window.requestAnimationFrame(() => {
       setIsTouch(touch);
     });
@@ -18,19 +18,6 @@ export default function CustomCursor() {
 
     let mouseX = 0;
     let mouseY = 0;
-    let rafId = 0;
-    const moveOutlineX = outlineRef.current ? gsap.quickTo(outlineRef.current, 'x', { duration: 0.15, ease: 'power2.out' }) : null;
-    const moveOutlineY = outlineRef.current ? gsap.quickTo(outlineRef.current, 'y', { duration: 0.15, ease: 'power2.out' }) : null;
-
-    const updateSpotlight = () => {
-      rafId = 0;
-      const target = document.elementFromPoint(mouseX, mouseY)?.closest('.spotlight-card') as HTMLElement | null;
-      if (!target) return;
-
-      const rect = target.getBoundingClientRect();
-      target.style.setProperty('--mouse-x', `${mouseX - rect.left}px`);
-      target.style.setProperty('--mouse-y', `${mouseY - rect.top}px`);
-    };
 
     const onMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
@@ -39,19 +26,22 @@ export default function CustomCursor() {
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
       }
-      moveOutlineX?.(mouseX);
-      moveOutlineY?.(mouseY);
-
-      if (!rafId) {
-        rafId = window.requestAnimationFrame(updateSpotlight);
+      if (outlineRef.current) {
+        gsap.to(outlineRef.current, { x: mouseX, y: mouseY, duration: 0.15, ease: 'power2.out' });
       }
+
+      // Update CSS variables for spotlight cards globally
+      document.querySelectorAll('.spotlight-card').forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        (card as HTMLElement).style.setProperty('--mouse-x', `${mouseX - rect.left}px`);
+        (card as HTMLElement).style.setProperty('--mouse-y', `${mouseY - rect.top}px`);
+      });
     };
 
     window.addEventListener('mousemove', onMouseMove);
 
     return () => {
       window.cancelAnimationFrame(frame);
-      window.cancelAnimationFrame(rafId);
       window.removeEventListener('mousemove', onMouseMove);
     };
   }, []);

@@ -1,21 +1,23 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from '@studio-freight/lenis';
 import Preloader from './Preloader';
+import CustomCursor from './CustomCursor';
 import Navbar from './Navbar';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import type { Locale } from '@/i18n/config';
 import type { Dictionary } from '@/i18n/dictionaries';
 import { stripLocaleFromPathname } from '@/i18n/routing';
-import { TranslationProvider } from '@/i18n/TranslationContext';
 
 const ParticlesBackground = dynamic(() => import('@/components/ui/ParticlesBackground'), {
   ssr: false,
 });
-const CustomCursor = dynamic(() => import('./CustomCursor'), {
-  ssr: false,
-});
+
+import { TranslationProvider } from '@/i18n/TranslationContext';
 
 type ClientWrapperProps = {
   children: React.ReactNode;
@@ -23,15 +25,8 @@ type ClientWrapperProps = {
   dictionary: Dictionary;
 };
 
-type LenisLike = {
-  scrollTo: (target: number, options?: { immediate?: boolean }) => void;
-  destroy: () => void;
-};
-
 export function ClientWrapper({ children, locale, dictionary }: ClientWrapperProps) {
   const [loading, setLoading] = useState(true);
-  const [showDecor, setShowDecor] = useState(false);
-  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isTouchDevice] = useState(() => {
     if (typeof window === 'undefined') {
       return false;
@@ -41,210 +36,138 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
   });
   const pathname = usePathname();
   const routePath = stripLocaleFromPathname(pathname ?? '');
-  const lenisRef = useRef<LenisLike | null>(null);
-  const shouldShowPreloader = routePath === '' && !isTouchDevice && !prefersReducedMotion;
-  const shouldRenderDecor = showDecor && !loading && !isTouchDevice && !prefersReducedMotion && routePath === '';
-
-  useEffect(() => {
-    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const update = () => setPrefersReducedMotion(media.matches);
-    update();
-    media.addEventListener('change', update);
-
-    return () => media.removeEventListener('change', update);
-  }, []);
+  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
       window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-      lenisRef.current?.scrollTo(0, { immediate: true });
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(0, { immediate: true });
+      }
+      ScrollTrigger.refresh();
 
-      if (routePath !== '' || !shouldShowPreloader) {
+      if (routePath !== '') {
         setLoading(false);
       }
     });
 
     return () => window.cancelAnimationFrame(frame);
-  }, [pathname, routePath, shouldShowPreloader]);
+  }, [pathname, routePath]);
 
   useEffect(() => {
-    if (loading || isTouchDevice || prefersReducedMotion || routePath !== '') {
-      return;
-    }
+    const ctx = gsap.context(() => {
+      const revealText = gsap.utils.toArray<HTMLElement>('.reveal-text');
+      const revealHeroFade = gsap.utils.toArray<HTMLElement>('.reveal-hero-fade');
 
-    const enableDecor = () => setShowDecor(true);
-    let idleCallbackId: number | undefined;
-    let timeoutId: ReturnType<typeof setTimeout> | undefined;
-
-    if ('requestIdleCallback' in window) {
-      idleCallbackId = window.requestIdleCallback(enableDecor, { timeout: 1500 });
-    } else {
-      timeoutId = globalThis.setTimeout(enableDecor, 900);
-    }
-
-    return () => {
-      if (idleCallbackId !== undefined && 'cancelIdleCallback' in window) {
-        window.cancelIdleCallback(idleCallbackId);
+      // Set initial invisibility via GSAP immediately on mount to avoid flash
+      if (revealText.length > 0) {
+        gsap.set(revealText, { y: '100%' });
       }
-      if (timeoutId !== undefined) {
-        globalThis.clearTimeout(timeoutId);
+      if (revealHeroFade.length > 0) {
+        gsap.set(revealHeroFade, { y: 20, opacity: 0 });
       }
-    };
-  }, [loading, isTouchDevice, prefersReducedMotion, routePath]);
 
-  useEffect(() => {
-    if (isTouchDevice || prefersReducedMotion) {
-      return;
-    }
+      if (loading) return;
 
-    let cancelled = false;
-    let cleanup: (() => void) | undefined;
-
-    const run = async () => {
-      const [{ gsap }, { ScrollTrigger }] = await Promise.all([
-        import('gsap'),
-        import('gsap/ScrollTrigger'),
-      ]);
-
-      if (cancelled) return;
-
-      gsap.registerPlugin(ScrollTrigger);
-
-      const ctx = gsap.context(() => {
-        const revealText = gsap.utils.toArray<HTMLElement>('.reveal-text');
-        const revealHeroFade = gsap.utils.toArray<HTMLElement>('.reveal-hero-fade');
-
-        if (revealText.length > 0) {
-          gsap.set(revealText, { y: '100%' });
-        }
-        if (revealHeroFade.length > 0) {
-          gsap.set(revealHeroFade, { y: 20, opacity: 0 });
-        }
-
-        if (loading) return;
-
-        gsap.utils.toArray('.parallax-text').forEach((el: unknown) => {
-          const element = el as HTMLElement;
-          gsap.fromTo(element,
-            { y: 50 },
-            {
-              y: -50,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: element,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: true,
-              },
-            },
-          );
-        });
-
-        const tl = gsap.timeline({ delay: 0.1 });
-        tl.fromTo('.reveal-nav', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' });
-
-        if (revealText.length > 0) {
-          tl.to(revealText, { y: '0%', duration: 1.2, stagger: 0.05, ease: 'power4.out' }, '-=0.8');
-        }
-
-        if (revealHeroFade.length > 0) {
-          tl.to(revealHeroFade, { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out' }, '-=0.8');
-        }
-
-        tl.add(() => ScrollTrigger.refresh(), '+=0.1');
-
-        gsap.utils.toArray<HTMLElement>('.reveal-up').forEach((el) => {
-          gsap.to(el, {
-            y: 0,
-            opacity: 1,
-            duration: 1.2,
-            ease: 'power3.out',
+      // Parallax text
+      gsap.utils.toArray('.parallax-text').forEach((el: unknown) => {
+        const element = el as HTMLElement;
+        gsap.fromTo(element,
+          { y: 50 },
+          {
+            y: -50,
+            ease: 'none',
             scrollTrigger: {
-              trigger: el,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            }
-          });
-        });
+              trigger: element,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true,
+            },
+          },
+        );
       });
 
-      cleanup = () => ctx.revert();
-    };
+      const tl = gsap.timeline({ delay: 0.1 }); 
+      tl.fromTo('.reveal-nav', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' });
 
-    void run();
+      if (revealText.length > 0) {
+        tl.to(revealText, { y: '0%', duration: 1.2, stagger: 0.05, ease: 'power4.out' }, '-=0.8');
+      }
 
-    return () => {
-      cancelled = true;
-      cleanup?.();
-    };
-  }, [loading, pathname, isTouchDevice, prefersReducedMotion]);
+      if (revealHeroFade.length > 0) {
+        tl.to(revealHeroFade, { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out' }, '-=0.8');
+      }
+
+      tl.add(() => ScrollTrigger.refresh(), "+=0.1");
+
+      // Global Scroll Reveal for all other pages/sections
+      gsap.utils.toArray<HTMLElement>('.reveal-up').forEach((el) => {
+        gsap.to(el, {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            toggleActions: 'play none none none',
+          }
+        });
+      });
+    });
+
+    return () => ctx.revert();
+  }, [loading, pathname]);
 
   useEffect(() => {
-    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
-    const saveData = connection?.saveData;
-    const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (touch || prefersReducedMotion || saveData) return;
+    gsap.registerPlugin(ScrollTrigger);
 
-    let cancelled = false;
-    let cleanup: (() => void) | undefined;
+    // Skip Lenis on touch/mobile — native scroll is faster and more fluid
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice) return;
 
-    const run = async () => {
-      const [{ gsap }, { ScrollTrigger }, { default: Lenis }] = await Promise.all([
-        import('gsap'),
-        import('gsap/ScrollTrigger'),
-        import('@studio-freight/lenis'),
-      ]);
+    // Lenis Smooth Scroll Setup (Desktop only)
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      direction: 'vertical',
+      smooth: true,
+    } as ConstructorParameters<typeof Lenis>[0]);
 
-      if (cancelled) return;
+    lenisRef.current = lenis;
 
-      gsap.registerPlugin(ScrollTrigger);
-
-      const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: 'vertical',
-        smooth: true,
-      } as ConstructorParameters<typeof Lenis>[0]);
-
-      lenisRef.current = lenis;
-      lenis.on('scroll', ScrollTrigger.update);
-
-      const onTick = (time: number) => {
-        lenis.raf(time * 1000);
-      };
-
-      gsap.ticker.add(onTick);
-      gsap.ticker.lagSmoothing(0);
-
-      cleanup = () => {
-        lenisRef.current = null;
-        lenis.destroy();
-        gsap.ticker.remove(onTick);
-      };
-    };
-
-    void run();
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
 
     return () => {
-      cancelled = true;
-      cleanup?.();
+      lenisRef.current = null;
+      lenis.destroy();
+      gsap.ticker.remove((time) => lenis.raf(time * 1000));
     };
-  }, [prefersReducedMotion]);
+  }, []);
 
   return (
     <TranslationProvider locale={locale} dictionary={dictionary}>
-      {loading && shouldShowPreloader && <Preloader onComplete={() => setLoading(false)} />}
+      {loading && routePath === '' && <Preloader onComplete={() => setLoading(false)} />}
 
       <div className={`transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         <div className="fixed inset-0 z-0 bg-luxota-bg">
-          {shouldRenderDecor && <ParticlesBackground count={50} />}
+          {/* On mobile: show reduced particles hero-only. On desktop: full background. */}
+          <ParticlesBackground
+            count={isTouchDevice ? 30 : 80}
+            heroOnly={isTouchDevice}
+          />
         </div>
 
         <div className="noise pointer-events-none opacity-[0.035] mix-blend-overlay fixed inset-0 z-[1]"></div>
 
         <div className="relative z-10">
-          {shouldRenderDecor && <CustomCursor />}
+          <CustomCursor />
           <Navbar key={pathname} />
+          {/* PAGE CONTENT */}
           {children}
         </div>
       </div>

@@ -1,5 +1,5 @@
 'use client';
-import Icon from '@/components/ui/SiteIcon';
+import { Icon } from '@iconify/react';
 import { useTranslation } from '@/i18n/TranslationContext';
 
 export default function CommercialModelSection() {

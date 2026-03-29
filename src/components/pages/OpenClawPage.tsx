@@ -70,7 +70,7 @@ const useCases = [
   },
   {
     industry: 'Handwerk & Services',
-    icon: 'lucide:hammer',
+    icon: 'solar:hammer-bold-duotone',
     example: 'Agent koordiniert Auftragsanfragen, erstellt Offertenentwürfe aus Vorlagen und informiert Kunden proaktiv über den Projektstatus.',
     saving: '~18 Std./Woche',
   },
@@ -124,38 +124,38 @@ export default function OpenClawPage() {
       </div>
 
       {/* What is it */}
-      <section className="border-t border-white/5 bg-[#020203] px-6 py-18 md:py-24">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 md:gap-14 lg:grid-cols-2 lg:gap-16 lg:items-center">
+      <section className="py-24 px-6 bg-[#020203] border-t border-white/5">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="reveal-up">
             <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest">[ WAS IST OPENCLAW? ]</span>
-            <h2 className="mb-6 text-4xl font-medium leading-[1.1] tracking-tight text-white md:mb-8 md:text-5xl">
+            <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-8 leading-[1.1]">
               Der KI-Agent, den du<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">vollständig besitzen.</span>
             </h2>
-            <p className="mb-5 text-luxota-dim leading-relaxed md:mb-6">
+            <p className="text-luxota-dim leading-relaxed mb-6">
               Stell dir vor, du hättest einen Mitarbeiter, der niemals schläft, niemals vergisst und jede Aufgabe erledigt, die du ihm per Nachricht beschreibst, auf deinem Smartphone, während du zum Kunden fährst.
             </p>
-            <p className="mb-6 text-luxota-dim leading-relaxed md:mb-8">
+            <p className="text-luxota-dim leading-relaxed mb-8">
               OpenClaw ist ein vollständig anpassbarer KI-Agent, der in deine bestehenden Prozesse eingebettet wird. Er lernt deine Arbeitsweise kennen, baut ein semantisches Langzeitgedächtnis auf und agiert proaktiv in deinem Namen, sicher, lokal und ohne Abhängigkeit von Drittanbietern.
             </p>
-            <div className="border-l-2 border-luxota-accent pl-5 md:pl-6">
-              <p className="text-base italic leading-relaxed text-white/80 md:text-lg">
+            <div className="border-l-2 border-luxota-accent pl-6">
+              <p className="text-white/80 italic text-lg leading-relaxed">
                 &ldquo;Kein generischer Chatbot. Ein vollständig kontrollierter KI-Mitarbeiter für dein spezifisches Business.&rdquo;
               </p>
             </div>
           </div>
 
           {/* Visual orbital */}
-          <div className="reveal-up relative mx-auto mt-2 aspect-square w-full max-w-[280px] sm:max-w-[340px] md:max-w-md lg:mt-0">
+          <div className="relative aspect-square max-w-md mx-auto reveal-up">
             <div className="absolute inset-0 bg-luxota-accent/5 rounded-3xl border border-white/10" />
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="relative h-20 w-20 sm:h-24 sm:w-24">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full border border-luxota-accent/30 bg-luxota-accent/10 sm:h-24 sm:w-24">
-                  <Icon icon="solar:cpu-bolt-bold-duotone" className="text-4xl text-luxota-accent sm:text-5xl" />
+              <div className="relative w-24 h-24">
+                <div className="w-24 h-24 rounded-full bg-luxota-accent/10 border border-luxota-accent/30 flex items-center justify-center">
+                  <Icon icon="solar:cpu-bolt-bold-duotone" className="text-5xl text-luxota-accent" />
                 </div>
                 <div className="absolute inset-0 rounded-full border border-luxota-accent/20 animate-[spin_8s_linear_infinite]" />
-                <div className="absolute -inset-8 h-36 w-36 rounded-full border border-white/5 animate-[spin_15s_linear_infinite_reverse] sm:-inset-10 sm:h-44 sm:w-44" />
-                <div className="absolute -inset-14 h-48 w-48 rounded-full border border-white/[0.03] animate-[spin_25s_linear_infinite] sm:-inset-20 sm:h-64 sm:w-64" />
+                <div className="absolute -inset-10 w-44 h-44 rounded-full border border-white/5 animate-[spin_15s_linear_infinite_reverse]" />
+                <div className="absolute -inset-20 w-64 h-64 rounded-full border border-white/[0.03] animate-[spin_25s_linear_infinite]" />
                 {[
                   { icon: 'solar:chat-round-dots-bold-duotone', label: 'Telegram', deg: 0 },
                   { icon: 'solar:database-bold-duotone', label: 'Gedächtnis', deg: 72 },
@@ -164,16 +164,16 @@ export default function OpenClawPage() {
                   { icon: 'solar:microphone-bold-duotone', label: 'Sprache', deg: 288 },
                 ].map((node) => {
                   const rad = (node.deg * Math.PI) / 180;
-                  const r = 76;
+                  const r = 100;
                   const x = Math.cos(rad - Math.PI / 2) * r;
                   const y = Math.sin(rad - Math.PI / 2) * r;
                   return (
-                    <div key={node.label} className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-1 sm:gap-1.5"
+                    <div key={node.label} className="absolute flex flex-col items-center gap-1 -translate-x-1/2 -translate-y-1/2"
                       style={{ left: `calc(50% + ${x}px)`, top: `calc(50% + ${y}px)` }}>
-                      <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-[#0A0A0C] shadow-lg sm:h-10 sm:w-10">
-                        <Icon icon={node.icon} className="text-base text-luxota-accent sm:text-lg" />
+                      <div className="w-10 h-10 rounded-full bg-[#0A0A0C] border border-white/10 flex items-center justify-center shadow-lg">
+                        <Icon icon={node.icon} className="text-luxota-accent text-lg" />
                       </div>
-                      <span className="whitespace-nowrap text-[8px] font-mono tracking-[0.18em] text-white/40 sm:text-[9px] sm:tracking-widest">{node.label}</span>
+                      <span className="text-[9px] text-white/40 font-mono tracking-widest whitespace-nowrap">{node.label}</span>
                     </div>
                   );
                 })}

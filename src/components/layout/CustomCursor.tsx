@@ -10,10 +10,11 @@ export default function CustomCursor() {
   const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
-    // Detect touch/mobile — skip custom cursor entirely
     const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    setIsTouch(touch);
-    if (touch) return;
+    const frame = window.requestAnimationFrame(() => {
+      setIsTouch(touch);
+    });
+    if (touch) return () => window.cancelAnimationFrame(frame);
 
     let mouseX = 0;
     let mouseY = 0;
@@ -40,6 +41,7 @@ export default function CustomCursor() {
     window.addEventListener('mousemove', onMouseMove);
 
     return () => {
+      window.cancelAnimationFrame(frame);
       window.removeEventListener('mousemove', onMouseMove);
     };
   }, []);

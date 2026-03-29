@@ -3,7 +3,6 @@ import { Icon } from '@iconify/react';
 
 
 import { useState } from 'react';
-import { gsap } from 'gsap';
 import { useTranslation } from '@/i18n/TranslationContext';
 
 export default function FAQSection() {

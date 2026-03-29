@@ -196,7 +196,7 @@ export default function HermesPage() {
               <div className="absolute left-[-1.5px] top-0 bottom-0 w-[2px] bg-white/5">
                 <div className="w-full h-full bg-gradient-to-b from-luxota-accent to-transparent" />
               </div>
-              {selfLearningSteps.map((step, i) => (
+              {selfLearningSteps.map((step) => (
                 <div key={step.step} className="group cursor-default hover:translate-x-2 transition-transform reveal-up">
                   <div className="text-[10px] font-mono text-luxota-dim mb-2 group-hover:text-luxota-accent transition-colors tracking-widest">SCHRITT {step.step}</div>
                   <h3 className="text-2xl text-white mb-2 font-medium">{step.title}</h3>

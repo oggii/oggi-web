@@ -27,30 +27,31 @@ type ClientWrapperProps = {
 
 export function ClientWrapper({ children, locale, dictionary }: ClientWrapperProps) {
   const [loading, setLoading] = useState(true);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
+  const [isTouchDevice] = useState(() => {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+
+    return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  });
   const pathname = usePathname();
   const routePath = stripLocaleFromPathname(pathname ?? '');
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Detect touch device for mobile-specific optimizations
-    const touch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    setIsTouchDevice(touch);
+    const frame = window.requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      if (lenisRef.current) {
+        lenisRef.current.scrollTo(0, { immediate: true });
+      }
+      ScrollTrigger.refresh();
 
-    // Always scroll native window to top first (works on mobile & as fallback)
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-    // Also reset Lenis if it's running (desktop smooth scroll)
-    if (lenisRef.current) {
-      lenisRef.current.scrollTo(0, { immediate: true });
-    }
-    // Refresh ScrollTrigger after navigation so pinned sections recalc
-    ScrollTrigger.refresh();
+      if (routePath !== '') {
+        setLoading(false);
+      }
+    });
 
-    // Wenn man direkt auf einer Unterseite landet, ignoriere den Preloader, damit GSAP startet.
-    if (routePath !== '') {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
-      setLoading(false);
-    }
+    return () => window.cancelAnimationFrame(frame);
   }, [pathname, routePath]);
 
   useEffect(() => {
@@ -100,7 +101,7 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
       tl.add(() => ScrollTrigger.refresh(), "+=0.1");
 
       // Global Scroll Reveal for all other pages/sections
-      gsap.utils.toArray('.reveal-up').forEach((el: any) => {
+      gsap.utils.toArray<HTMLElement>('.reveal-up').forEach((el) => {
         gsap.to(el, {
           y: 0,
           opacity: 1,
@@ -131,8 +132,7 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       direction: 'vertical',
       smooth: true,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any);
+    } as ConstructorParameters<typeof Lenis>[0]);
 
     lenisRef.current = lenis;
 
@@ -166,7 +166,7 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
 
         <div className="relative z-10">
           <CustomCursor />
-          <Navbar />
+          <Navbar key={pathname} />
           {/* PAGE CONTENT */}
           {children}
         </div>

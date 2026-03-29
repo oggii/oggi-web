@@ -9,7 +9,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslation } from '@/i18n/TranslationContext';
 
 /* ─── Card data ─────────────────────────────────────────────────────────── */
-const getCards = (t: any) => [
+type TranslateFn = (key: string) => string;
+
+const getCards = (t: TranslateFn) => [
   {
     num: '01',
     iconType: 'solar' as const,

@@ -21,7 +21,7 @@ export default function NarrativeSection() {
         isDesktop: "(min-width: 1024px)",
         isMobile: "(max-width: 1023px)"
       }, (context) => {
-        const { isDesktop } = context.conditions as any;
+        const { isDesktop } = (context.conditions ?? {}) as { isDesktop?: boolean };
         
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -47,7 +47,7 @@ export default function NarrativeSection() {
             y: 0,
             scale: 1,
             stagger: 0.1,
-            color: (i, target) => (target as HTMLElement).classList.contains("text-luxota-accent") ? "#9D4EDD" : "#ffffff",
+            color: (_, target) => (target as HTMLElement).classList.contains("text-luxota-accent") ? "#9D4EDD" : "#ffffff",
             duration: 1,
             ease: "power2.out"
           }

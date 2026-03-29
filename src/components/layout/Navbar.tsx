@@ -17,10 +17,6 @@ export default function Navbar() {
   const { t, locale, href } = useTranslation();
 
   useEffect(() => {
-    setIsVisible(true);
-  }, [pathname]);
-
-  useEffect(() => {
     let lastY = window.scrollY;
     const threshold = 12;
 

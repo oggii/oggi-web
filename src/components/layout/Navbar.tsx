@@ -176,23 +176,23 @@ export default function Navbar() {
 
       <div className={`fixed inset-0 z-[110] md:hidden ${menuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
         <div
-          className={`absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(157,78,221,0.18),transparent_42%),rgba(4,1,10,0.82)] transition-all duration-500 ease-out ${
-            menuOpen ? 'opacity-100 backdrop-blur-md' : 'opacity-0 backdrop-blur-0'
+          className={`absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(157,78,221,0.18),transparent_42%),rgba(4,1,10,0.82)] backdrop-blur-sm transition-opacity duration-300 ease-out ${
+            menuOpen ? 'opacity-100' : 'opacity-0'
           }`}
         />
 
         <div
-          className={`absolute inset-x-0 top-0 bottom-0 flex flex-col overflow-y-auto border-b border-white/10 bg-[#0a0216]/[0.96] shadow-[0_30px_80px_rgba(0,0,0,0.45)] transition-all duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`absolute inset-x-0 top-0 bottom-0 flex flex-col overflow-y-auto border-b border-white/10 bg-[#0a0216]/[0.96] shadow-[0_30px_80px_rgba(0,0,0,0.45)] transform-gpu will-change-transform will-change-opacity [backface-visibility:hidden] transition-[transform,opacity] duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
             menuOpen
-              ? 'translate-y-0 scale-100 opacity-100 rounded-b-[0]'
-              : '-translate-y-8 scale-[0.985] opacity-0 rounded-b-[2.5rem]'
+              ? 'translate-y-0 opacity-100'
+              : '-translate-y-4 opacity-0'
           }`}
         >
           <div
-            className={`px-6 py-6 flex items-center justify-between border-b border-white/10 transition-all duration-500 ease-out ${
-              menuOpen ? 'translate-y-0 opacity-100' : '-translate-y-3 opacity-0'
+            className={`px-6 py-6 flex items-center justify-between border-b border-white/10 transform-gpu transition-[transform,opacity] duration-300 ease-out ${
+              menuOpen ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0'
             }`}
-            style={{ transitionDelay: menuOpen ? '90ms' : '0ms' }}
+            style={{ transitionDelay: menuOpen ? '60ms' : '0ms' }}
           >
             <Link onClick={() => setMenuOpen(false)} href={href('/')} className="flex items-center">
               {renderLogo(118, 32)}
@@ -229,10 +229,10 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className={`flex items-center gap-6 group transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-                    menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                  className={`flex items-center gap-6 group transform-gpu transition-[transform,opacity] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'
                   }`}
-                  style={{ transitionDelay: menuOpen ? `${150 + index * 55}ms` : '0ms' }}
+                  style={{ transitionDelay: menuOpen ? `${110 + index * 38}ms` : '0ms' }}
                 >
                   <span className={`text-sm border-b font-medium w-6 tabular-nums ${isActive ? 'text-luxota-accent border-luxota-accent' : 'text-white/50 border-transparent'}`}>{link.num}</span>
                   <div className={`h-px transition-all duration-300 ${isActive ? 'w-16 bg-luxota-accent' : 'w-8 bg-white/30 group-hover:w-16'}`}></div>
@@ -243,10 +243,10 @@ export default function Navbar() {
           </div>
 
           <div
-            className={`px-6 py-8 border-t border-white/10 flex justify-between items-end mt-auto transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
-              menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+            className={`px-6 py-8 border-t border-white/10 flex justify-between items-end mt-auto transform-gpu transition-[transform,opacity] duration-[360ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0'
             }`}
-            style={{ transitionDelay: menuOpen ? '340ms' : '0ms' }}
+            style={{ transitionDelay: menuOpen ? '220ms' : '0ms' }}
           >
             <div className="flex flex-col gap-2">
               <span className="text-[10px] font-bold tracking-widest text-white/50 uppercase">{t('nav.contactUs')}</span>

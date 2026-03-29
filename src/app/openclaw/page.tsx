@@ -70,7 +70,7 @@ const useCases = [
   },
   {
     industry: 'Handwerk & Services',
-    icon: 'solar:tools-bold-duotone',
+    icon: 'solar:hammer-bold-duotone',
     example: 'Agent koordiniert Auftragsanfragen, erstellt Offertenentwürfe aus Vorlagen und informiert Kunden proaktiv über den Projektstatus.',
     saving: '~18 Std./Woche',
   },
@@ -221,8 +221,8 @@ export default function OpenClawPage() {
             {useCases.map((uc) => (
               <div key={uc.industry} className="reveal-up spotlight-card rounded-3xl p-8 border border-white/10 bg-white/[0.02] group hover:border-luxota-accent/30 transition-all duration-500">
                 <div className="flex items-start justify-between mb-6">
-                  <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-                    <Icon icon={uc.icon} className="text-2xl text-white/60 group-hover:text-luxota-accent transition-colors duration-300" />
+                  <div className="w-12 h-12 rounded-2xl bg-luxota-accent/10 border border-luxota-accent/20 flex items-center justify-center group-hover:bg-luxota-accent/20 transition-colors duration-300">
+                    <Icon icon={uc.icon} className="text-2xl text-luxota-accent" />
                   </div>
                   <div className="text-right">
                     <div className="text-[10px] text-luxota-dim uppercase tracking-widest font-mono">Ersparnis</div>

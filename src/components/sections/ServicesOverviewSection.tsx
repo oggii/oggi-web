@@ -347,7 +347,7 @@ export default function ServicesOverviewSection() {
         <div className="pin-spacer relative w-full">
           <section ref={pinSectionRef} className="h-[100svh] min-h-[600px] lg:h-[100svh] relative bg-luxota-bg flex flex-col">
             {/* ── Pinned header ── */}
-            <div className="absolute lg:top-0 top-2 lg:top-6 left-0 right-0 z-20 px-5 md:px-12 pt-14 md:pt-32 lg:pt-14 flex justify-between lg:items-start items-center pointer-events-none">
+            <div className="absolute top-2 lg:top-6 left-0 right-0 z-20 px-5 md:px-12 pt-14 md:pt-32 lg:pt-14 flex justify-between lg:items-start items-center pointer-events-none">
               <div>
                 <span className="text-[9px] md:text-[10px] text-luxota-accent font-mono mb-1 md:mb-2 block tracking-widest">{t('servicesOverview.tag')}</span>
                 <h2 className="text-lg md:text-3xl lg:text-4xl font-medium text-white tracking-tight leading-snug">
@@ -355,7 +355,7 @@ export default function ServicesOverviewSection() {
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxota-accent to-white/30 block lg:inline">{t('servicesOverview.title2')}</span>
                 </h2>
               </div>
-              <div className="hidden sm:flex items-center gap-2 text-white/30 lg:mt-1">
+              <div className="hidden sm:flex items-center gap-2 text-white/55 lg:text-white/30 lg:mt-1">
                 <div className="w-7 h-7 rounded-full border border-white/10 flex items-center justify-center">
                   <Icon icon="solar:mouse-circle-linear" className="animate-bounce text-base" />
                 </div>
@@ -391,7 +391,7 @@ export default function ServicesOverviewSection() {
                           )}
                         </div>
 
-                        <div className="text-[9px] font-mono text-white/30 tracking-[0.2em] uppercase mb-1.5">{card.pillar}</div>
+                        <div className="text-[10px] lg:text-[9px] font-mono text-white/60 lg:text-white/30 tracking-[0.2em] uppercase mb-1.5">{card.pillar}</div>
                         <h3 className="text-2xl lg:text-4xl text-white font-medium mb-3 lg:mb-4 tracking-tight leading-tight">{card.title}</h3>
                         <p className="text-xs lg:text-sm text-luxota-dim leading-relaxed line-clamp-3 lg:line-clamp-none">{card.desc}</p>
                       </div>
@@ -435,9 +435,9 @@ export default function ServicesOverviewSection() {
 
             {/* Mobile scroll hint */}
             <div className="absolute bottom-6 left-0 right-0 flex justify-center sm:hidden pointer-events-none">
-              <div className="flex items-center gap-2 text-white/20">
+              <div className="flex items-center gap-2 text-white/55">
                 <Icon icon="solar:hand-swipe-right-linear" className="text-lg" />
-                <span className="text-[9px] font-mono tracking-widest">{t('servicesOverview.scrollHint').replace('SCROLLEN', 'SWIPEN')}</span>
+                <span className="text-[10px] font-mono tracking-widest">{t('servicesOverview.scrollHint').replace('SCROLLEN', 'SWIPEN')}</span>
               </div>
             </div>
           </section>

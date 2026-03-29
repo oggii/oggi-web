@@ -162,7 +162,11 @@ export default function Navbar() {
                 {renderLogo(89, 24)}
               </Link>
 
-              <button onClick={() => setMenuOpen(true)} className="text-white/80 hover:text-white flex items-center justify-center -mr-1">
+              <button
+                onClick={() => setMenuOpen(true)}
+                aria-label="Menü öffnen"
+                className="text-white/80 hover:text-white flex items-center justify-center -mr-1"
+              >
                 <Icon icon="solar:hamburger-menu-linear" className="text-2xl" />
               </button>
             </div>
@@ -190,7 +194,11 @@ export default function Navbar() {
             ))}
           </div>
 
-          <button onClick={() => setMenuOpen(false)} className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shrink-0">
+          <button
+            onClick={() => setMenuOpen(false)}
+            aria-label="Menü schließen"
+            className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shrink-0"
+          >
             <Icon icon="mdi:close" className="text-xl" />
           </button>
         </div>
@@ -220,10 +228,18 @@ export default function Navbar() {
           </div>
 
           <div className="flex gap-3">
-            <a href="#" className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
+            <a
+              href="#"
+              aria-label="Instagram"
+              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+            >
               <Icon icon="mdi:instagram" className="text-lg" />
             </a>
-            <a href="#" className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors">
+            <a
+              href="#"
+              aria-label="LinkedIn"
+              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
+            >
               <Icon icon="mdi:linkedin" className="text-lg" />
             </a>
           </div>

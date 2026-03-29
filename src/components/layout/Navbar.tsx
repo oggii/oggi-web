@@ -174,74 +174,101 @@ export default function Navbar() {
         )}
       </header>
 
-      <div
-        className={`fixed inset-0 z-[110] bg-[#0a0216] flex flex-col md:hidden transition-all duration-500 origin-top overflow-y-auto ${menuOpen ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0 pointer-events-none'}`}
-      >
-        <div className="px-6 py-6 flex items-center justify-between border-b border-white/10">
-          <Link onClick={() => setMenuOpen(false)} href={href('/')} className="flex items-center">
-            {renderLogo(118, 32)}
-          </Link>
+      <div className={`fixed inset-0 z-[110] md:hidden ${menuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
+        <div
+          className={`absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(157,78,221,0.18),transparent_42%),rgba(4,1,10,0.82)] transition-all duration-500 ease-out ${
+            menuOpen ? 'opacity-100 backdrop-blur-md' : 'opacity-0 backdrop-blur-0'
+          }`}
+        />
 
-          <div className="flex bg-white/5 rounded-full p-1 ml-auto mr-4">
-            {locales.map((value) => (
-              <Link
-                key={value}
-                href={localizePath(value, currentRoute)}
-                className={`text-[9px] font-bold tracking-widest px-3 py-1.5 rounded-full transition-colors ${locale === value ? 'bg-white text-luxota-bg' : 'text-white/50 hover:text-white'}`}
-              >
-                {localeNames[value]}
-              </Link>
-            ))}
-          </div>
-
-          <button
-            onClick={() => setMenuOpen(false)}
-            aria-label="Menü schließen"
-            className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shrink-0"
+        <div
+          className={`absolute inset-x-0 top-0 bottom-0 flex flex-col overflow-y-auto border-b border-white/10 bg-[#0a0216]/[0.96] shadow-[0_30px_80px_rgba(0,0,0,0.45)] transition-all duration-[700ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            menuOpen
+              ? 'translate-y-0 scale-100 opacity-100 rounded-b-[0]'
+              : '-translate-y-8 scale-[0.985] opacity-0 rounded-b-[2.5rem]'
+          }`}
+        >
+          <div
+            className={`px-6 py-6 flex items-center justify-between border-b border-white/10 transition-all duration-500 ease-out ${
+              menuOpen ? 'translate-y-0 opacity-100' : '-translate-y-3 opacity-0'
+            }`}
+            style={{ transitionDelay: menuOpen ? '90ms' : '0ms' }}
           >
-            <Icon icon="mdi:close" className="text-xl" />
-          </button>
-        </div>
+            <Link onClick={() => setMenuOpen(false)} href={href('/')} className="flex items-center">
+              {renderLogo(118, 32)}
+            </Link>
 
-        <div className="flex-1 px-6 py-10 flex flex-col justify-center gap-8">
-          {mobileNavLinks.map((link) => {
-            const isActive = pathname === link.href || (link.href !== href('/') && pathname?.startsWith(link.href));
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className="flex items-center gap-6 group"
-              >
-                <span className={`text-sm border-b font-medium w-6 tabular-nums ${isActive ? 'text-luxota-accent border-luxota-accent' : 'text-white/50 border-transparent'}`}>{link.num}</span>
-                <div className={`h-px transition-all duration-300 ${isActive ? 'w-16 bg-luxota-accent' : 'w-8 bg-white/30 group-hover:w-16'}`}></div>
-                <span className={`text-4xl font-sans font-bold transition-all duration-300 tracking-tight ${isActive ? 'text-luxota-accent pl-2' : 'text-white group-hover:pl-2'}`}>{link.title}</span>
-              </Link>
-            );
-          })}
-        </div>
+            <div className="flex bg-white/5 rounded-full p-1 ml-auto mr-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+              {locales.map((value, index) => (
+                <Link
+                  key={value}
+                  href={localizePath(value, currentRoute)}
+                  className={`text-[9px] font-bold tracking-widest px-3 py-1.5 rounded-full transition-colors ${locale === value ? 'bg-white text-luxota-bg' : 'text-white/50 hover:text-white'}`}
+                  style={{ transitionDelay: menuOpen ? `${140 + index * 30}ms` : '0ms' }}
+                >
+                  {localeNames[value]}
+                </Link>
+              ))}
+            </div>
 
-        <div className="px-6 py-8 border-t border-white/10 flex justify-between items-end mt-auto">
-          <div className="flex flex-col gap-2">
-            <span className="text-[10px] font-bold tracking-widest text-white/50 uppercase">{t('nav.contactUs')}</span>
-            <a href="mailto:info@0ggi.ch" className="text-white text-sm font-medium hover:opacity-80 tracking-wide">info@0ggi.ch</a>
+            <button
+              onClick={() => setMenuOpen(false)}
+              aria-label="Menü schließen"
+              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shrink-0 shadow-[0_12px_32px_rgba(0,0,0,0.28)]"
+            >
+              <Icon icon="mdi:close" className={`text-xl transition-transform duration-500 ${menuOpen ? 'rotate-0 scale-100' : 'rotate-90 scale-75'}`} />
+            </button>
           </div>
 
-          <div className="flex gap-3">
-            <a
-              href="#"
-              aria-label="Instagram"
-              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
-            >
-              <Icon icon="mdi:instagram" className="text-lg" />
-            </a>
-            <a
-              href="#"
-              aria-label="LinkedIn"
-              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
-            >
-              <Icon icon="mdi:linkedin" className="text-lg" />
-            </a>
+          <div className="relative flex-1 px-6 py-10 flex flex-col justify-center gap-8">
+            <div className="absolute inset-x-6 top-8 h-px bg-gradient-to-r from-transparent via-white/12 to-transparent" />
+            {mobileNavLinks.map((link, index) => {
+              const isActive = pathname === link.href || (link.href !== href('/') && pathname?.startsWith(link.href));
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className={`flex items-center gap-6 group transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                  }`}
+                  style={{ transitionDelay: menuOpen ? `${150 + index * 55}ms` : '0ms' }}
+                >
+                  <span className={`text-sm border-b font-medium w-6 tabular-nums ${isActive ? 'text-luxota-accent border-luxota-accent' : 'text-white/50 border-transparent'}`}>{link.num}</span>
+                  <div className={`h-px transition-all duration-300 ${isActive ? 'w-16 bg-luxota-accent' : 'w-8 bg-white/30 group-hover:w-16'}`}></div>
+                  <span className={`text-4xl font-sans font-bold transition-all duration-300 tracking-tight ${isActive ? 'text-luxota-accent pl-2' : 'text-white group-hover:pl-2'}`}>{link.title}</span>
+                </Link>
+              );
+            })}
+          </div>
+
+          <div
+            className={`px-6 py-8 border-t border-white/10 flex justify-between items-end mt-auto transition-all duration-[650ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-6 opacity-0'
+            }`}
+            style={{ transitionDelay: menuOpen ? '340ms' : '0ms' }}
+          >
+            <div className="flex flex-col gap-2">
+              <span className="text-[10px] font-bold tracking-widest text-white/50 uppercase">{t('nav.contactUs')}</span>
+              <a href="mailto:info@0ggi.ch" className="text-white text-sm font-medium hover:opacity-80 tracking-wide">info@0ggi.ch</a>
+            </div>
+
+            <div className="flex gap-3">
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shadow-[0_12px_24px_rgba(0,0,0,0.22)]"
+              >
+                <Icon icon="mdi:instagram" className="text-lg" />
+              </a>
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shadow-[0_12px_24px_rgba(0,0,0,0.22)]"
+              >
+                <Icon icon="mdi:linkedin" className="text-lg" />
+              </a>
+            </div>
           </div>
         </div>
       </div>

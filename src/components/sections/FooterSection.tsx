@@ -51,7 +51,7 @@ export default function FooterSection() {
 
             {/* Services */}
             <div>
-              <h3 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col1')}</h3>
+              <p className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col1')}</p>
               <ul className="space-y-5 text-sm text-luxota-dim font-light">
                 <li><Link href={href('/services')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.webdev')}</Link></li>
                 <li><Link href={href('/services')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.speed')}</Link></li>
@@ -61,7 +61,7 @@ export default function FooterSection() {
 
             {/* AI */}
             <div>
-              <h3 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col2')}</h3>
+              <p className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col2')}</p>
               <ul className="space-y-5 text-sm text-luxota-dim font-light">
                 <li><Link href={href('/services')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.n8n')}</Link></li>
                 <li><Link href={href('/openclaw')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>OpenClaw Agent</Link></li>
@@ -71,7 +71,7 @@ export default function FooterSection() {
 
             {/* Resources */}
             <div>
-              <h3 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col3')}</h3>
+              <p className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col3')}</p>
               <ul className="space-y-5 text-sm text-luxota-dim font-light">
                 <li><Link href={href('/purpose')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.aboutMe')}</Link></li>
                 <li><Link href={href('/portfolio')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.portfolioRef')}</Link></li>
@@ -81,7 +81,7 @@ export default function FooterSection() {
 
             {/* Legal */}
             <div>
-              <h3 className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col4')}</h3>
+              <p className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col4')}</p>
               <ul className="space-y-5 text-sm text-luxota-dim font-light">
                 <li><Link href="/impressum" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.impressum')}</Link></li>
                 <li><Link href="/datenschutz" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.privacy')}</Link></li>

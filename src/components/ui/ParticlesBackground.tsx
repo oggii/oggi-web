@@ -6,10 +6,9 @@ import { loadSlim } from '@tsparticles/slim';
 
 interface Props {
   count?: number;
-  heroOnly?: boolean; // limit canvas height to 100vh (hero area)
 }
 
-export default function ParticlesBackground({ count = 80, heroOnly = false }: Props) {
+export default function ParticlesBackground({ count = 36 }: Props) {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -23,34 +22,24 @@ export default function ParticlesBackground({ count = 80, heroOnly = false }: Pr
   if (!init) return null;
 
   return (
-    <div
-      style={{
-        position: heroOnly ? 'absolute' : undefined,
-        top: heroOnly ? 0 : undefined,
-        left: heroOnly ? 0 : undefined,
-        right: heroOnly ? 0 : undefined,
-        height: heroOnly ? '100vh' : '100%',
-        overflow: heroOnly ? 'hidden' : undefined,
-        pointerEvents: 'none',
-      }}
-    >
+    <div style={{ pointerEvents: 'none', height: '100%' }}>
       <Particles
         id="tsparticles"
         style={{ height: '100%' }}
         options={{
           particles: {
-            number: { value: count, density: { enable: true, width: 800 }, limit: { value: count + 40 } },
+            number: { value: count, density: { enable: true, width: 1200 }, limit: { value: count + 12 } },
             color: { value: '#ffffff' },
             shape: { type: 'circle' },
-            opacity: { value: 0.2 },
-            size: { value: { min: 1, max: 3 } },
-            links: { enable: true, distance: 150, color: '#ffffff', opacity: 0.1, width: 1 },
-            move: { enable: true, speed: 0.5, direction: 'none', outModes: 'out' },
+            opacity: { value: 0.12 },
+            size: { value: { min: 1, max: 2.4 } },
+            links: { enable: true, distance: 130, color: '#ffffff', opacity: 0.06, width: 1 },
+            move: { enable: true, speed: 0.25, direction: 'none', outModes: 'out' },
           },
           interactivity: {
             events: {
-              onHover: { enable: !heroOnly, mode: 'grab' },
-              onClick: { enable: !heroOnly, mode: 'repulse' },
+              onHover: { enable: false, mode: 'grab' },
+              onClick: { enable: false, mode: 'repulse' },
             },
             modes: {
               grab: { distance: 200, links: { opacity: 0.3 } },

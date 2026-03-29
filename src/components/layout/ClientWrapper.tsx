@@ -5,7 +5,6 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
 import Preloader from './Preloader';
-import CustomCursor from './CustomCursor';
 import Navbar from './Navbar';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
@@ -14,6 +13,9 @@ import type { Dictionary } from '@/i18n/dictionaries';
 import { stripLocaleFromPathname } from '@/i18n/routing';
 
 const ParticlesBackground = dynamic(() => import('@/components/ui/ParticlesBackground'), {
+  ssr: false,
+});
+const CustomCursor = dynamic(() => import('./CustomCursor'), {
   ssr: false,
 });
 
@@ -27,6 +29,8 @@ type ClientWrapperProps = {
 
 export function ClientWrapper({ children, locale, dictionary }: ClientWrapperProps) {
   const [loading, setLoading] = useState(true);
+  const [showDecor, setShowDecor] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const [isTouchDevice] = useState(() => {
     if (typeof window === 'undefined') {
       return false;
@@ -37,6 +41,17 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
   const pathname = usePathname();
   const routePath = stripLocaleFromPathname(pathname ?? '');
   const lenisRef = useRef<Lenis | null>(null);
+  const shouldShowPreloader = routePath === '' && !isTouchDevice && !prefersReducedMotion;
+  const shouldRenderDecor = showDecor && !loading && !isTouchDevice && !prefersReducedMotion && routePath === '';
+
+  useEffect(() => {
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setPrefersReducedMotion(media.matches);
+    update();
+    media.addEventListener('change', update);
+
+    return () => media.removeEventListener('change', update);
+  }, []);
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -46,13 +61,38 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
       }
       ScrollTrigger.refresh();
 
-      if (routePath !== '') {
+      if (routePath !== '' || !shouldShowPreloader) {
         setLoading(false);
       }
     });
 
     return () => window.cancelAnimationFrame(frame);
-  }, [pathname, routePath]);
+  }, [pathname, routePath, shouldShowPreloader]);
+
+  useEffect(() => {
+    if (loading || isTouchDevice || prefersReducedMotion || routePath !== '') {
+      return;
+    }
+
+    const enableDecor = () => setShowDecor(true);
+    let idleCallbackId: number | undefined;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+    if ('requestIdleCallback' in window) {
+      idleCallbackId = window.requestIdleCallback(enableDecor, { timeout: 1500 });
+    } else {
+      timeoutId = globalThis.setTimeout(enableDecor, 900);
+    }
+
+    return () => {
+      if (idleCallbackId !== undefined && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleCallbackId);
+      }
+      if (timeoutId !== undefined) {
+        globalThis.clearTimeout(timeoutId);
+      }
+    };
+  }, [loading, isTouchDevice, prefersReducedMotion, routePath]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -123,8 +163,10 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
     gsap.registerPlugin(ScrollTrigger);
 
     // Skip Lenis on touch/mobile — native scroll is faster and more fluid
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    const saveData = connection?.saveData;
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) return;
+    if (isTouchDevice || prefersReducedMotion || saveData) return;
 
     // Lenis Smooth Scroll Setup (Desktop only)
     const lenis = new Lenis({
@@ -137,35 +179,33 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
     lenisRef.current = lenis;
 
     lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => {
+    const onTick = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
+
+    gsap.ticker.add(onTick);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
       lenisRef.current = null;
       lenis.destroy();
-      gsap.ticker.remove((time) => lenis.raf(time * 1000));
+      gsap.ticker.remove(onTick);
     };
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <TranslationProvider locale={locale} dictionary={dictionary}>
-      {loading && routePath === '' && <Preloader onComplete={() => setLoading(false)} />}
+      {loading && shouldShowPreloader && <Preloader onComplete={() => setLoading(false)} />}
 
-      <div className={`transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
+        <div className={`transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         <div className="fixed inset-0 z-0 bg-luxota-bg">
-          {/* On mobile: show reduced particles hero-only. On desktop: full background. */}
-          <ParticlesBackground
-            count={isTouchDevice ? 30 : 80}
-            heroOnly={isTouchDevice}
-          />
+          {shouldRenderDecor && <ParticlesBackground count={50} />}
         </div>
 
         <div className="noise pointer-events-none opacity-[0.035] mix-blend-overlay fixed inset-0 z-[1]"></div>
 
         <div className="relative z-10">
-          <CustomCursor />
+          {shouldRenderDecor && <CustomCursor />}
           <Navbar key={pathname} />
           {/* PAGE CONTENT */}
           {children}

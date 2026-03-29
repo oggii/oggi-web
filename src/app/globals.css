@@ -77,8 +77,14 @@ body {
   color: #E5E5E5;
   overflow-x: hidden;
   max-width: 100vw;
-  cursor: none;
   font-family: var(--font-sans);
+}
+
+@media (pointer: fine) {
+  html,
+  body {
+    cursor: none;
+  }
 }
 
 /* Ambient Background blobs */
@@ -573,4 +579,27 @@ iconify-icon {
     inset 0 0 2px 1px hsl(var(--glow-hue) 100% 80%),
     inset 0 0 5px 2px hsl(var(--glow-hue) 100% 70%);
   z-index: 2;
+}
+
+@media (max-width: 1023px), (prefers-reduced-motion: reduce) {
+  .hero-gradient-static {
+    animation: none;
+    background-position: 50% 50%;
+  }
+
+  .shimmer-btn,
+  .shimmer-btn:hover:not(:active),
+  .shimmer-btn.active {
+    scale: 1;
+    transition-duration: 0.25s;
+  }
+
+  .shimmer-btn .shimmer-overlay,
+  .shimmer-btn .shimmer-overlay::before,
+  .shimmer-btn .shimmer-overlay::after,
+  .shimmer-btn:hover .shimmer-text,
+  .shimmer-btn.active .shimmer-text {
+    animation: none;
+    opacity: 0;
+  }
 }

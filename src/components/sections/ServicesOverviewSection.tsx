@@ -1,6 +1,6 @@
 'use client';
 
-import { Icon } from '@iconify/react';
+import Icon from '@/components/ui/SiteIcon';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
@@ -64,49 +64,49 @@ const GRAPHIC_STYLES = `
     50%      { transform: rotate(3deg) translateY(-14px) translateX(32px); }
   }
   @keyframes svc-shimmer-sweep {
-    0%        { left: -80%; }
-    60%,100%  { left: 130%; }
+    0%        { transform: translateX(-220%); }
+    60%,100%  { transform: translateX(380%); }
   }
   @keyframes svc-bar-1 {
-    0%,10%  { width:15%; opacity:.35; }
-    40%,65% { width:100%; opacity:1; }
-    90%,100%{ width:15%; opacity:.35; }
+    0%,10%  { transform: scaleX(.15); opacity:.35; }
+    40%,65% { transform: scaleX(1); opacity:1; }
+    90%,100%{ transform: scaleX(.15); opacity:.35; }
   }
   @keyframes svc-bar-2 {
-    0%,15%  { width:15%; opacity:.35; }
-    45%,68% { width:78%; opacity:1; }
-    95%,100%{ width:15%; opacity:.35; }
+    0%,15%  { transform: scaleX(.15); opacity:.35; }
+    45%,68% { transform: scaleX(.78); opacity:1; }
+    95%,100%{ transform: scaleX(.15); opacity:.35; }
   }
   @keyframes svc-bar-3 {
-    0%,20%  { width:15%; opacity:.35; }
-    50%,70% { width:52%; opacity:1; }
-    100%    { width:15%; opacity:.35; }
+    0%,20%  { transform: scaleX(.15); opacity:.35; }
+    50%,70% { transform: scaleX(.52); opacity:1; }
+    100%    { transform: scaleX(.15); opacity:.35; }
   }
   @keyframes svc-dot {
     0%,100% { opacity:.3; transform:scale(0.7); }
     50%     { opacity:1;  transform:scale(1.3); }
   }
   @keyframes svc-flow {
-    0%   { width:10%; }
-    65%  { width:90%; }
-    100% { width:10%; }
+    0%   { transform: scaleX(.1); }
+    65%  { transform: scaleX(.9); }
+    100% { transform: scaleX(.1); }
   }
   @keyframes svc-badge {
-    0%,100% { box-shadow:inset 0 0 0 1px rgba(157,78,221,.15); }
-    50%     { box-shadow:inset 0 0 14px 3px rgba(157,78,221,.45),0 0 18px 4px rgba(157,78,221,.15); }
+    0%,100% { opacity:.82; transform:scale(1); }
+    50%     { opacity:1; transform:scale(1.03); }
   }
   @keyframes svc-orbit-ping {
-    0%,100% { transform:translate(-50%,-50%) scale(1); box-shadow:0 0 0 0 rgba(157,78,221,0); }
-    50%     { transform:translate(-50%,-50%) scale(1.18); box-shadow:0 0 14px 5px rgba(157,78,221,.3); }
+    0%,100% { transform:translate(-50%,-50%) scale(1); opacity:.8; }
+    50%     { transform:translate(-50%,-50%) scale(1.14); opacity:1; }
   }
   @keyframes svc-logo-glow {
-    0%,100% { box-shadow:0 0 0 0 rgba(157,78,221,0),0 0 20px rgba(157,78,221,.1); }
-    50%     { box-shadow:0 0 0 10px rgba(157,78,221,0),0 0 44px rgba(157,78,221,.45); }
+    0%,100% { transform:scale(1); opacity:.88; }
+    50%     { transform:scale(1.04); opacity:1; }
   }
   @keyframes svc-progress {
-    0%   { width:12%; }
-    70%  { width:96%; }
-    100% { width:12%; }
+    0%   { transform: scaleX(.12); }
+    70%  { transform: scaleX(.96); }
+    100% { transform: scaleX(.12); }
   }
 `;
 
@@ -168,7 +168,7 @@ function SeoGraphic() {
           <div key={b.label} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <span style={{ fontSize: '10px', fontFamily: 'monospace', color: 'rgba(157,78,221,0.7)', width: '18px', flexShrink: 0 }}>{b.label}</span>
             <div style={{ width: '130px', height: '8px', background: 'rgba(255,255,255,0.06)', borderRadius: '999px', overflow: 'hidden' }}>
-              <div style={{ height: '100%', background: 'linear-gradient(90deg,rgba(157,78,221,0.45),rgba(157,78,221,0.9))', borderRadius: '999px', animation: b.anim, animationDelay: b.delay }} />
+              <div style={{ width: '100%', height: '100%', background: 'linear-gradient(90deg,rgba(157,78,221,0.45),rgba(157,78,221,0.9))', borderRadius: '999px', animation: b.anim, animationDelay: b.delay, transformOrigin: 'left center' }} />
             </div>
           </div>
         ))}
@@ -187,7 +187,7 @@ function N8nGraphic() {
         <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: `rgba(157,78,221,${op})`, animation: `svc-dot 1.8s ease-in-out infinite`, animationDelay: `${i * 0.3}s`, flexShrink: 0 }} />
           <div style={{ flex: 1, height: '4px', background: 'rgba(255,255,255,0.06)', borderRadius: '2px', overflow: 'hidden' }}>
-            <div style={{ height: '100%', background: `rgba(157,78,221,${op * 0.7})`, borderRadius: '2px', animation: `svc-flow 2.6s ease-in-out infinite`, animationDelay: `${i * 0.45}s` }} />
+            <div style={{ width: '100%', height: '100%', background: `rgba(157,78,221,${op * 0.7})`, borderRadius: '2px', animation: `svc-flow 2.6s ease-in-out infinite`, animationDelay: `${i * 0.45}s`, transformOrigin: 'left center' }} />
           </div>
         </div>
       ))}
@@ -271,7 +271,7 @@ function HermesGraphic() {
           <div key={s.label} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{ width: '16px', height: '16px', borderRadius: '50%', background: 'rgba(157,78,221,0.14)', border: '1px solid rgba(157,78,221,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '7px', color: 'rgba(157,78,221,0.8)', fontFamily: 'monospace', flexShrink: 0 }}>{i + 1}</div>
             <div style={{ flex: 1, height: '5px', background: 'rgba(255,255,255,0.06)', borderRadius: '999px', overflow: 'hidden' }}>
-              <div style={{ height: '100%', background: s.accent ? 'rgba(157,78,221,0.7)' : 'rgba(255,255,255,0.14)', borderRadius: '999px', animation: `svc-progress 3.2s ease-in-out infinite`, animationDelay: s.delay }} />
+              <div style={{ width: '100%', height: '100%', background: s.accent ? 'rgba(157,78,221,0.7)' : 'rgba(255,255,255,0.14)', borderRadius: '999px', animation: `svc-progress 3.2s ease-in-out infinite`, animationDelay: s.delay, transformOrigin: 'left center' }} />
             </div>
           </div>
         ))}
@@ -415,7 +415,7 @@ export default function ServicesOverviewSection() {
                           ))}
                         </ul>
 
-                        <Link href={href(card.link)}>
+                        <Link href={href(card.link)} prefetch={false}>
                           <button className="svc-discover-btn w-full lg:w-auto justify-center py-2.5 lg:py-3 font-bold">
                             <span>{card.linkLabel}</span>
                             <Icon icon="solar:arrow-right-linear" className="text-luxota-accent text-sm" />

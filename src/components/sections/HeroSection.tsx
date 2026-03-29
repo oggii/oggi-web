@@ -1,6 +1,6 @@
 'use client';
 
-import { Icon } from '@iconify/react';
+import Icon from '@/components/ui/SiteIcon';
 import { useTranslation } from '@/i18n/TranslationContext';
 
 export default function HeroSection() {
@@ -16,9 +16,9 @@ export default function HeroSection() {
           <div className="py-[0.1em]"><span className="block reveal-text drop-shadow-2xl px-2">{t('hero.titleTop')}</span></div>
           <div className="flex justify-center gap-2 md:gap-4 items-center flex-wrap md:flex-nowrap py-[0.1em]">
             <span className="block reveal-text text-white/30 italic font-serif tracking-tight pr-2 md:pr-4 text-[0.8em]">{t('hero.titleMid')}</span>
-            <span className="block reveal-text text-gradient-premium">{t('hero.titleBot')}</span>
-          </div>
-        </h1>
+              <span className="block reveal-text text-gradient-premium hero-gradient-static">{t('hero.titleBot')}</span>
+            </div>
+          </h1>
 
         <p className="text-lg md:text-xl text-luxota-dim max-w-xl mx-auto leading-relaxed mb-14 font-light opacity-0 reveal-hero-fade translate-y-4">
           {t('hero.subtitle')}

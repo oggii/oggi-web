@@ -5,11 +5,11 @@ import FooterSection from '@/components/sections/FooterSection';
 
 export const metadata: Metadata = {
   title: 'Hermes Agent — Der KI-Agent, der wächst | 0ggi',
-  description: 'Hermes ist ein selbstlernender KI-Agent, der sich eigenständig verbessert, Fähigkeiten aufbaut und proaktiv für Sie arbeitet. Für Marketing, Vertrieb, Content, Reporting und mehr.',
+  description: 'Hermes ist ein selbstlernender KI-Agent, der sich eigenständig verbessert, Fähigkeiten aufbaut und proaktiv für dich arbeitet. Für Marketing, Vertrieb, Content, Reporting und mehr.',
   keywords: ['Hermes KI Agent', 'Selbstlernender KI Agent', 'KI Automatisierung Schweiz', 'KI Mitarbeiter', 'Autonomer Agent', 'Content Automatisierung', 'KI für KMU', 'Multi-Agent System'],
   openGraph: {
-    title: 'Hermes Agent — Der KI-Agent, der mit Ihnen wächst',
-    description: 'Hermes lernt aus jeder Aufgabe, erstellt eigenständig Fähigkeiten und wird mit der Zeit messbar intelligenter für Ihr spezifisches Business.',
+    title: 'Hermes Agent — Der KI-Agent, der mit dir wächst',
+    description: 'Hermes lernt aus jeder Aufgabe, erstellt eigenständig Fähigkeiten und wird mit der Zeit messbar intelligenter für dein spezifisches Business.',
     url: 'https://0ggi.ch/hermes',
   },
 };
@@ -30,7 +30,7 @@ const superPowers = [
   {
     icon: 'solar:cpu-bolt-bold-duotone',
     title: 'Multi-Agenten-Koordination',
-    desc: 'Hermes kann eigenständig Unteragenten starten, um parallele Aufgaben gleichzeitig abzuarbeiten. Er koordiniert komplexe Workflows ohne Ihre Eingabe — der Bot sendet Ergebnisse, wenn sie fertig sind.',
+    desc: 'Hermes kann eigenständig Unteragenten starten, um parallele Aufgaben gleichzeitig abzuarbeiten. Er koordiniert komplexe Workflows ohne deine Eingabe. Der Bot sendet Ergebnisse, wenn sie fertig sind.',
     tags: ['Parallel-Processing', 'Sub-Agenten', 'Autonome Koordination'],
   },
   {
@@ -42,13 +42,13 @@ const superPowers = [
   {
     icon: 'solar:clock-circle-bold-duotone',
     title: 'Zuverlässige Cron-Planung',
-    desc: 'Tägliche Briefings, wöchentliche Reports, monatliche Analysen — Hermes führt geplante Aufgaben präzise und zuverlässig aus. Automatisierungen, die tatsächlich zu dem Zeitpunkt laufen, zu dem Sie sie eingestellt haben.',
+    desc: 'Tägliche Briefings, wöchentliche Reports, monatliche Analysen: Hermes führt geplante Aufgaben präzise und zuverlässig aus. Automatisierungen, die tatsächlich dann laufen, wenn du sie eingestellt hast.',
     tags: ['Cron-Jobs', 'Automatisierung', 'Pünktliche Ausführung'],
   },
   {
     icon: 'solar:palette-bold-duotone',
     title: 'Nativ integrierte Bildgenerierung',
-    desc: 'Hermes erstellt auf Befehl Bilder nach Ihren Markenrichtlinien, fügt Logos per Python-Skript ein und liefert produktionsreife Creatives — für Social Media, Werbeanzeigen oder Präsentationen.',
+    desc: 'Hermes erstellt auf Befehl Bilder nach deinen Markenrichtlinien, fügt Logos per Python-Skript ein und liefert produktionsreife Creatives für Social Media, Werbeanzeigen oder Präsentationen.',
     tags: ['Image Gen', 'Brand Guidelines', 'Ads & Social'],
   },
 ];
@@ -73,7 +73,7 @@ const useCases = [
       'Interessenten-Profile automatisch recherchieren und bewerten',
       'Erst-E-Mails personalisiert verfassen und auf Wunsch versenden',
       'CRM-Einträge nach jedem Gespräch automatisch aktualisieren',
-      'Follow-up Sequenzen nach Ihren Regeln eigenständig steuern',
+      'Follow-up Sequenzen nach deinen Regeln eigenständig steuern',
     ],
   },
   {
@@ -104,7 +104,7 @@ const selfLearningSteps = [
   {
     step: '01',
     title: 'Aufgabe erhalten',
-    desc: 'Sie beschreiben eine Aufgabe in natürlicher Sprache — per Text oder Sprache, auf Ihrem Messenger.',
+    desc: 'Du beschreibst eine Aufgabe in natürlicher Sprache, per Text oder Sprache, auf deinem Messenger.',
   },
   {
     step: '02',
@@ -137,7 +137,7 @@ export default function HermesPage() {
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxota-accent to-white/40 italic font-serif">Der Agent, der wächst.</span>
         </h1>
         <p className="text-lg md:text-xl text-luxota-dim max-w-3xl font-light leading-relaxed">
-          Hermes lernt eigenständig aus jeder Aufgabe, erstellt eigene Fähigkeiten und wird mit der Zeit messbar intelligenter — für Ihr spezifisches Business, Ihre Prozesse, Ihre Sprache.
+          Hermes lernt eigenständig aus jeder Aufgabe, erstellt eigene Fähigkeiten und wird mit der Zeit messbar intelligenter, für dein spezifisches Business, deine Prozesse, deine Sprache.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 mt-12">
@@ -179,10 +179,10 @@ export default function HermesPage() {
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">selbst verbessert.</span>
               </h2>
               <p className="text-luxota-dim leading-relaxed mb-6">
-                Die meisten KI-Assistenten vergessen alles nach jedem Gespräch. Sie erklären dieselben Dinge immer wieder — und der Agent macht dieselben Fehler erneut.
+                Die meisten KI-Assistenten vergessen alles nach jedem Gespräch. Du erklärst dieselben Dinge immer wieder und der Agent macht dieselben Fehler erneut.
               </p>
               <p className="text-luxota-dim leading-relaxed mb-8">
-                Hermes funktioniert anders: Nach jeder abgeschlossenen Aufgabe analysiert er automatisch, was funktioniert hat. Erfolgreiche Abläufe werden als wiederverwendbare Fähigkeiten gespeichert. Der Agent in Monat 3 ist messbar leistungsfähiger als der in Monat 1 — ohne dass Sie etwas dafür tun müssen.
+                Hermes funktioniert anders: Nach jeder abgeschlossenen Aufgabe analysiert er automatisch, was funktioniert hat. Erfolgreiche Abläufe werden als wiederverwendbare Fähigkeiten gespeichert. Der Agent in Monat 3 ist messbar leistungsfähiger als der in Monat 1, ohne dass du etwas dafür tun musst.
               </p>
               <div className="border-l-2 border-luxota-accent pl-6">
                 <p className="text-white/80 italic text-lg leading-relaxed">
@@ -248,7 +248,7 @@ export default function HermesPage() {
               Für jede Branche konfigurierbar
             </h2>
             <p className="text-luxota-dim max-w-2xl mx-auto">
-              Hermes wird auf Ihr spezifisches Business eingestellt — mit konkreten Aufgaben, Ihrer Sprache und Ihren Tools.
+              Hermes wird auf dein spezifisches Business eingestellt, mit konkreten Aufgaben, deiner Sprache und deinen Tools.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -289,10 +289,10 @@ export default function HermesPage() {
           <span className="text-xs text-luxota-accent font-mono mb-6 block tracking-widest">[ NÄCHSTER SCHRITT ]</span>
           <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight mb-8 leading-[1.1]">
             Bereit für einen Agenten,<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40 italic font-serif">der mit Ihnen wächst?</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40 italic font-serif">der mit dir wächst?</span>
           </h2>
           <p className="text-luxota-dim text-lg mb-12 leading-relaxed">
-            In einem kostenlosen 30-minütigen Gespräch analysieren wir, welche Prozesse Hermes in Ihrem Unternehmen sofort übernehmen kann — und was das für Ihre konkrete Zeitersparnis bedeutet.
+            In einem kostenlosen 30-minütigen Gespräch analysieren wir, welche Prozesse Hermes in deinem Unternehmen sofort übernehmen kann und was das für deine konkrete Zeitersparnis bedeutet.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link href="../contact" className="group relative inline-flex px-12 py-5 bg-white text-luxota-bg rounded-full overflow-hidden transition-all hover:scale-105 shadow-[0_0_40px_-10px_rgba(255,255,255,0.4)]">

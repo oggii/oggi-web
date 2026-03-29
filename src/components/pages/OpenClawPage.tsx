@@ -7,38 +7,38 @@ import FooterSection from '@/components/sections/FooterSection';
 const capabilities = [
   {
     icon: 'solar:chat-round-dots-bold-duotone',
-    title: 'Ihr persönlicher KI-Assistent',
-    desc: 'Kommunizieren Sie per Text oder Sprache — direkt auf Ihrem bevorzugten Messenger. Der Agent versteht, antwortet und handelt sofort, rund um die Uhr.',
+    title: 'Dein persönlicher KI-Assistent',
+    desc: 'Kommuniziere per Text oder Sprache, direkt auf deinem bevorzugten Messenger. Der Agent versteht, antwortet und handelt sofort, rund um die Uhr.',
     tags: ['Telegram', 'Discord', 'Voice', 'Text'],
   },
   {
     icon: 'solar:microphone-bold-duotone',
     title: 'Sprache zu Aktion',
-    desc: 'Senden Sie einfach eine Sprachnachricht. Der Agent transkribiert, versteht den Kontext und antwortet — auf Wunsch ebenfalls mit einer natürlich klingenden Stimme.',
+    desc: 'Sende einfach eine Sprachnachricht. Der Agent transkribiert, versteht den Kontext und antwortet, auf Wunsch ebenfalls mit einer natürlich klingenden Stimme.',
     tags: ['Sprach-Transkription', 'Voice Reply', 'Mehrsprachig'],
   },
   {
     icon: 'solar:database-bold-duotone',
     title: 'Unbegrenztes Langzeit-Gedächtnis',
-    desc: 'Vergessen war gestern. Ein dreistufiges Speichersystem stellt sicher, dass Ihr Agent Präferenzen, Deadlines und Projektkontexte über jedes Gespräch hinaus abrufen kann.',
+    desc: 'Vergessen war gestern. Ein dreistufiges Speichersystem stellt sicher, dass dein Agent Präferenzen, Deadlines und Projektkontexte über jedes Gespräch hinaus abrufen kann.',
     tags: ['Semantisches Gedächtnis', 'Pinecone', 'SQL', 'Personalisierung'],
   },
   {
     icon: 'solar:plug-circle-bold-duotone',
-    title: 'Verbunden mit Ihren Tools',
-    desc: 'E-Mails lesen, Kalender prüfen, CRM-Einträge erstellen — der Agent bedient Ihre bestehende Software-Landschaft über sichere, direkte Verbindungen.',
+    title: 'Verbunden mit deinen Tools',
+    desc: 'E-Mails lesen, Kalender prüfen, CRM-Einträge erstellen: Der Agent bedient deine bestehende Software-Landschaft über sichere, direkte Verbindungen.',
     tags: ['E-Mail', 'Kalender', 'CRM', 'Notion', 'GitHub'],
   },
   {
     icon: 'solar:heart-pulse-bold-duotone',
     title: 'Proaktiver Heartbeat',
-    desc: 'Der Agent meldet sich von sich aus. Tägliche Check-ins, Projektreminder oder Workflow-Analysen — er denkt mit, bevor Sie fragen.',
+    desc: 'Der Agent meldet sich von sich aus. Tägliche Check-ins, Projektreminder oder Workflow-Analysen: Er denkt mit, bevor du fragst.',
     tags: ['Tägliche Briefings', 'Accountability', 'Proaktiv'],
   },
   {
     icon: 'solar:shield-check-bold-duotone',
     title: 'Maximale Datensicherheit',
-    desc: 'Der Agent läuft in Ihrer kontrollierten Umgebung. Er kommuniziert ausschliesslich mit Ihrem Telegram-Konto. Keine fremden Server, kein Datenleck.',
+    desc: 'Der Agent läuft in deiner kontrollierten Umgebung. Er kommuniziert ausschliesslich mit deinem Telegram-Konto. Keine fremden Server, kein Datenleck.',
     tags: ['Lokal / Cloud', 'Whitelisting', 'DSGVO-konform'],
   },
 ];
@@ -93,10 +93,10 @@ export default function OpenClawPage() {
         </div>
         <h1 className="text-5xl md:text-8xl font-medium tracking-tight text-white mb-6 leading-[1.05]">
           OpenClaw:<br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxota-accent to-white/40 italic font-serif">Ihr 24/7 KI-Mitarbeiter</span>
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-luxota-accent to-white/40 italic font-serif">Dein 24/7 KI-Mitarbeiter</span>
         </h1>
         <p className="text-lg md:text-xl text-luxota-dim max-w-3xl font-light leading-relaxed">
-          Ein massgeschneiderter KI-Agent, der in Ihrer Sprache kommuniziert, Ihre Tools kennt und Routineaufgaben eigenständig erledigt — für jede Branche, jeden Prozess, jederzeit.
+          Ein massgeschneiderter KI-Agent, der in deiner Sprache kommuniziert, deine Tools kennt und Routineaufgaben eigenständig erledigt, für jede Branche, jeden Prozess, jederzeit.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 mt-12">
@@ -129,18 +129,18 @@ export default function OpenClawPage() {
           <div className="reveal-up">
             <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest">[ WAS IST OPENCLAW? ]</span>
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-8 leading-[1.1]">
-              Der KI-Agent, den Sie<br />
+              Der KI-Agent, den du<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">vollständig besitzen.</span>
             </h2>
             <p className="text-luxota-dim leading-relaxed mb-6">
-              Stellen Sie sich vor, Sie hätten einen Mitarbeiter, der niemals schläft, niemals vergisst und jede Aufgabe erledigt, die Sie ihm per Nachricht beschreiben — auf Ihrem Smartphone, während Sie zum Kunden fahren.
+              Stell dir vor, du hättest einen Mitarbeiter, der niemals schläft, niemals vergisst und jede Aufgabe erledigt, die du ihm per Nachricht beschreibst, auf deinem Smartphone, während du zum Kunden fährst.
             </p>
             <p className="text-luxota-dim leading-relaxed mb-8">
-              OpenClaw ist ein vollständig anpassbarer KI-Agent, der in Ihre bestehenden Prozesse eingebettet wird. Er lernt Ihre Arbeitsweise kennen, baut ein semantisches Langzeitgedächtnis auf und agiert proaktiv in Ihrem Namen — sicher, lokal und ohne Abhängigkeit von Drittanbietern.
+              OpenClaw ist ein vollständig anpassbarer KI-Agent, der in deine bestehenden Prozesse eingebettet wird. Er lernt deine Arbeitsweise kennen, baut ein semantisches Langzeitgedächtnis auf und agiert proaktiv in deinem Namen, sicher, lokal und ohne Abhängigkeit von Drittanbietern.
             </p>
             <div className="border-l-2 border-luxota-accent pl-6">
               <p className="text-white/80 italic text-lg leading-relaxed">
-                &ldquo;Kein generischer Chatbot. Ein vollständig kontrollierter KI-Mitarbeiter für Ihr spezifisches Business.&rdquo;
+                &ldquo;Kein generischer Chatbot. Ein vollständig kontrollierter KI-Mitarbeiter für dein spezifisches Business.&rdquo;
               </p>
             </div>
           </div>
@@ -188,7 +188,7 @@ export default function OpenClawPage() {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 reveal-up">
             <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest">[ FÄHIGKEITEN ]</span>
-            <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight">Was OpenClaw für Sie tut</h2>
+            <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight">Was OpenClaw für dich tut</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {capabilities.map((cap) => (
@@ -215,7 +215,7 @@ export default function OpenClawPage() {
           <div className="text-center mb-16 reveal-up">
             <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest">[ ANWENDUNGSFÄLLE ]</span>
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-4">Für jede Branche einsetzbar</h2>
-            <p className="text-luxota-dim max-w-2xl mx-auto">OpenClaw wird nicht von der Stange geliefert — er wird auf Ihren Betrieb zugeschnitten.</p>
+            <p className="text-luxota-dim max-w-2xl mx-auto">OpenClaw wird nicht von der Stange geliefert, sondern auf deinen Betrieb zugeschnitten.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {useCases.map((uc) => (

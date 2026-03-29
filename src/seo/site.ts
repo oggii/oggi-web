@@ -105,8 +105,8 @@ const routeMeta: Record<RouteKey, Record<Locale, LocalizedMeta>> = {
   },
   '/openclaw': {
     de: {
-      title: 'OpenClaw | Ihr 24/7 KI-Mitarbeiter',
-      description: 'OpenClaw ist ein massgeschneiderter KI-Agent, der per Text und Sprache kommuniziert, Tools integriert und Routineaufgaben eigenstaendig erledigt.',
+      title: 'OpenClaw | Dein 24/7 KI-Mitarbeiter',
+      description: 'OpenClaw ist ein massgeschneiderter KI-Agent, der per Text und Sprache kommuniziert, deine Tools integriert und Routineaufgaben eigenstaendig erledigt.',
     },
     en: {
       title: 'OpenClaw | Your 24/7 AI teammate',
@@ -123,7 +123,7 @@ const routeMeta: Record<RouteKey, Record<Locale, LocalizedMeta>> = {
   },
   '/hermes': {
     de: {
-      title: 'Hermes | Der KI-Agent, der mit Ihrem Unternehmen waechst',
+      title: 'Hermes | Der KI-Agent, der mit deinem Unternehmen waechst',
       description: 'Hermes ist ein selbstlernender KI-Agent fuer Marketing, Vertrieb, Content und Reporting, der seine Faehigkeiten fortlaufend erweitert.',
     },
     en: {
@@ -148,4 +148,3 @@ export function getRouteMetadata(locale: Locale, route: RouteKey) {
 export function getLanguageAlternates(route: RouteKey) {
   return Object.fromEntries(locales.map((locale) => [locale, `${SITE_URL}${localizePath(locale, route)}`]));
 }
-

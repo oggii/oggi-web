@@ -10,18 +10,39 @@ const FooterSection = dynamic(() => import('@/components/sections/FooterSection'
 const ServicesOverviewSection = dynamic(() => import('@/components/sections/ServicesOverviewSection'));
 const ServicesCtaSection = dynamic(() => import('@/components/sections/ServicesCtaSection'));
 
+const deferredSectionStyle = {
+  contentVisibility: 'auto',
+  containIntrinsicSize: '900px',
+} as const;
+
 export default function HomePage() {
   return (
     <main>
       <HeroSection />
-      <BentoGridSection />
-      <NarrativeSection />
-      <ServicesOverviewSection />
-      <ServicesCtaSection />
-      <PricingMaturitySection />
-      <CommercialModelSection />
-      <FAQSection />
-      <FooterSection />
+      <div style={deferredSectionStyle}>
+        <BentoGridSection />
+      </div>
+      <div style={deferredSectionStyle}>
+        <NarrativeSection />
+      </div>
+      <div style={deferredSectionStyle}>
+        <ServicesOverviewSection />
+      </div>
+      <div style={deferredSectionStyle}>
+        <ServicesCtaSection />
+      </div>
+      <div style={deferredSectionStyle}>
+        <PricingMaturitySection />
+      </div>
+      <div style={deferredSectionStyle}>
+        <CommercialModelSection />
+      </div>
+      <div style={deferredSectionStyle}>
+        <FAQSection />
+      </div>
+      <div style={deferredSectionStyle}>
+        <FooterSection />
+      </div>
     </main>
   );
 }

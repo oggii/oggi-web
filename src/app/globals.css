@@ -225,6 +225,10 @@ body {
   mask-image: radial-gradient(circle at center, black 0%, transparent 50%);
 }
 
+.hero-spotlight {
+  filter: blur(14px);
+}
+
 /* Premium Spotlight Card */
 .spotlight-card {
   background: rgba(255, 255, 255, 0.015);
@@ -582,6 +586,33 @@ iconify-icon {
 }
 
 @media (max-width: 1023px), (prefers-reduced-motion: reduce) {
+  .ambient-light {
+    opacity: 0.45;
+  }
+
+  .blob {
+    animation: none;
+    filter: blur(56px);
+    opacity: 0.18;
+  }
+
+  .blob-3,
+  .noise {
+    display: none;
+  }
+
+  .perspective-grid {
+    transform: perspective(700px) rotateX(66deg) translateY(-56px) translateZ(-140px);
+    background-size: 56px 56px;
+    opacity: 0.12;
+    mask-image: radial-gradient(circle at center, black 0%, transparent 42%);
+  }
+
+  .hero-spotlight {
+    filter: blur(8px);
+    opacity: 0.8;
+  }
+
   .hero-gradient-static {
     animation: none;
     background-position: 50% 50%;

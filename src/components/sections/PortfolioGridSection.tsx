@@ -40,7 +40,7 @@ function BottomSheet({ project, onClose, t }: { project: PortfolioProject; onClo
 
       {/* Sheet */}
       <div
-        className={`relative w-full md:max-w-lg md:mx-4 md:rounded-3xl rounded-t-3xl bg-[#0e0e10] border border-white/10 overflow-hidden transition-transform duration-350 ease-out will-change-transform ${
+        className={`relative w-full md:max-w-lg md:mx-4 md:rounded-3xl rounded-t-3xl bg-[#0e0e10] border border-white/10 overflow-hidden transition-transform duration-350 ease-out will-change-transform cursor-default ${
           visible ? 'translate-y-0' : 'translate-y-full md:translate-y-8 md:opacity-0'
         }`}
         style={{ transitionTimingFunction: 'cubic-bezier(0.32, 0.72, 0, 1)' }}

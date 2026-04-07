@@ -1,58 +1,85 @@
 'use client';
 
+import { useState } from 'react';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { useTranslation } from '@/i18n/TranslationContext';
 import { portfolioProjects } from '@/data/portfolioProjects';
 
+const FILTERS = ['Alle', 'Webdesign', 'KI-Agenten'];
+
 export default function PortfolioGridSection() {
-  const { href } = useTranslation();
+  const [active, setActive] = useState('Alle');
+
+  const filtered = active === 'Alle'
+    ? portfolioProjects
+    : portfolioProjects.filter((p) => p.filter === active);
 
   return (
     <section className="py-16 lg:py-24 relative z-10 bg-[#020203]">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {portfolioProjects.map((project, idx) => (
-            <Link
-              key={project.slug}
-              href={href(`/portfolio/${project.slug}`)}
-              className={`reveal-up portfolio-item group aspect-[4/3] rounded-3xl overflow-hidden relative border border-white/5 bg-gradient-to-br ${project.color} ${idx % 2 !== 0 ? 'md:mt-16' : ''}`}
+
+        {/* Filter Pills */}
+        <div className="flex flex-wrap gap-3 mb-12">
+          {FILTERS.map((f) => (
+            <button
+              key={f}
+              onClick={() => setActive(f)}
+              className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
+                active === f
+                  ? 'bg-luxota-accent border-luxota-accent text-white'
+                  : 'border-white/10 text-luxota-dim hover:border-white/30 hover:text-white bg-white/[0.02]'
+              }`}
             >
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02),transparent_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              {f}
+            </button>
+          ))}
+        </div>
 
-              <div className="absolute inset-0 flex items-center justify-center p-0">
-                <div className="w-full h-full flex items-center justify-center bg-black relative overflow-hidden">
-                  {project.image ? (
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover object-top opacity-50 grayscale mix-blend-luminosity group-hover:opacity-100 group-hover:grayscale-0 group-hover:mix-blend-normal transition-all duration-1000"
-                      unoptimized
-                    />
-                  ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Icon icon="solar:cpu-bolt-bold-duotone" className="text-[120px] text-luxota-accent/20 group-hover:text-luxota-accent/40 transition-colors duration-700" />
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-luxota-bg/40 group-hover:bg-transparent transition-colors duration-1000 z-10" />
-                  <div className="absolute inset-0 bg-gradient-to-tr from-luxota-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 mix-blend-overlay z-20" />
-                </div>
+        {/* Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filtered.map((project) => (
+            <div key={project.slug} className="reveal-up group rounded-2xl overflow-hidden border border-white/8 bg-white/[0.02] flex flex-col">
+
+              {/* Image */}
+              <div className="relative aspect-[16/10] overflow-hidden bg-black">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
               </div>
 
-              <div className="absolute bottom-0 left-0 right-0 p-8 flex justify-between items-end translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <div>
-                  <p className="text-luxota-accent text-xs font-mono tracking-widest mb-2 uppercase">{project.category}</p>
-                  <h3 className="text-2xl font-medium text-white mb-1">{project.title}</h3>
-                  <p className="text-luxota-dim text-sm">{project.year}</p>
+              {/* Content */}
+              <div className="p-6 flex flex-col flex-1">
+                <p className="text-luxota-accent text-xs font-mono tracking-widest uppercase mb-2">{project.category}</p>
+                <h3 className="text-white font-medium text-lg mb-2">{project.title}</h3>
+                <p className="text-luxota-dim text-sm leading-relaxed mb-4 flex-1">{project.description}</p>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-5">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="text-xs px-3 py-1 rounded-full border border-white/10 bg-white/5 text-luxota-dim">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
-                <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 scale-75 group-hover:scale-100 shadow-[0_0_30px_#9D4EDD60] shrink-0">
-                  <Icon icon="solar:arrow-right-up-linear" className="text-xl" />
-                </div>
+
+                {/* Link */}
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-white border border-white/10 hover:border-white/30 rounded-full px-4 py-2 transition-all duration-300 w-fit"
+                >
+                  <Icon icon="solar:global-linear" className="text-base" />
+                  Website besuchen
+                  <Icon icon="solar:arrow-right-up-linear" className="text-base" />
+                </a>
               </div>
-            </Link>
+
+            </div>
           ))}
         </div>
       </div>

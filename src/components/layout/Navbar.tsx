@@ -74,15 +74,21 @@ export default function Navbar() {
     />
   );
 
-  const renderLogo = (width: number, height: number) => (
-    <Image
-      src="/oggi_logo_n.svg"
-      alt="0GGI Logo"
-      width={width}
-      height={height}
-      className="invert"
-      loading="eager"
-    />
+  const renderLogo = (width: number, _height: number) => (
+    <span className="flex items-center gap-1.5">
+      <Image
+        src="/oggi-logo.webp"
+        alt="oggi logo"
+        width={width}
+        height={width}
+        className="rounded-full"
+        loading="eager"
+        style={{ width: `${width * 0.38}px`, height: 'auto' }}
+      />
+      <span className="font-[family-name:var(--font-dongle)] text-white font-bold leading-none" style={{ fontSize: `${width * 0.38}px` }}>
+        oggi
+      </span>
+    </span>
   );
 
   return (

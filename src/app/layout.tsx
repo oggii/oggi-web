@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
-import { Outfit, Playfair_Display, Share_Tech_Mono } from 'next/font/google';
+import { Outfit, Playfair_Display, Share_Tech_Mono, Dongle } from 'next/font/google';
 import './globals.css';
 import { createRootMetadata } from '@/seo/metadata';
 import { defaultLocale } from '@/i18n/config';
@@ -9,6 +9,7 @@ import { isLocale } from '@/i18n/routing';
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit', display: 'swap' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', style: ['normal', 'italic'], display: 'swap', preload: false });
 const shareTechMono = Share_Tech_Mono({ weight: '400', subsets: ['latin'], variable: '--font-share-tech-mono', display: 'swap', preload: false });
+const dongle = Dongle({ weight: '700', subsets: ['latin'], variable: '--font-dongle', display: 'swap', preload: false });
 
 export const metadata: Metadata = createRootMetadata();
 
@@ -22,7 +23,7 @@ export default async function RootLayout({
   const locale = isLocale(requestLocale) ? requestLocale : defaultLocale;
 
   return (
-    <html lang={locale} className={`${outfit.variable} ${playfair.variable} ${shareTechMono.variable} antialiased`}>
+    <html lang={locale} className={`${outfit.variable} ${playfair.variable} ${shareTechMono.variable} ${dongle.variable} antialiased`}>
       <body className="selection:bg-luxota-accent/30 selection:text-luxota-accent text-[#E5E5E5] bg-[#020203] overflow-x-hidden lg:cursor-none">
         <div className="ambient-light">
           <div className="blob blob-1"></div>

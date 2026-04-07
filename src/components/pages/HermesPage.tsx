@@ -148,8 +148,8 @@ export default function HermesPage() {
             </span>
             <div className="absolute inset-0 bg-luxota-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
           </Link>
-          <Link href="../openclaw" className="px-9 py-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all text-white font-medium text-sm hover:border-white/30 inline-flex items-center">
-            OpenClaw Agent ansehen
+          <Link href="../contact" className="px-9 py-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all text-white font-medium text-sm hover:border-white/30 inline-flex items-center">
+            Kostenloses Erstgespräch
           </Link>
         </div>
 
@@ -302,8 +302,8 @@ export default function HermesPage() {
               </span>
               <div className="absolute inset-0 bg-luxota-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
             </Link>
-            <Link href="../openclaw" className="inline-flex px-9 py-5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-all text-white font-medium text-sm hover:border-white/30 items-center justify-center">
-              OpenClaw Agent entdecken
+            <Link href="../contact" className="inline-flex px-9 py-5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 transition-all text-white font-medium text-sm hover:border-white/30 items-center justify-center">
+              Kostenloses Erstgespräch
             </Link>
           </div>
         </div>

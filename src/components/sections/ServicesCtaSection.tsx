@@ -36,11 +36,6 @@ export default function ServicesCtaSection() {
 
       {/* Secondary ghost link */}
       <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 text-sm text-luxota-dim">
-        <Link href={href('/openclaw')} className="hover:text-white transition-colors flex items-center gap-1.5 group">
-          <span className="w-1.5 h-1.5 rounded-full bg-luxota-accent/60 group-hover:bg-luxota-accent transition-colors" />
-          {t('cta.link1')}
-        </Link>
-        <span className="hidden sm:block text-white/10">·</span>
         <Link href={href('/hermes')} className="hover:text-white transition-colors flex items-center gap-1.5 group">
           <span className="w-1.5 h-1.5 rounded-full bg-luxota-accent/60 group-hover:bg-luxota-accent transition-colors" />
           {t('cta.link2')}

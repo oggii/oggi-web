@@ -60,10 +60,6 @@ export default function ServicesListSection() {
                 </p>
                 {idx === 2 && (
                   <div className="flex flex-col gap-3">
-                    <Link href={href('/openclaw')} className="group inline-flex items-center gap-3 text-white text-sm font-medium hover:text-luxota-accent transition-colors">
-                      <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:border-luxota-accent group-hover:bg-luxota-accent/10 transition-all bg-white/5 text-xs">→</div>
-                      <span className="border-b border-transparent group-hover:border-luxota-accent/50 transition-all">{t('servicesList.openclawLink')}</span>
-                    </Link>
                     <Link href={href('/hermes')} className="group inline-flex items-center gap-3 text-white text-sm font-medium hover:text-luxota-accent transition-colors">
                       <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover:border-luxota-accent group-hover:bg-luxota-accent/10 transition-all bg-white/5 text-xs">→</div>
                       <span className="border-b border-transparent group-hover:border-luxota-accent/50 transition-all">{t('servicesList.hermesLink')}</span>

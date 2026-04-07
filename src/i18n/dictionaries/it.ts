@@ -54,7 +54,7 @@ export const it: Dictionary = {
         impressum: 'Note legali', privacy: 'Privacy',
         rights: 'Svizzera. Tutti i diritti riservati.'
     },
-    cta: { tag: '[ TUTTI I SERVIZI ]', title: 'Pronto per il prossimo passo?', desc: 'Scopri tutti i servizi in dettaglio — dal Webdesign alla SEO, fino al tuo agente AI personale.', btn: 'Vedi tutti i servizi', link1: 'Agente OpenClaw', link2: 'Agente Hermes', link3: 'Consulenza gratuita' },
+    cta: { tag: '[ TUTTI I SERVIZI ]', title: 'Pronto per il prossimo passo?', desc: 'Scopri tutti i servizi in dettaglio — dal Webdesign alla SEO, fino al tuo agente AI personale.', btn: 'Vedi tutti i servizi', link2: 'Agente Hermes', link3: 'Consulenza gratuita' },
     servicesList: {
         s1Cat: 'Webdesign', s1Sub: 'Esperienze digitali di alto livello, orientate alla performance e alla conversione.',
         s1i1t: 'Architetture Next.js', s1i1d: 'Applicazioni web ultra-veloci e ottimizzate SEO che stabiliscono standard moderni.',
@@ -68,7 +68,7 @@ export const it: Dictionary = {
         s3i1t: 'Flussi n8n', s3i1d: 'Automatizzazioni su misura che collegano i tuoi processi interni ed eliminano il lavoro manuale.',
         s3i2t: 'Agenti AI', s3i2d: 'Integrazione di OpenAI e modelli personalizzati per gestire le richieste dei clienti 24/7 in autonomia.',
         s3i3t: 'Architettura di Sistema', s3i3d: 'Consulenza strategica per costruire il tuo ecosistema digitale, tutti gli strumenti in perfetta sincronia.',
-        openclawLink: 'Scopri Agente OpenClaw', hermesLink: 'Scopri Agente Hermes'
+        hermesLink: 'Scopri Agente Hermes'
     },
     process: {
         tag: '[ METODOLOGIA ]', title: 'Il Processo',

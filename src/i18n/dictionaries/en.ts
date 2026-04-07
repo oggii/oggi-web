@@ -54,7 +54,7 @@ export const en: Dictionary = {
         impressum: 'Impressum', privacy: 'Privacy Policy',
         rights: 'Switzerland. All rights reserved.'
     },
-    cta: { tag: '[ ALL SERVICES ]', title: 'Ready for the next step?', desc: 'Discover all services in detail — from Webdesign to SEO to your personal AI agent.', btn: 'View all services', link1: 'OpenClaw Agent', link2: 'Hermes Agent', link3: 'Get free consultation' },
+    cta: { tag: '[ ALL SERVICES ]', title: 'Ready for the next step?', desc: 'Discover all services in detail — from Webdesign to SEO to your personal AI agent.', btn: 'View all services', link2: 'Hermes Agent', link3: 'Get free consultation' },
     servicesList: {
         s1Cat: 'Webdesign', s1Sub: 'High-end digital experiences engineered for performance and conversion.',
         s1i1t: 'Next.js Architectures', s1i1d: 'Ultra-fast, SEO-optimized web applications that set modern standards and integrate fluid interactions.',
@@ -68,7 +68,7 @@ export const en: Dictionary = {
         s3i1t: 'n8n Workflows', s3i1d: 'Custom automations that connect your internal processes and efficiently eliminate manual work.',
         s3i2t: 'AI Agents', s3i2d: 'Integration of OpenAI and custom models to handle client inquiries autonomously and precisely 24/7.',
         s3i3t: 'System Architecture', s3i3d: 'Strategic consulting for building your digital ecosystem, so all tools (CRM, Sales, Web) work in perfect sync.',
-        openclawLink: 'Discover OpenClaw Agent', hermesLink: 'Discover Hermes Agent'
+        hermesLink: 'Discover Hermes Agent'
     },
     process: {
         tag: '[ METHODOLOGY ]', title: 'The Process',

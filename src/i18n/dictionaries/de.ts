@@ -61,7 +61,7 @@ export const de = {
         rights: 'Schweiz. Alle Rechte vorbehalten.'
     },
     cta: {
-        tag: '[ ALLE LEISTUNGEN ]', title: 'Bereit für den nächsten Schritt?', desc: 'Entdecke alle Dienstleistungen im Detail — von Webdesign über SEO bis zu deinem persönlichen KI-Agenten.', btn: 'Alle Dienstleistungen ansehen', link1: 'OpenClaw Agent', link2: 'Hermes Agent', link3: 'Kostenlos beraten lassen'
+        tag: '[ ALLE LEISTUNGEN ]', title: 'Bereit für den nächsten Schritt?', desc: 'Entdecke alle Dienstleistungen im Detail — von Webdesign über SEO bis zu deinem persönlichen KI-Agenten.', btn: 'Alle Dienstleistungen ansehen', link2: 'Hermes Agent', link3: 'Kostenlos beraten lassen'
     },
     servicesList: {
         s1Cat: 'Webdesign', s1Sub: 'High-End digitale Erlebnisse, die auf Performance und Konvertierung getrimmt sind.',
@@ -76,7 +76,7 @@ export const de = {
         s3i1t: 'n8n Workflows', s3i1d: 'Massgeschneiderte Automatisierungen, die deine internen Prozesse verbinden und manuelle Arbeit effizient eliminieren.',
         s3i2t: 'KI Agenten', s3i2d: 'Integration von OpenAI und massgeschneiderten Modellen, um Kundenanfragen 24/7 autonom und präzise zu bearbeiten.',
         s3i3t: 'System-Architektur', s3i3d: 'Strategische Beratung beim Aufbau deines digitalen Ökosystems, sodass alle Tools (CRM, Sales, Web) perfekt synchron arbeiten.',
-        openclawLink: 'OpenClaw Agent entdecken', hermesLink: 'Hermes Agent entdecken'
+        hermesLink: 'Hermes Agent entdecken'
     },
     process: {
         tag: '[ METHODIK ]', title: 'Der Prozess',

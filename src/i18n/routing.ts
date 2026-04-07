@@ -1,6 +1,6 @@
 import { defaultLocale, locales, type Locale } from './config';
 
-export const PUBLIC_ROUTES = ['', '/services', '/portfolio', '/purpose', '/contact', '/openclaw', '/hermes'] as const;
+export const PUBLIC_ROUTES = ['', '/services', '/portfolio', '/purpose', '/contact', '/hermes'] as const;
 
 export function isLocale(value: string): value is Locale {
   return locales.includes(value as Locale);

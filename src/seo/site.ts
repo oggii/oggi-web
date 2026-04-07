@@ -103,24 +103,6 @@ const routeMeta: Record<RouteKey, Record<Locale, LocalizedMeta>> = {
       description: 'Parliamo del tuo progetto. Usa il modulo per sito web, online marketing o agenti AI.',
     },
   },
-  '/openclaw': {
-    de: {
-      title: 'OpenClaw | Dein 24/7 KI-Mitarbeiter',
-      description: 'OpenClaw ist ein massgeschneiderter KI-Agent, der per Text und Sprache kommuniziert, deine Tools integriert und Routineaufgaben eigenstaendig erledigt.',
-    },
-    en: {
-      title: 'OpenClaw | Your 24/7 AI teammate',
-      description: 'OpenClaw is a custom AI agent that communicates by text and voice, integrates your tools, and handles routine work autonomously.',
-    },
-    fr: {
-      title: 'OpenClaw | Votre collaborateur IA 24/7',
-      description: 'OpenClaw est un agent IA sur mesure qui communique par texte et voix, integre vos outils et gere les taches recurrentes de facon autonome.',
-    },
-    it: {
-      title: 'OpenClaw | Il tuo collaboratore AI 24/7',
-      description: 'OpenClaw e un agente AI su misura che comunica via testo e voce, integra i tuoi strumenti e gestisce in autonomia le attivita ripetitive.',
-    },
-  },
   '/hermes': {
     de: {
       title: 'Hermes | Der KI-Agent, der mit deinem Unternehmen waechst',

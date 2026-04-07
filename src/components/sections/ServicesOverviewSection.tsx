@@ -37,17 +37,6 @@ const getCards = (t: TranslateFn) => [
   {
     num: '03',
     iconType: 'img' as const,
-    icon: 'https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/openclaw.png',
-    title: t('servicesOverview.c3Title'),
-    pillar: t('servicesOverview.c3Pillar'),
-    desc: t('servicesOverview.c3Desc'),
-    items: [t('servicesOverview.c3Item1'), t('servicesOverview.c3Item2'), t('servicesOverview.c3Item3')],
-    link: '/openclaw',
-    linkLabel: t('servicesOverview.c3Btn'),
-  },
-  {
-    num: '04',
-    iconType: 'img' as const,
     icon: 'https://hermes-agent.nousresearch.com/nous-logo.png',
     title: t('servicesOverview.c4Title'),
     pillar: t('servicesOverview.c4Pillar'),
@@ -283,7 +272,7 @@ function HermesGraphic() {
   );
 }
 
-const graphics = [WebdesignGraphic, SeoGraphic, OpenClawGraphic, HermesGraphic, N8nGraphic];
+const graphics = [WebdesignGraphic, SeoGraphic, HermesGraphic, N8nGraphic];
 
 /* ─── Main Component ─────────────────────────────────────────────────────── */
 export default function ServicesOverviewSection() {

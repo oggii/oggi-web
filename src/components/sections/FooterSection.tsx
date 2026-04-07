@@ -64,7 +64,6 @@ export default function FooterSection() {
               <p className="text-white font-medium mb-8 text-xs uppercase tracking-[0.2em] opacity-80">{t('footer.col2')}</p>
               <ul className="space-y-5 text-sm text-luxota-dim font-light">
                 <li><Link href={href('/services')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.n8n')}</Link></li>
-                <li><Link href={href('/openclaw')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>OpenClaw Agent</Link></li>
                 <li><Link href={href('/hermes')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>Hermes Agent</Link></li>
               </ul>
             </div>

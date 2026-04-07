@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { Icon } from '@iconify/react/dist/iconify.server';
+import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import FooterSection from '@/components/sections/FooterSection';

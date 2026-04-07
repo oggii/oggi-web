@@ -49,6 +49,18 @@ export const portfolioProjects: PortfolioProject[] = [
     description: 'Professionelle Web-Präsenz für eine Fahrschule — klar strukturiert, lokal auffindbar und auf Conversions ausgerichtet.',
   },
   {
+    slug: 'huner-musikschule',
+    title: 'Hüner Musikschule',
+    client: 'Hüner Musikschule',
+    category: 'Web Design · SEO · Branding',
+    filter: 'Webdesign',
+    tags: ['Next.js', 'Local SEO', 'Logo & Branding'],
+    url: 'https://huner-musikschule.ch',
+    image: '/clients/huner-musikschule.png',
+    year: '2026',
+    description: 'Komplette digitale Präsenz für eine Musikschule — mit eigenem Branding, SEO-Optimierung und einer modernen Website zur Schülergewinnung.',
+  },
+  {
     slug: 'yoxy-ai-agent',
     title: 'Yoxy AI Agent',
     client: 'Yoxy GmbH',

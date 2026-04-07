@@ -3,6 +3,9 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactCompiler: true,
   compress: true,
+  experimental: {
+    optimizePackageImports: ['@iconify/react'],
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     qualities: [75, 90],

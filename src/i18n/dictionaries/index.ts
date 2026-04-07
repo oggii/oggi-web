@@ -1,14 +1,14 @@
-import { de, type Dictionary } from './de';
-import { en } from './en';
-import { fr } from './fr';
-import { it } from './it';
 import type { Locale } from '../config';
+export type { Dictionary } from './de';
 
-const dictionaries: Record<Locale, Dictionary> = { de, en, fr, it };
+const loaders: Record<string, () => Promise<any>> = {
+  de: () => import('./de').then(m => m.de),
+  en: () => import('./en').then(m => m.en),
+  fr: () => import('./fr').then(m => m.fr),
+  it: () => import('./it').then(m => m.it),
+};
 
-export type { Dictionary };
-
-export async function getDictionary(locale: Locale): Promise<Dictionary> {
-  return dictionaries[locale] ?? dictionaries.de;
+export async function getDictionary(locale: Locale) {
+  const load = loaders[locale] ?? loaders.de;
+  return (await load()) as import('./de').Dictionary;
 }
-

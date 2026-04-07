@@ -15,110 +15,110 @@ type LocalizedMeta = {
 const routeMeta: Record<RouteKey, Record<Locale, LocalizedMeta>> = {
   '': {
     de: {
-      title: '0ggi | High-End Webentwicklung & KI-Agenten fuer Solopreneure und KMU',
-      description: 'Ich entwickle hochperformante Next.js Websites, technische SEO-Systeme und KI-Agenten, die Schweizer Unternehmen sichtbar machen und Routinearbeit reduzieren.',
+      title: '0ggi | Webdesign, SEO & KI-Automatisierung für Schweizer KMU',
+      description: 'Next.js Websites mit PageSpeed 99, technisches SEO und KI-Agenten für Schweizer KMU. Mehr Sichtbarkeit, mehr Anfragen, weniger Routinearbeit — aus Basel.',
     },
     en: {
-      title: '0ggi | High-end web development and AI agents for growing businesses',
-      description: 'I build high-performance Next.js websites, technical SEO systems, and AI agents that help companies get found online and automate repetitive work.',
+      title: '0ggi | Web Design, SEO & AI Automation for Swiss SMEs',
+      description: 'Next.js websites with PageSpeed 99, technical SEO, and AI agents for Swiss SMEs. More visibility, more leads, less manual work — based in Basel.',
     },
     fr: {
-      title: '0ggi | Web haut de gamme et agents IA pour entreprises ambitieuses',
-      description: "Je conçois des sites Next.js ultra performants, une base SEO technique solide et des agents IA qui rendent les entreprises plus visibles et plus efficaces.",
+      title: '0ggi | Webdesign, SEO & automatisation IA pour PME suisses',
+      description: 'Sites Next.js avec PageSpeed 99, SEO technique et agents IA pour PME suisses. Plus de visibilité, plus de leads, moins de travail manuel — basé à Bâle.',
     },
     it: {
-      title: '0ggi | Sviluppo web di alto livello e agenti AI per aziende moderne',
-      description: 'Realizzo siti Next.js ad alte prestazioni, SEO tecnica e agenti AI che aumentano la visibilita online e riducono il lavoro manuale.',
+      title: '0ggi | Web design, SEO & automazione AI per PMI svizzere',
+      description: 'Siti Next.js con PageSpeed 99, SEO tecnica e agenti AI per PMI svizzere. Più visibilità, più contatti, meno lavoro manuale — con sede a Basilea.',
     },
   },
   '/services': {
     de: {
-      title: 'Dienstleistungen | Webdesign, SEO und KI-Automatisierung',
-      description: 'Entdecke meine Dienstleistungen fuer Next.js Webentwicklung, Core Web Vitals Optimierung, SEO und KI-Agenten fuer Solopreneure und KMU.',
+      title: 'Webdesign, SEO & KI-Agenten für KMU | 0ggi Dienstleistungen',
+      description: 'Next.js Webentwicklung, Core Web Vitals Optimierung, Local SEO und KI-Automatisierung für Schweizer KMU. PageSpeed 99 — keine leeren Versprechen.',
     },
     en: {
-      title: 'Services | Web design, SEO, and AI automation',
-      description: 'Explore my services for Next.js websites, Core Web Vitals optimization, SEO, and AI automation for modern businesses.',
+      title: 'Web Design, SEO & AI Agents for SMEs | 0ggi Services',
+      description: 'Next.js development, Core Web Vitals optimization, local SEO, and AI automation for Swiss SMEs. PageSpeed 99 — no empty promises.',
     },
     fr: {
-      title: 'Services | Webdesign, SEO et automatisation IA',
-      description: 'Decouvre mes services en sites Next.js, optimisation Core Web Vitals, SEO et automatisation IA pour PME et independants.',
+      title: 'Webdesign, SEO & agents IA pour PME | Services 0ggi',
+      description: 'Développement Next.js, optimisation Core Web Vitals, SEO local et automatisation IA pour PME suisses. PageSpeed 99 — pas de promesses vides.',
     },
     it: {
-      title: 'Servizi | Web design, SEO e automazione AI',
-      description: 'Scopri i miei servizi di sviluppo Next.js, ottimizzazione Core Web Vitals, SEO e agenti AI per aziende e professionisti.',
+      title: 'Web design, SEO & agenti AI per PMI | Servizi 0ggi',
+      description: 'Sviluppo Next.js, ottimizzazione Core Web Vitals, SEO locale e automazione AI per PMI svizzere. PageSpeed 99 — nessuna promessa vuota.',
     },
   },
   '/portfolio': {
     de: {
-      title: 'Portfolio | Digitale Oekosysteme und Referenzen',
-      description: 'Einblick in Projekte, digitale Systeme und KI-gestuetzte Plattformen, die Performance, Sichtbarkeit und Conversion verbinden.',
+      title: 'Portfolio | Webdesign-Projekte für Schweizer KMU — 0ggi',
+      description: 'Referenzprojekte mit PageSpeed 99, Local SEO und modernem Design. Echte Ergebnisse für Schweizer Unternehmen — von Coiffeur bis Musikschule.',
     },
     en: {
-      title: 'Portfolio | Digital systems and selected work',
-      description: 'A look at projects, digital systems, and AI-enabled platforms built for speed, visibility, and conversion.',
+      title: 'Portfolio | Web Design Projects for Swiss SMEs — 0ggi',
+      description: 'Real projects with PageSpeed 99, local SEO, and modern design. Proven results for Swiss businesses — from salons to music schools.',
     },
     fr: {
-      title: 'Portfolio | Ecosystemes digitaux et references',
-      description: 'Un apercu de projets, de systemes digitaux et de plateformes IA concus pour la performance, la visibilite et la conversion.',
+      title: 'Portfolio | Projets webdesign pour PME suisses — 0ggi',
+      description: 'Projets réels avec PageSpeed 99, SEO local et design moderne. Résultats concrets pour entreprises suisses — du salon au école de musique.',
     },
     it: {
-      title: 'Portfolio | Ecosistemi digitali e progetti',
-      description: 'Una selezione di progetti, sistemi digitali e piattaforme con AI pensati per performance, visibilita e conversione.',
+      title: 'Portfolio | Progetti web design per PMI svizzere — 0ggi',
+      description: 'Progetti reali con PageSpeed 99, SEO locale e design moderno. Risultati concreti per aziende svizzere — dal salone alla scuola di musica.',
     },
   },
   '/purpose': {
     de: {
-      title: 'Mission | Die Philosophie hinter 0ggi',
-      description: 'Erfahre mehr ueber meine Haltung, meine Mission und warum ich Websites und KI-Systeme fuer nachhaltiges Wachstum baue.',
+      title: 'Mission | Warum ich Websites und KI-Systeme baue — 0ggi',
+      description: 'Keine Templates, keine Kompromisse. Ich baue digitale Systeme, die Schweizer KMU messbar mehr Kunden bringen. Erfahre, warum.',
     },
     en: {
-      title: 'Mission | The thinking behind 0ggi',
-      description: 'Learn more about my philosophy, mission, and approach to building websites and AI systems for sustainable growth.',
+      title: 'Mission | Why I Build Websites and AI Systems — 0ggi',
+      description: 'No templates, no compromises. I build digital systems that measurably bring Swiss SMEs more customers. Learn why.',
     },
     fr: {
-      title: 'Mission | La philosophie derriere 0ggi',
-      description: 'Decouvre ma vision, ma mission et ma maniere de creer des sites et systemes IA pensés pour une croissance durable.',
+      title: 'Mission | Pourquoi je crée des sites et des systèmes IA — 0ggi',
+      description: 'Pas de templates, pas de compromis. Je crée des systèmes digitaux qui apportent des clients aux PME suisses. Découvre pourquoi.',
     },
     it: {
-      title: 'Missione | La filosofia dietro 0ggi',
-      description: 'Scopri la mia visione, la mia missione e il mio approccio nella creazione di siti e sistemi AI per una crescita sostenibile.',
+      title: 'Missione | Perché creo siti web e sistemi AI — 0ggi',
+      description: 'Nessun template, nessun compromesso. Creo sistemi digitali che portano clienti alle PMI svizzere. Scopri perché.',
     },
   },
   '/contact': {
     de: {
-      title: 'Kontakt | Projektanfrage fuer Website, Marketing oder KI-Agenten',
-      description: 'Lass uns ueber dein Projekt sprechen. Nutze das Kontaktformular fuer Website, Online-Marketing oder KI-Agenten.',
+      title: 'Kontakt | Kostenlose Erstberatung für dein Web-Projekt — 0ggi',
+      description: 'Projekt anfragen: Website, SEO oder KI-Agent für dein KMU. Kostenlose Erstberatung — ich melde mich innert 24h. Standort Basel/Liestal.',
     },
     en: {
-      title: 'Contact | Project inquiry for website, marketing, or AI agents',
-      description: 'Let us talk about your project. Use the contact form for websites, online marketing, or AI agents.',
+      title: 'Contact | Free Consultation for Your Web Project — 0ggi',
+      description: 'Request a project: website, SEO, or AI agent for your SME. Free initial consultation — I respond within 24h. Based in Basel/Liestal.',
     },
     fr: {
-      title: 'Contact | Demande de projet pour site, marketing ou agents IA',
-      description: 'Parlons de ton projet. Utilise le formulaire pour un site web, du marketing en ligne ou des agents IA.',
+      title: 'Contact | Consultation gratuite pour votre projet web — 0ggi',
+      description: 'Demandez un projet : site web, SEO ou agent IA pour votre PME. Consultation gratuite — réponse sous 24h. Basé à Bâle/Liestal.',
     },
     it: {
-      title: 'Contatto | Richiesta progetto per sito, marketing o agenti AI',
-      description: 'Parliamo del tuo progetto. Usa il modulo per sito web, online marketing o agenti AI.',
+      title: 'Contatto | Consulenza gratuita per il tuo progetto web — 0ggi',
+      description: 'Richiedi un progetto: sito web, SEO o agente AI per la tua PMI. Consulenza gratuita — risposta entro 24h. Sede a Basilea/Liestal.',
     },
   },
   '/hermes': {
     de: {
-      title: 'Hermes | Der KI-Agent, der mit deinem Unternehmen waechst',
-      description: 'Hermes ist ein selbstlernender KI-Agent fuer Marketing, Vertrieb, Content und Reporting, der seine Faehigkeiten fortlaufend erweitert.',
+      title: 'Hermes KI-Agent | Automatisiert Marketing, Vertrieb & Support — 0ggi',
+      description: 'Hermes ist ein selbstlernender KI-Agent für Schweizer KMU: automatisiert Marketing, qualifiziert Leads und übernimmt Support — 24/7, ohne Pause.',
     },
     en: {
-      title: 'Hermes | The AI agent that grows with your business',
-      description: 'Hermes is a self-improving AI agent for marketing, sales, content, and reporting that expands its capabilities over time.',
+      title: 'Hermes AI Agent | Automates Marketing, Sales & Support — 0ggi',
+      description: 'Hermes is a self-learning AI agent for Swiss SMEs: automates marketing, qualifies leads, and handles support — 24/7, no breaks.',
     },
     fr: {
-      title: 'Hermes | L agent IA qui evolue avec votre entreprise',
-      description: 'Hermes est un agent IA auto-apprenant pour le marketing, la vente, le contenu et le reporting, qui developpe continuellement ses capacites.',
+      title: 'Agent IA Hermes | Automatise marketing, ventes & support — 0ggi',
+      description: 'Hermes est un agent IA auto-apprenant pour PME suisses : automatise le marketing, qualifie les leads et gère le support — 24/7.',
     },
     it: {
-      title: 'Hermes | L agente AI che cresce con la tua azienda',
-      description: 'Hermes e un agente AI autoapprendente per marketing, vendite, contenuti e reporting che amplia continuamente le proprie capacita.',
+      title: 'Agente AI Hermes | Automatizza marketing, vendite & supporto — 0ggi',
+      description: 'Hermes è un agente AI autoapprendente per PMI svizzere: automatizza marketing, qualifica lead e gestisce il supporto — 24/7.',
     },
   },
   '/impressum': {
@@ -134,10 +134,10 @@ const routeMeta: Record<RouteKey, Record<Locale, LocalizedMeta>> = {
     it: { title: 'Informativa sulla privacy | 0ggi.ch', description: 'Informativa sulla privacy di 0ggi.ch' },
   },
   '/blog': {
-    de: { title: 'Blog | Insights zu Webdesign, SEO & KI', description: 'Aktuelle Beiträge zu Webdesign, SEO-Strategien, KI-Automatisierung und digitalem Wachstum.' },
-    en: { title: 'Blog | Insights on Web Design, SEO & AI', description: 'Latest posts on web design, SEO strategies, AI automation, and digital growth.' },
-    fr: { title: 'Blog | Insights sur le webdesign, SEO & IA', description: 'Articles récents sur le webdesign, les stratégies SEO, l\'automatisation IA et la croissance digitale.' },
-    it: { title: 'Blog | Insights su web design, SEO & AI', description: 'Articoli recenti su web design, strategie SEO, automazione AI e crescita digitale.' },
+    de: { title: 'Blog | SEO-Tipps, Webdesign & KI für Schweizer KMU — 0ggi', description: 'Praxisnahe Beiträge zu SEO-Fehlern, Webdesign-Trends und KI-Automatisierung für Schweizer KMU. Keine Theorie — echte Erfahrungen aus Kundenprojekten.' },
+    en: { title: 'Blog | SEO Tips, Web Design & AI for Swiss SMEs — 0ggi', description: 'Practical posts on SEO mistakes, web design trends, and AI automation for Swiss SMEs. No theory — real insights from client projects.' },
+    fr: { title: 'Blog | Conseils SEO, webdesign & IA pour PME suisses — 0ggi', description: 'Articles pratiques sur les erreurs SEO, tendances webdesign et automatisation IA pour PME suisses. Pas de théorie — des expériences réelles.' },
+    it: { title: 'Blog | Consigli SEO, web design & AI per PMI svizzere — 0ggi', description: 'Articoli pratici su errori SEO, tendenze web design e automazione AI per PMI svizzere. Niente teoria — esperienze reali dai progetti.' },
   },
 };
 

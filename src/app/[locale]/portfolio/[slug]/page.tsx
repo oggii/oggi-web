@@ -35,7 +35,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
             priority
           />
         ) : (
-          <div className={`absolute inset-0 bg-gradient-to-br ${project.color}`}>
+          <div className="absolute inset-0 bg-gradient-to-br from-violet-950/40 to-black">
             <div className="absolute inset-0 flex items-center justify-center">
               <Icon icon="solar:cpu-bolt-bold-duotone" className="text-[200px] text-luxota-accent/10" />
             </div>

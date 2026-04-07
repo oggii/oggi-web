@@ -53,8 +53,9 @@ export default function Navbar() {
     { num: '02', title: t('nav.services'), href: href('/services') },
     { num: '03', title: t('nav.projects'), href: href('/portfolio') },
     { num: '04', title: t('nav.about'), href: href('/purpose') },
+    { num: '05', title: t('nav.blog'), href: href('/blog') },
   ];
-  const contactLink = { num: '05', title: t('nav.contact'), href: href('/contact') };
+  const contactLink = { num: '06', title: t('nav.contact'), href: href('/contact') };
   const mobileNavLinks = [...navLinks, contactLink];
   const isContactActive = pathname === contactLink.href || pathname?.startsWith(`${contactLink.href}/`);
 

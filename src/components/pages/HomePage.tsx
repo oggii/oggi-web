@@ -6,6 +6,7 @@ const NarrativeSection = dynamic(() => import('@/components/sections/NarrativeSe
 const PricingMaturitySection = dynamic(() => import('@/components/sections/PricingMaturitySection'));
 const CommercialModelSection = dynamic(() => import('@/components/sections/CommercialModelSection'));
 const FAQSection = dynamic(() => import('@/components/sections/FAQSection'));
+const LatestPostsSection = dynamic(() => import('@/components/sections/LatestPostsSection'));
 const FooterSection = dynamic(() => import('@/components/sections/FooterSection'));
 const ServicesOverviewSection = dynamic(() => import('@/components/sections/ServicesOverviewSection'));
 const ServicesCtaSection = dynamic(() => import('@/components/sections/ServicesCtaSection'));
@@ -21,6 +22,7 @@ export default function HomePage() {
       <PricingMaturitySection />
       <CommercialModelSection />
       <FAQSection />
+      <LatestPostsSection />
       <FooterSection />
     </main>
   );

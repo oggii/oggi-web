@@ -1,6 +1,6 @@
 export const de = {
     nav: {
-        home: 'Startseite', services: 'Dienstleistungen', projects: 'Portfolio', about: 'Mission', contact: 'Kontakt', contactUs: 'Kontakt', footerAction: 'Resultate ansehen'
+        home: 'Startseite', services: 'Dienstleistungen', projects: 'Portfolio', about: 'Mission', blog: 'Blog', contact: 'Kontakt', contactUs: 'Kontakt', footerAction: 'Resultate ansehen'
     },
     hero: {
         titleTop: 'High-Performance', titleMid: 'für dein', titleBot: 'Wachstum', subtitle: 'Keine generischen Standard-Webseiten. Ich baue hochperformante Plattformen und KI-Automatisierungen, die regionale Unternehmen sichtbar machen, zielgerichtet Leads generieren und spürbar Routinearbeit abnehmen.', actionAudit: 'Kostenloses System-Audit', actionResults: 'Resultate ansehen', scroll: 'Scrollen'

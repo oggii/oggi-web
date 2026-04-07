@@ -4,6 +4,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import FooterSection from '@/components/sections/FooterSection';
 import { portfolioProjects } from '@/data/portfolioProjects';
+import { getDictionary } from '@/i18n/dictionaries';
+import { isLocale } from '@/i18n/routing';
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -17,6 +19,19 @@ export default async function PortfolioDetailPage({ params }: Props) {
   const { locale, slug } = await params;
   const project = portfolioProjects.find((p) => p.slug === slug);
   if (!project) notFound();
+
+  const dict = isLocale(locale) ? await getDictionary(locale) : await getDictionary('de');
+
+  // Helper to resolve dot-notation keys from dictionary
+  const t = (key: string): string => {
+    const keys = key.split('.');
+    let value: unknown = dict;
+    for (const k of keys) {
+      if (typeof value !== 'object' || value === null || !(k in value)) return key;
+      value = (value as Record<string, unknown>)[k];
+    }
+    return typeof value === 'string' ? value : key;
+  };
 
   const backHref = `/${locale}/portfolio`;
 
@@ -53,7 +68,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
 
         {/* Hero text */}
         <div className="absolute bottom-12 left-0 right-0 px-6 max-w-5xl mx-auto">
-          <p className="text-luxota-accent text-xs font-mono tracking-widest uppercase mb-3">{project.category}</p>
+          <p className="text-luxota-accent text-xs font-mono tracking-widest uppercase mb-3">{t(project.categoryKey)}</p>
           <h1 className="text-4xl md:text-6xl font-medium text-white tracking-tight">{project.title}</h1>
         </div>
       </section>
@@ -65,8 +80,8 @@ export default async function PortfolioDetailPage({ params }: Props) {
           {/* Left: description + deliverables */}
           <div className="lg:col-span-2 space-y-12">
             <div>
-              <p className="text-xs font-mono text-luxota-accent tracking-widest uppercase mb-4">Über das Projekt</p>
-              <p className="text-lg text-luxota-dim font-light leading-relaxed">{project.description}</p>
+              <p className="text-xs font-mono text-luxota-accent tracking-widest uppercase mb-4">{t('portfolio.pageTag')}</p>
+              <p className="text-lg text-luxota-dim font-light leading-relaxed">{t(project.descriptionKey)}</p>
             </div>
 
           </div>
@@ -100,7 +115,7 @@ export default async function PortfolioDetailPage({ params }: Props) {
                   className="flex items-center gap-2 text-sm text-luxota-accent hover:text-white transition-colors group"
                 >
                   <Icon icon="solar:global-linear" />
-                  Website besuchen
+                  {t('portfolioCards.visitWebsite')}
                   <Icon icon="solar:arrow-right-up-linear" className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </a>
               )}

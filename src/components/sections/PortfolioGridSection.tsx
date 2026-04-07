@@ -5,10 +5,9 @@ import { createPortal } from 'react-dom';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import { portfolioProjects, type PortfolioProject } from '@/data/portfolioProjects';
+import { useTranslation } from '@/i18n/TranslationContext';
 
-const FILTERS = ['Alle', 'Webdesign', 'KI-Agenten'];
-
-function BottomSheet({ project, onClose }: { project: PortfolioProject; onClose: () => void }) {
+function BottomSheet({ project, onClose, t }: { project: PortfolioProject; onClose: () => void; t: (key: string) => string }) {
   const [visible, setVisible] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -60,11 +59,11 @@ function BottomSheet({ project, onClose }: { project: PortfolioProject; onClose:
         {/* Content */}
         <div className="px-6 pb-8 pt-2">
           <div className="flex items-center gap-3 mb-2">
-            <p className="text-luxota-accent text-xs font-mono tracking-widest uppercase">{project.category}</p>
+            <p className="text-luxota-accent text-xs font-mono tracking-widest uppercase">{t(project.categoryKey)}</p>
             <span className="text-xs font-mono text-amber-400/80 border border-amber-400/30 bg-amber-400/10 rounded-full px-2 py-0.5">{project.year}</span>
           </div>
           <h3 className="text-2xl font-medium text-white mb-3">{project.title}</h3>
-          <p className="text-luxota-dim text-sm leading-relaxed mb-5">{project.description}</p>
+          <p className="text-luxota-dim text-sm leading-relaxed mb-5">{t(project.descriptionKey)}</p>
 
           <div className="flex flex-wrap gap-2 mb-6">
             {project.tags.map((tag) => (
@@ -82,7 +81,7 @@ function BottomSheet({ project, onClose }: { project: PortfolioProject; onClose:
               className="flex-1 inline-flex items-center justify-center gap-2 text-sm font-medium text-white bg-luxota-accent hover:bg-luxota-accent/90 rounded-full px-6 py-3 transition-colors"
             >
               <Icon icon="solar:global-linear" />
-              Website besuchen
+              {t('portfolioCards.visitWebsite')}
               <Icon icon="solar:arrow-right-up-linear" />
             </a>
             <button
@@ -100,10 +99,17 @@ function BottomSheet({ project, onClose }: { project: PortfolioProject; onClose:
 }
 
 export default function PortfolioGridSection() {
-  const [activeFilter, setActiveFilter] = useState('Alle');
+  const { t } = useTranslation();
+  const [activeFilter, setActiveFilter] = useState('all');
   const [openProject, setOpenProject] = useState<PortfolioProject | null>(null);
 
-  const filtered = activeFilter === 'Alle'
+  const FILTERS = [
+    { key: 'all', label: t('portfolioCards.filterAll') },
+    { key: 'Webdesign', label: t('portfolioCards.filterWebdesign') },
+    { key: 'KI-Agenten', label: t('portfolioCards.filterAiAgents') },
+  ];
+
+  const filtered = activeFilter === 'all'
     ? portfolioProjects
     : portfolioProjects.filter((p) => p.filter === activeFilter);
 
@@ -115,15 +121,15 @@ export default function PortfolioGridSection() {
         <div className="flex flex-wrap gap-3 mb-12">
           {FILTERS.map((f) => (
             <button
-              key={f}
-              onClick={() => setActiveFilter(f)}
+              key={f.key}
+              onClick={() => setActiveFilter(f.key)}
               className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 border ${
-                activeFilter === f
+                activeFilter === f.key
                   ? 'bg-luxota-accent border-luxota-accent text-white'
                   : 'border-white/10 text-luxota-dim hover:border-white/30 hover:text-white bg-white/[0.02]'
               }`}
             >
-              {f}
+              {f.label}
             </button>
           ))}
         </div>
@@ -157,7 +163,7 @@ export default function PortfolioGridSection() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent -top-16 pointer-events-none" />
                 <div className="relative p-8">
                   <div className="flex items-center gap-3 mb-2">
-                    <p className="text-luxota-accent text-xs font-mono tracking-widest uppercase">{project.category}</p>
+                    <p className="text-luxota-accent text-xs font-mono tracking-widest uppercase">{t(project.categoryKey)}</p>
                     <span className="text-xs font-mono text-amber-400/80 border border-amber-400/30 bg-amber-400/10 rounded-full px-2 py-0.5">{project.year}</span>
                   </div>
                   <div className="flex justify-between items-center">
@@ -175,7 +181,7 @@ export default function PortfolioGridSection() {
 
       {/* Bottom Sheet */}
       {openProject && (
-        <BottomSheet project={openProject} onClose={() => setOpenProject(null)} />
+        <BottomSheet project={openProject} onClose={() => setOpenProject(null)} t={t} />
       )}
     </section>
   );

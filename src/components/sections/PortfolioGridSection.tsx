@@ -40,7 +40,7 @@ export default function PortfolioGridSection() {
           {filtered.map((project, idx) => (
             <div
               key={project.slug}
-              className={`reveal-up portfolio-item group cursor-default aspect-[4/3] rounded-3xl overflow-hidden relative border border-white/5 ${idx % 2 !== 0 ? 'md:mt-16' : ''}`}
+              className={`portfolio-item group cursor-default aspect-[4/3] rounded-3xl overflow-hidden relative border border-white/5 ${idx % 2 !== 0 ? 'md:mt-16' : ''}`}
             >
               {/* Hover glow */}
               <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02),transparent_100%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0" />

@@ -89,7 +89,7 @@ function BottomSheet({ project, onClose }: { project: PortfolioProject; onClose:
               onClick={handleClose}
               className="w-12 h-12 rounded-full border border-white/20 bg-white/15 flex items-center justify-center text-white hover:bg-white/25 transition-colors shrink-0"
             >
-              <Icon icon="solar:close-bold" className="text-lg" />
+              <Icon icon="solar:close-circle-bold-duotone" className="text-xl" />
             </button>
           </div>
         </div>

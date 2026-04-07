@@ -48,9 +48,11 @@ export default function PortfolioGridSection() {
               <div
                 key={project.slug}
                 onClick={() => handleTap(project.slug)}
-                className={`portfolio-item group cursor-pointer aspect-[4/3] rounded-3xl overflow-hidden relative border transition-all duration-500 ${
+                className={`portfolio-item group cursor-pointer rounded-3xl overflow-hidden relative border transition-all duration-500 ${
                   isExpanded ? 'border-luxota-accent/30' : 'border-white/5'
-                } ${idx % 2 !== 0 ? 'md:mt-16' : ''}`}
+                } ${idx % 2 !== 0 ? 'md:mt-16' : ''} ${
+                  isExpanded ? 'min-h-[420px]' : 'aspect-[4/3]'
+                } md:aspect-[4/3]`}
               >
                 {/* Hover/active glow */}
                 <div className={`absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.02),transparent_100%)] transition-opacity duration-700 z-0 ${isExpanded ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`} />
@@ -91,7 +93,7 @@ export default function PortfolioGridSection() {
                         </h3>
 
                         {/* Expanded content — hover on desktop, tap on mobile */}
-                        <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-48' : 'max-h-0 group-hover:max-h-48'}`}>
+                        <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-96' : 'max-h-0 group-hover:max-h-48'}`}>
                           <p className="text-luxota-dim text-sm leading-relaxed mb-3">{project.description}</p>
                           <div className="flex flex-wrap gap-2 mb-4">
                             {project.tags.map((tag) => (

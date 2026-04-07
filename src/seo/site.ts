@@ -121,6 +121,18 @@ const routeMeta: Record<RouteKey, Record<Locale, LocalizedMeta>> = {
       description: 'Hermes e un agente AI autoapprendente per marketing, vendite, contenuti e reporting che amplia continuamente le proprie capacita.',
     },
   },
+  '/impressum': {
+    de: { title: 'Impressum | 0ggi.ch', description: 'Impressum und rechtliche Angaben zu 0ggi.ch' },
+    en: { title: 'Legal Notice | 0ggi.ch', description: 'Legal notice and information for 0ggi.ch' },
+    fr: { title: 'Mentions légales | 0ggi.ch', description: 'Mentions légales de 0ggi.ch' },
+    it: { title: 'Note legali | 0ggi.ch', description: 'Note legali di 0ggi.ch' },
+  },
+  '/datenschutz': {
+    de: { title: 'Datenschutz | 0ggi.ch', description: 'Datenschutzerklärung von 0ggi.ch' },
+    en: { title: 'Privacy Policy | 0ggi.ch', description: 'Privacy policy of 0ggi.ch' },
+    fr: { title: 'Politique de confidentialité | 0ggi.ch', description: 'Politique de confidentialité de 0ggi.ch' },
+    it: { title: 'Informativa sulla privacy | 0ggi.ch', description: 'Informativa sulla privacy di 0ggi.ch' },
+  },
 };
 
 export function getRouteMetadata(locale: Locale, route: RouteKey) {

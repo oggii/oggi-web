@@ -68,7 +68,10 @@ export default function PortfolioGridSection() {
 
                 <div className="relative p-8">
                   {/* Always visible: category + title */}
-                  <p className="text-luxota-accent text-xs font-mono tracking-widest uppercase mb-2">{project.category}</p>
+                  <div className="flex items-center gap-3 mb-2">
+                    <p className="text-luxota-accent text-xs font-mono tracking-widest uppercase">{project.category}</p>
+                    <span className="text-xs font-mono text-white/30 border border-white/10 rounded-full px-2 py-0.5">{project.year}</span>
+                  </div>
                   <div className="flex justify-between items-start">
                     <div className="flex-1">
                       <h3 className="text-2xl font-medium text-white mb-0 group-hover:mb-3 transition-all duration-300">{project.title}</h3>

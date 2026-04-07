@@ -69,19 +69,6 @@ export default async function PortfolioDetailPage({ params }: Props) {
               <p className="text-lg text-luxota-dim font-light leading-relaxed">{project.description}</p>
             </div>
 
-            <div>
-              <p className="text-xs font-mono text-luxota-accent tracking-widest uppercase mb-6">Leistungen</p>
-              <ul className="space-y-4">
-                {project.deliverables.map((item) => (
-                  <li key={item} className="flex items-start gap-4 text-white/80">
-                    <span className="mt-1 w-5 h-5 rounded-full bg-luxota-accent/10 border border-luxota-accent/30 flex items-center justify-center shrink-0">
-                      <Icon icon="solar:check-read-linear" className="text-luxota-accent text-xs" />
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
 
           {/* Right: meta */}

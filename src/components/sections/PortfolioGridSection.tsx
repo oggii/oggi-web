@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { Icon } from '@iconify/react';
 import Image from 'next/image';
 import { portfolioProjects, type PortfolioProject } from '@/data/portfolioProjects';
@@ -9,8 +10,10 @@ const FILTERS = ['Alle', 'Webdesign', 'KI-Agenten'];
 
 function BottomSheet({ project, onClose }: { project: PortfolioProject; onClose: () => void }) {
   const [visible, setVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     requestAnimationFrame(() => setVisible(true));
     const onKey = (e: KeyboardEvent) => e.key === 'Escape' && handleClose();
     window.addEventListener('keydown', onKey);
@@ -26,8 +29,10 @@ function BottomSheet({ project, onClose }: { project: PortfolioProject; onClose:
     setTimeout(onClose, 350);
   };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-end md:items-center md:justify-center">
+  if (!mounted) return null;
+
+  return createPortal(
+    <div className="fixed inset-0 z-[9998] flex items-end md:items-center md:justify-center">
       {/* Backdrop */}
       <div
         onClick={handleClose}
@@ -89,7 +94,8 @@ function BottomSheet({ project, onClose }: { project: PortfolioProject; onClose:
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }
 

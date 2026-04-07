@@ -35,7 +35,7 @@ function BottomSheet({ project, onClose, t }: { project: PortfolioProject; onClo
       {/* Backdrop */}
       <div
         onClick={handleClose}
-        className={`absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300 ${visible ? 'opacity-100' : 'opacity-0'}`}
+        className={`absolute inset-0 bg-black/70 backdrop-blur-sm transition-opacity duration-300 cursor-pointer ${visible ? 'opacity-100' : 'opacity-0'}`}
       />
 
       {/* Sheet */}

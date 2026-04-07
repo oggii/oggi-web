@@ -75,7 +75,7 @@ export default function Navbar() {
   );
 
   const renderLogo = (width: number, _height: number) => (
-    <span className="flex items-center gap-2">
+    <span className="flex items-center gap-3">
       <Image
         src="/oggi-logo.webp"
         alt="oggi logo"

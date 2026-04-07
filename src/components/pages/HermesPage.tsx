@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 const superPowers = [
   {
-    icon: 'solar:brain-bold-duotone',
+    icon: 'solar:diploma-bold-duotone',
     title: 'Selbstlernende Fähigkeiten',
     desc: 'Nach jeder erfolgreich abgeschlossenen Aufgabe analysiert Hermes, was funktioniert hat, und speichert diesen Prozess als wiederverwendbare Fähigkeit. Kein manuelles Einrichten — er baut seinen eigenen Werkzeugkasten auf.',
     tags: ['Skill-Erstellung', 'Prozessgedächtnis', 'Selbstoptimierung'],

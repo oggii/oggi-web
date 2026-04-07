@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
 
   const post = docs[0] as any;
   return {
-    title: `${post.title} | 0ggi.ch`,
+    title: post.title,
     description: post.excerpt || '',
     openGraph: {
       title: post.title,

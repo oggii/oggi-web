@@ -105,65 +105,7 @@ export default function PurposeContentSection() {
           </p>
         </div>
 
-        {/* Dynamic Project/Initiatives Cards */}
-        <div className="space-y-16">
-          <div className="flex items-center gap-4 reveal-up">
-            <span className="text-xs text-luxota-accent font-mono tracking-widest uppercase">{t('purpose.initiativesTag')}</span>
-            <div className="h-px w-24 bg-luxota-accent/30"></div>
-          </div>
 
-          <div className="flex flex-col gap-32 relative pb-20">
-
-            {/* Card 1: Slide Left */}
-            <div className="card-stop align-left" data-animation="slide-left">
-              <div className="max-w-xl group">
-                <Icon icon="solar:cpu-bolt-bold-duotone" className="text-6xl text-luxota-accent mb-6 transition-colors" />
-                <h3 className="text-4xl font-sans font-bold text-white mb-6 uppercase tracking-tight">{t('purpose.i1t')}</h3>
-                <p className="text-luxota-dim text-lg leading-relaxed">
-                  {t('purpose.i1d')}
-                </p>
-              </div>
-            </div>
-
-            {/* Card 2: Slide Right */}
-            <div className="card-stop align-right flex justify-end" data-animation="slide-right">
-              <div className="max-w-xl group text-right">
-                <div className="flex justify-end mb-6">
-                  <Icon icon="solar:server-path-bold-duotone" className="text-6xl text-white group-hover:text-luxota-accent transition-colors" />
-                </div>
-                <h3 className="text-4xl font-sans font-bold text-white mb-6 uppercase tracking-tight">{t('purpose.i2t')}</h3>
-                <p className="text-luxota-dim text-lg leading-relaxed">
-                  {t('purpose.i2d')}
-                </p>
-              </div>
-            </div>
-
-            {/* Card 3: Clip Reveal */}
-            <div className="card-stop align-left" data-animation="clip-reveal">
-              <div className="max-w-xl group">
-                <Icon icon="solar:users-group-two-rounded-bold-duotone" className="text-6xl text-white group-hover:text-luxota-accent transition-colors mb-6" />
-                <h3 className="text-4xl font-sans font-bold text-white mb-6 uppercase tracking-tight">{t('purpose.i3t')}</h3>
-                <p className="text-luxota-dim text-lg leading-relaxed">
-                  {t('purpose.i3d')}
-                </p>
-              </div>
-            </div>
-
-            {/* Card 4: Scale Up */}
-            <div className="card-stop align-right flex justify-end" data-animation="scale-up">
-              <div className="max-w-xl group text-right">
-                <div className="flex justify-end mb-6">
-                  <Icon icon="solar:code-scan-bold-duotone" className="text-6xl text-white group-hover:text-luxota-accent transition-colors" />
-                </div>
-                <h3 className="text-4xl font-sans font-bold text-white mb-6 uppercase tracking-tight">{t('purpose.i4t')}</h3>
-                <p className="text-luxota-dim text-lg leading-relaxed">
-                  {t('purpose.i4d')}
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
 
         {/* Collaboration CTA */}
         <div className="pt-10 pb-32 border-t border-white/10 reveal-up">

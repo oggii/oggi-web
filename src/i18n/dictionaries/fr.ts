@@ -218,5 +218,15 @@ export const fr: Dictionary = {
         addressLabel: 'Adresse',
         mapTag: 'Sur place',
         mapTitle: 'Adresse à Liestal'
+    },
+    blog: {
+        pageTag: '[ BLOG ]',
+        pageTitle1: 'Insights &',
+        pageTitle2: 'Actualités',
+        pageDesc: 'Réflexions sur le web design, le SEO, l\'automatisation IA et la croissance digitale.',
+        readMore: 'Lire la suite',
+        backToBlog: 'Retour au blog',
+        noPosts: 'Aucun article pour le moment.',
+        publishedAt: 'Publié le',
     }
 };

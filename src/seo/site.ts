@@ -133,6 +133,12 @@ const routeMeta: Record<RouteKey, Record<Locale, LocalizedMeta>> = {
     fr: { title: 'Politique de confidentialité | 0ggi.ch', description: 'Politique de confidentialité de 0ggi.ch' },
     it: { title: 'Informativa sulla privacy | 0ggi.ch', description: 'Informativa sulla privacy di 0ggi.ch' },
   },
+  '/blog': {
+    de: { title: 'Blog | Insights zu Webdesign, SEO & KI', description: 'Aktuelle Beiträge zu Webdesign, SEO-Strategien, KI-Automatisierung und digitalem Wachstum.' },
+    en: { title: 'Blog | Insights on Web Design, SEO & AI', description: 'Latest posts on web design, SEO strategies, AI automation, and digital growth.' },
+    fr: { title: 'Blog | Insights sur le webdesign, SEO & IA', description: 'Articles récents sur le webdesign, les stratégies SEO, l\'automatisation IA et la croissance digitale.' },
+    it: { title: 'Blog | Insights su web design, SEO & AI', description: 'Articoli recenti su web design, strategie SEO, automazione AI e crescita digitale.' },
+  },
 };
 
 export function getRouteMetadata(locale: Locale, route: RouteKey) {

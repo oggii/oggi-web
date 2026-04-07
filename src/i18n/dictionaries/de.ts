@@ -231,6 +231,16 @@ export const de = {
         addressLabel: 'Standort',
         mapTag: 'Vor Ort',
         mapTitle: 'Standort in Liestal'
+    },
+    blog: {
+        pageTag: '[ BLOG ]',
+        pageTitle1: 'Insights &',
+        pageTitle2: 'Neuigkeiten',
+        pageDesc: 'Gedanken zu Webdesign, SEO, KI-Automatisierung und digitalem Wachstum.',
+        readMore: 'Weiterlesen',
+        backToBlog: 'Zurück zum Blog',
+        noPosts: 'Noch keine Beiträge vorhanden.',
+        publishedAt: 'Veröffentlicht am',
     }
 };
 

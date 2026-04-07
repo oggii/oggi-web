@@ -218,5 +218,15 @@ export const en: Dictionary = {
         addressLabel: 'Location',
         mapTag: 'On site',
         mapTitle: 'Location in Liestal'
+    },
+    blog: {
+        pageTag: '[ BLOG ]',
+        pageTitle1: 'Insights &',
+        pageTitle2: 'News',
+        pageDesc: 'Thoughts on web design, SEO, AI automation, and digital growth.',
+        readMore: 'Read more',
+        backToBlog: 'Back to blog',
+        noPosts: 'No posts yet.',
+        publishedAt: 'Published on',
     }
 };

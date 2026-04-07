@@ -40,3 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 *.zip
+
+# payload
+src/app/(payload)/admin/importMap.js
+src/payload-types.ts

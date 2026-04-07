@@ -60,16 +60,16 @@ export default function BlogListPage() {
                 <Link
                   key={post.id}
                   href={`/${locale}/blog/${post.slug}`}
-                  className="group rounded-2xl overflow-hidden border border-white/5 hover:border-white/15 bg-white/[0.02] transition-all duration-500"
+                  className="group rounded-2xl overflow-hidden border border-white/5 hover:border-luxota-accent/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,78,221,0.08)]"
                 >
                   {/* Thumbnail */}
                   {post.featuredImage?.url && (
-                    <div className="relative aspect-[16/9] w-full overflow-hidden">
+                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-black/40">
                       <Image
                         src={post.featuredImage.url}
                         alt={post.title}
                         fill
-                        className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                        className="object-contain transition-transform duration-500 group-hover:scale-[1.03]"
                       />
                     </div>
                   )}

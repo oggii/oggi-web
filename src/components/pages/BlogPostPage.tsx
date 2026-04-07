@@ -45,8 +45,8 @@ export default function BlogPostPage({ post }: { post: Post }) {
 
         {/* Featured Image */}
         {post.featuredImage?.url && (
-          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl mb-12">
-            <Image src={post.featuredImage.url} alt={post.title} fill className="object-cover" />
+          <div className="relative w-full overflow-hidden rounded-2xl mb-12 bg-black/40">
+            <Image src={post.featuredImage.url} alt={post.title} width={1200} height={675} className="w-full h-auto" />
           </div>
         )}
 

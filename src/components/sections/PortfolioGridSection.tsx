@@ -70,7 +70,7 @@ export default function PortfolioGridSection() {
                   {/* Always visible: category + title */}
                   <div className="flex items-center gap-3 mb-2">
                     <p className="text-luxota-accent text-xs font-mono tracking-widest uppercase">{project.category}</p>
-                    <span className="text-xs font-mono text-white/30 border border-white/10 rounded-full px-2 py-0.5">{project.year}</span>
+                    <span className="text-xs font-mono text-amber-400/80 border border-amber-400/30 bg-amber-400/10 rounded-full px-2 py-0.5">{project.year}</span>
                   </div>
                   <div className="flex justify-between items-start">
                     <div className="flex-1">

@@ -75,7 +75,7 @@ export default function Navbar() {
   );
 
   const renderLogo = (width: number, _height: number) => (
-    <span className="flex items-center gap-1.5">
+    <span className="flex items-center gap-2">
       <Image
         src="/oggi-logo.webp"
         alt="oggi logo"
@@ -83,9 +83,9 @@ export default function Navbar() {
         height={width}
         className="rounded-full"
         loading="eager"
-        style={{ width: `${width * 0.38}px`, height: 'auto' }}
+        style={{ width: `${width * 0.48}px`, height: 'auto' }}
       />
-      <span className="font-[family-name:var(--font-dongle)] text-white font-bold leading-none" style={{ fontSize: `${width * 0.38}px` }}>
+      <span className="font-[family-name:var(--font-dongle)] text-white font-normal leading-none mt-[2px]" style={{ fontSize: `${width * 0.34}px` }}>
         oggi
       </span>
     </span>

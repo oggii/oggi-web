@@ -46,58 +46,6 @@ const getCards = (t: TranslateFn) => [
     linkLabel: t('servicesOverview.c4Btn'),
   }
 ];
-/* ─── CSS keyframes injected once ────────────────────────────────────────── */
-const GRAPHIC_STYLES = `
-  @keyframes svc-float {
-    0%,100% { transform: rotate(5deg) translateY(0px) translateX(32px); }
-    50%      { transform: rotate(3deg) translateY(-14px) translateX(32px); }
-  }
-  @keyframes svc-shimmer-sweep {
-    0%        { left: -80%; }
-    60%,100%  { left: 130%; }
-  }
-  @keyframes svc-bar-1 {
-    0%,10%  { width:15%; opacity:.35; }
-    40%,65% { width:100%; opacity:1; }
-    90%,100%{ width:15%; opacity:.35; }
-  }
-  @keyframes svc-bar-2 {
-    0%,15%  { width:15%; opacity:.35; }
-    45%,68% { width:78%; opacity:1; }
-    95%,100%{ width:15%; opacity:.35; }
-  }
-  @keyframes svc-bar-3 {
-    0%,20%  { width:15%; opacity:.35; }
-    50%,70% { width:52%; opacity:1; }
-    100%    { width:15%; opacity:.35; }
-  }
-  @keyframes svc-dot {
-    0%,100% { opacity:.3; transform:scale(0.7); }
-    50%     { opacity:1;  transform:scale(1.3); }
-  }
-  @keyframes svc-flow {
-    0%   { width:10%; }
-    65%  { width:90%; }
-    100% { width:10%; }
-  }
-  @keyframes svc-badge {
-    0%,100% { box-shadow:inset 0 0 0 1px rgba(157,78,221,.15); }
-    50%     { box-shadow:inset 0 0 14px 3px rgba(157,78,221,.45),0 0 18px 4px rgba(157,78,221,.15); }
-  }
-  @keyframes svc-orbit-ping {
-    0%,100% { transform:translate(-50%,-50%) scale(1); box-shadow:0 0 0 0 rgba(157,78,221,0); }
-    50%     { transform:translate(-50%,-50%) scale(1.18); box-shadow:0 0 14px 5px rgba(157,78,221,.3); }
-  }
-  @keyframes svc-logo-glow {
-    0%,100% { box-shadow:0 0 0 0 rgba(157,78,221,0),0 0 20px rgba(157,78,221,.1); }
-    50%     { box-shadow:0 0 0 10px rgba(157,78,221,0),0 0 44px rgba(157,78,221,.45); }
-  }
-  @keyframes svc-progress {
-    0%   { width:12%; }
-    70%  { width:96%; }
-    100% { width:12%; }
-  }
-`;
 
 /* ─── Animated graphics ───────────────────────────────────────────────────── */
 
@@ -207,7 +155,7 @@ function OpenClawGraphic() {
       <div style={{ position: 'absolute', width: '210px', height: '210px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.04)', animation: 'spin 13s linear infinite' }} />
       {/* Logo */}
       <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: '#0A0A0C', border: '1px solid rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 10, animation: 'svc-logo-glow 3s ease-in-out infinite', overflow: 'hidden' }}>
-        <Image src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/openclaw.png" alt="OpenClaw" width={40} height={40} className="object-contain" unoptimized />
+        <Image src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/openclaw.png" alt="OpenClaw" width={40} height={40} className="object-contain" />
       </div>
       {/* Orbit nodes — sequential glow ping */}
       {orbit.map((n, i) => {
@@ -250,7 +198,7 @@ function HermesGraphic() {
       {/* Logo with outer ping ring */}
       <div style={{ position: 'relative', width: '72px', height: '72px' }}>
         <div style={{ width: '72px', height: '72px', borderRadius: '50%', background: '#12121A', border: '1px solid rgba(157,78,221,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'svc-logo-glow 2.8s ease-in-out infinite', overflow: 'hidden' }}>
-          <Image src="https://hermes-agent.nousresearch.com/nous-logo.png" alt="Hermes" width={44} height={44} className="object-contain" unoptimized />
+          <Image src="https://hermes-agent.nousresearch.com/nous-logo.png" alt="Hermes" width={44} height={44} className="object-contain" />
         </div>
         <div style={{ position: 'absolute', inset: '-6px', borderRadius: '50%', border: '1px solid rgba(157,78,221,0.18)', animation: 'svc-orbit-ping 2.8s ease-in-out infinite' }} />
       </div>
@@ -329,9 +277,6 @@ export default function ServicesOverviewSection() {
 
   return (
     <>
-      {/* Inject keyframes once */}
-      <style dangerouslySetInnerHTML={{ __html: GRAPHIC_STYLES }} />
-
       <div className="relative z-30 bg-luxota-bg border-t border-white/5">
         <div className="pin-spacer relative w-full">
           <section ref={pinSectionRef} className="h-[100svh] min-h-[600px] lg:h-[100svh] relative bg-luxota-bg flex flex-col">
@@ -374,7 +319,7 @@ export default function ServicesOverviewSection() {
                         {/* Icon badge */}
                         <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-xl lg:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-5 lg:mb-7 shadow-xl overflow-hidden">
                           {card.iconType === 'img' ? (
-                            <Image src={card.icon} alt={card.title} width={32} height={32} className="object-contain" unoptimized />
+                            <Image src={card.icon} alt={card.title} width={32} height={32} className="object-contain" />
                           ) : (
                             <Icon icon={card.icon} className="text-2xl lg:text-3xl text-luxota-accent" />
                           )}

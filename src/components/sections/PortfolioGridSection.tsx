@@ -144,7 +144,8 @@ export default function PortfolioGridSection() {
                     alt={project.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
-                    loading="eager"
+                    loading={idx < 2 ? 'eager' : 'lazy'}
+                    priority={idx < 2}
                     className="object-cover object-top opacity-50 grayscale mix-blend-luminosity group-hover:opacity-100 group-hover:grayscale-0 group-hover:mix-blend-normal transition-all duration-1000 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-luxota-bg/40 group-hover:bg-transparent transition-colors duration-1000 z-10" />

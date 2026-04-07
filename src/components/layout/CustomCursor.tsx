@@ -19,6 +19,14 @@ export default function CustomCursor() {
     let mouseX = 0;
     let mouseY = 0;
 
+    // Cache spotlight cards to avoid querySelectorAll on every mousemove
+    let cachedCards: HTMLElement[] = Array.from(document.querySelectorAll<HTMLElement>('.spotlight-card'));
+
+    const observer = new MutationObserver(() => {
+      cachedCards = Array.from(document.querySelectorAll<HTMLElement>('.spotlight-card'));
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
     const onMouseMove = (e: MouseEvent) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
@@ -30,12 +38,12 @@ export default function CustomCursor() {
         gsap.to(outlineRef.current, { x: mouseX, y: mouseY, duration: 0.15, ease: 'power2.out' });
       }
 
-      // Update CSS variables for spotlight cards globally
-      document.querySelectorAll('.spotlight-card').forEach((card) => {
+      // Update CSS variables for spotlight cards using cached array
+      for (const card of cachedCards) {
         const rect = card.getBoundingClientRect();
-        (card as HTMLElement).style.setProperty('--mouse-x', `${mouseX - rect.left}px`);
-        (card as HTMLElement).style.setProperty('--mouse-y', `${mouseY - rect.top}px`);
-      });
+        card.style.setProperty('--mouse-x', `${mouseX - rect.left}px`);
+        card.style.setProperty('--mouse-y', `${mouseY - rect.top}px`);
+      }
     };
 
     window.addEventListener('mousemove', onMouseMove);
@@ -43,6 +51,7 @@ export default function CustomCursor() {
     return () => {
       window.cancelAnimationFrame(frame);
       window.removeEventListener('mousemove', onMouseMove);
+      observer.disconnect();
     };
   }, []);
 

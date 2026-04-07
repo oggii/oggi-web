@@ -31,7 +31,6 @@ export default async function PortfolioDetailPage({ params }: Props) {
             alt={project.title}
             fill
             className="object-cover object-top opacity-40"
-            unoptimized
             priority
           />
         ) : (

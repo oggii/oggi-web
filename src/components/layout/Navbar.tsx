@@ -59,7 +59,7 @@ export default function Navbar() {
   const isContactActive = pathname === contactLink.href || pathname?.startsWith(`${contactLink.href}/`);
 
   const getFlag = (value: (typeof locales)[number]) =>
-    value === 'de' ? 'https://flagcdn.com/w20/ch.png' : `https://flagcdn.com/w20/${value === 'en' ? 'us' : value}.png`;
+    value === 'de' ? '/flags/ch.png' : `/flags/${value === 'en' ? 'us' : value}.png`;
 
   const renderFlag = (value: (typeof locales)[number]) => (
     <Image
@@ -69,7 +69,6 @@ export default function Navbar() {
       height={15}
       className="rounded-sm brightness-90 saturate-150"
       style={{ width: '14px', height: 'auto' }}
-      unoptimized
     />
   );
 

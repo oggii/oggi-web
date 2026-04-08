@@ -108,7 +108,9 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
       tl.add(() => ScrollTrigger.refresh(), "+=0.1");
 
       // Global Scroll Reveal for all other pages/sections
-      gsap.utils.toArray<HTMLElement>('.reveal-up').forEach((el) => {
+      const animateRevealUp = (el: HTMLElement) => {
+        if (el.dataset.revealInit) return; // already animated
+        el.dataset.revealInit = '1';
         gsap.to(el, {
           y: 0,
           opacity: 1,
@@ -120,7 +122,31 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
             toggleActions: 'play none none none',
           }
         });
+      };
+
+      gsap.utils.toArray<HTMLElement>('.reveal-up').forEach(animateRevealUp);
+
+      // Watch for new .reveal-up elements added after Suspense resolves
+      const observer = new MutationObserver((mutations) => {
+        let hasNew = false;
+        for (const mutation of mutations) {
+          for (const node of mutation.addedNodes) {
+            if (!(node instanceof HTMLElement)) continue;
+            if (node.classList.contains('reveal-up')) {
+              animateRevealUp(node);
+              hasNew = true;
+            }
+            node.querySelectorAll<HTMLElement>('.reveal-up').forEach((el) => {
+              animateRevealUp(el);
+              hasNew = true;
+            });
+          }
+        }
+        if (hasNew) ScrollTrigger.refresh();
       });
+      observer.observe(document.body, { childList: true, subtree: true });
+
+      return () => observer.disconnect();
     });
 
     return () => ctx.revert();

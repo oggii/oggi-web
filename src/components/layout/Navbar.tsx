@@ -85,7 +85,7 @@ export default function Navbar() {
         loading="eager"
         style={{ width: `${width * 0.48}px`, height: 'auto' }}
       />
-      <span className="font-[family-name:var(--font-dongle)] text-white font-normal leading-none mt-[2px]" style={{ fontSize: `${width * fontScale}px` }}>
+      <span className="font-[family-name:var(--font-dongle)] text-white font-light leading-none mt-[2px]" style={{ fontSize: `${width * fontScale}px` }}>
         oggi
       </span>
     </span>

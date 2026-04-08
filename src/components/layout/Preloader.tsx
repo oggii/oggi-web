@@ -1,101 +1,137 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import Image from 'next/image';
 
 export default function Preloader({ onComplete }: { onComplete: () => void }) {
-  const preloaderRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLDivElement>(null);
-  const textRef = useRef<HTMLSpanElement>(null);
-  const lineRef = useRef<HTMLDivElement>(null);
-  const glowRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const lettersRef = useRef<(HTMLSpanElement | null)[]>([]);
+  const boxRef = useRef<HTMLDivElement>(null);
+  const imageWrapRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+  const startRef = useRef<HTMLDivElement>(null);
+  const endRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const el = preloaderRef.current;
-    const logo = logoRef.current;
-    const text = textRef.current;
-    const line = lineRef.current;
-    const glow = glowRef.current;
-    if (!el || !logo || !text || !line || !glow) return;
+    const el = containerRef.current;
+    const box = boxRef.current;
+    const imageWrap = imageWrapRef.current;
+    const image = imageRef.current;
+    const start = startRef.current;
+    const end = endRef.current;
+    const letters = lettersRef.current.filter(Boolean) as HTMLSpanElement[];
+    if (!el || !box || !imageWrap || !image || !start || !end || letters.length === 0) return;
 
-    // Set initial states
-    gsap.set(logo, { scale: 0.6, opacity: 0, filter: 'blur(10px)' });
-    gsap.set(text, { opacity: 0, x: -8 });
-    gsap.set(line, { scaleX: 0, transformOrigin: 'left center' });
-    gsap.set(glow, { scale: 0.5, opacity: 0 });
+    const tl = gsap.timeline({
+      defaults: { ease: 'expo.inOut' },
+    });
 
-    const tl = gsap.timeline();
+    // 1. Letters slide up into view
+    tl.from(letters, {
+      yPercent: 110,
+      stagger: 0.03,
+      duration: 0.7,
+    });
 
-    tl
-      // Glow pulse behind logo
-      .to(glow, { scale: 1.2, opacity: 0.6, duration: 0.5, ease: 'power2.out' }, 0)
-      // Logo snaps in — fast, sharp
-      .to(logo, { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 0.4, ease: 'expo.out' }, 0.05)
-      // Brand text slides in
-      .to(text, { opacity: 1, x: 0, duration: 0.35, ease: 'power3.out' }, 0.2)
-      // Accent line draws across
-      .to(line, { scaleX: 1, duration: 0.3, ease: 'power2.out' }, 0.25)
-      // Brief hold so it registers
-      .addLabel('hold', '+=0.25')
-      // Glow fades
-      .to(glow, { opacity: 0, scale: 1.5, duration: 0.3, ease: 'power2.in' }, 'hold')
-      // Everything scales up and fades as screen wipes
-      .to([logo, text, line], { opacity: 0, scale: 1.1, duration: 0.25, ease: 'power2.in' }, 'hold')
-      // Screen wipe — clip from bottom to top
-      .to(el, {
-        clipPath: 'inset(0 0 100% 0)',
-        duration: 0.5,
-        ease: 'expo.inOut',
-        onStart: () => { gsap.delayedCall(0.15, onComplete); },
-      }, 'hold+=0.1');
+    // 2. Box expands between letter groups, image grows inside
+    tl.fromTo(box,
+      { width: '0em' },
+      { width: '0.9em', duration: 0.7 },
+      '<0.6'
+    );
+    tl.fromTo(imageWrap,
+      { width: '0%' },
+      { width: '100%', duration: 0.7 },
+      '<'
+    );
+
+    // 3. Letter groups shift apart slightly
+    tl.fromTo(start,
+      { x: '0em' },
+      { x: '-0.03em', duration: 0.7 },
+      '<'
+    );
+    tl.fromTo(end,
+      { x: '0em' },
+      { x: '0.03em', duration: 0.7 },
+      '<'
+    );
+
+    // 4. Image expands to fullscreen
+    tl.to(imageWrap, {
+      width: '100vw',
+      height: '100dvh',
+      duration: 0.9,
+    }, '<0.65');
+    tl.to(box, {
+      width: '110vw',
+      duration: 0.9,
+    }, '<');
+
+    // 5. Fade the expanded image to the site background and complete
+    tl.to(image, {
+      opacity: 0,
+      duration: 0.4,
+      ease: 'power2.inOut',
+    }, '-=0.3');
+    tl.to(el, {
+      opacity: 0,
+      duration: 0.3,
+      ease: 'power2.in',
+      onComplete,
+    }, '-=0.15');
 
     return () => { tl.kill(); };
   }, [onComplete]);
 
+  const setLetterRef = (i: number) => (el: HTMLSpanElement | null) => {
+    lettersRef.current[i] = el;
+  };
+
   return (
     <div
       id="preloader"
-      ref={preloaderRef}
+      ref={containerRef}
       className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
-      style={{ backgroundColor: '#0a0216', clipPath: 'inset(0 0 0 0)' }}
+      style={{ backgroundColor: '#0a0216' }}
     >
-      {/* Subtle noise */}
+      {/* Noise overlay */}
       <div className="absolute inset-0 noise opacity-[0.04] mix-blend-overlay pointer-events-none" />
 
-      {/* Ambient glow */}
+      {/* Main heading with growing image box */}
       <div
-        ref={glowRef}
-        className="absolute w-[300px] h-[300px] rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(157,78,221,0.3) 0%, transparent 70%)' }}
-      />
-
-      {/* Logo + brand */}
-      <div className="relative z-10 flex items-center gap-4">
-        <div ref={logoRef}>
-          <Image
-            src="/oggi-logo.webp"
-            alt="oggi"
-            width={52}
-            height={52}
-            className="rounded-full"
-            priority
-          />
+        className="relative z-10 flex items-center justify-center whitespace-nowrap font-[family-name:var(--font-dongle)] font-medium text-white leading-[0.75]"
+        style={{ fontSize: 'clamp(5rem, 14vw, 12rem)', letterSpacing: '-0.05em' }}
+      >
+        {/* Left letters: "og" */}
+        <div ref={startRef} className="flex justify-end overflow-hidden" style={{ width: '1.1em' }}>
+          <span ref={setLetterRef(0)} className="block">o</span>
+          <span ref={setLetterRef(1)} className="block">g</span>
         </div>
-        <span
-          ref={textRef}
-          className="font-[family-name:var(--font-dongle)] text-white font-medium text-[2.4rem] leading-none"
-          style={{ letterSpacing: '-0.05em' }}
-        >
-          oggi
-        </span>
-      </div>
 
-      {/* Accent line */}
-      <div
-        ref={lineRef}
-        className="absolute bottom-[38%] left-[15%] right-[15%] h-px"
-        style={{ background: 'linear-gradient(90deg, transparent, rgba(157,78,221,0.5), transparent)' }}
-      />
+        {/* Growing image box */}
+        <div ref={boxRef} className="relative flex items-center justify-center" style={{ width: 0, height: '95%' }}>
+          <div
+            ref={imageWrapRef}
+            className="absolute flex items-center justify-center overflow-hidden"
+            style={{ width: '0%', height: '100%' }}
+          >
+            <div
+              ref={imageRef}
+              className="absolute w-full h-full"
+              style={{
+                minWidth: '0.9em',
+                background: 'radial-gradient(circle at center, rgba(157,78,221,0.4) 0%, rgba(10,2,22,0.95) 70%)',
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Right letters: "gi" */}
+        <div ref={endRef} className="flex justify-start overflow-hidden" style={{ width: '0.8em' }}>
+          <span ref={setLetterRef(2)} className="block">g</span>
+          <span ref={setLetterRef(3)} className="block">i</span>
+        </div>
+      </div>
     </div>
   );
 }

@@ -3,12 +3,17 @@ import { JSDOM } from 'jsdom';
 import { getPayloadClient } from '@/lib/payload';
 import { convertHTMLToLexical } from '@payloadcms/richtext-lexical';
 import { editorConfigFactory } from '@payloadcms/richtext-lexical';
-import configPromise from '@payload-config';
 
 const API_SECRET = process.env.POST_API_SECRET || 'oggi-create-post-2026';
 
+async function htmlToLexical(html: string) {
+  const payload = await getPayloadClient();
+  const sanitizedConfig = await payload.config;
+  const editorConfig = await editorConfigFactory.default({ config: sanitizedConfig });
+  return convertHTMLToLexical({ editorConfig, html, JSDOM: JSDOM as any });
+}
+
 export async function POST(request: NextRequest) {
-  // Simple auth check
   const authHeader = request.headers.get('x-api-secret');
   if (authHeader !== API_SECRET) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
@@ -16,7 +21,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const body = await request.json();
-    const { title, slug, excerpt, html, status = 'draft' } = body;
+    const { id, title, slug, excerpt, html, status = 'draft' } = body;
 
     if (!title || !html) {
       return NextResponse.json(
@@ -25,24 +30,32 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get Payload client and config
     const payload = await getPayloadClient();
-    const config = await configPromise;
-    const sanitizedConfig = await payload.config;
+    const lexicalContent = await htmlToLexical(html);
 
-    // Build editor config for HTML-to-Lexical conversion
-    const editorConfig = await editorConfigFactory.default({
-      config: sanitizedConfig,
-    });
+    // Update existing post or create new one
+    if (id) {
+      const post = await payload.update({
+        collection: 'posts',
+        id,
+        data: {
+          title,
+          excerpt: excerpt || undefined,
+          content: lexicalContent,
+          status,
+        },
+      });
 
-    // Convert HTML to Lexical JSON
-    const lexicalContent = convertHTMLToLexical({
-      editorConfig,
-      html,
-      JSDOM: JSDOM as any,
-    });
+      return NextResponse.json({
+        success: true,
+        action: 'updated',
+        id: post.id,
+        slug: post.slug,
+        url: `/de/blog/${post.slug}`,
+        adminUrl: `/admin/collections/posts/${post.id}`,
+      });
+    }
 
-    // Create the post
     const post = await payload.create({
       collection: 'posts',
       data: {
@@ -56,6 +69,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
+      action: 'created',
       id: post.id,
       slug: post.slug,
       url: `/de/blog/${post.slug}`,
@@ -63,9 +77,9 @@ export async function POST(request: NextRequest) {
     }, { status: 201 });
 
   } catch (error: any) {
-    console.error('Create post error:', error);
+    console.error('Create/update post error:', error);
     return NextResponse.json(
-      { error: error.message || 'Failed to create post' },
+      { error: error.message || 'Failed to create/update post' },
       { status: 500 },
     );
   }

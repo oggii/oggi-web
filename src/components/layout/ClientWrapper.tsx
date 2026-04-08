@@ -126,12 +126,17 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
 
       gsap.utils.toArray<HTMLElement>('.reveal-up').forEach(animateRevealUp);
 
-      // Watch for new .reveal-up elements added after Suspense resolves
+      // Watch for new elements added after Suspense resolves
       const observer = new MutationObserver((mutations) => {
         let hasNew = false;
+        const newRevealTexts: HTMLElement[] = [];
+        const newHeroFades: HTMLElement[] = [];
+
         for (const mutation of mutations) {
           for (const node of mutation.addedNodes) {
             if (!(node instanceof HTMLElement)) continue;
+
+            // Collect .reveal-up
             if (node.classList.contains('reveal-up')) {
               animateRevealUp(node);
               hasNew = true;
@@ -140,8 +145,43 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
               animateRevealUp(el);
               hasNew = true;
             });
+
+            // Collect .reveal-text
+            if (node.classList.contains('reveal-text')) newRevealTexts.push(node);
+            node.querySelectorAll<HTMLElement>('.reveal-text').forEach((el) => newRevealTexts.push(el));
+
+            // Collect .reveal-hero-fade
+            if (node.classList.contains('reveal-hero-fade')) newHeroFades.push(node);
+            node.querySelectorAll<HTMLElement>('.reveal-hero-fade').forEach((el) => newHeroFades.push(el));
+
+            // Parallax text
+            const parallaxEls = [
+              ...(node.classList.contains('parallax-text') ? [node] : []),
+              ...node.querySelectorAll<HTMLElement>('.parallax-text'),
+            ];
+            parallaxEls.forEach((element) => {
+              gsap.fromTo(element, { y: 50 }, {
+                y: -50, ease: 'none',
+                scrollTrigger: { trigger: element, start: 'top bottom', end: 'bottom top', scrub: true },
+              });
+            });
           }
         }
+
+        // Run hero entrance animation for newly added hero elements
+        if (newRevealTexts.length > 0 || newHeroFades.length > 0) {
+          hasNew = true;
+          const heroTl = gsap.timeline({ delay: 0.1 });
+          if (newRevealTexts.length > 0) {
+            gsap.set(newRevealTexts, { y: '100%' });
+            heroTl.to(newRevealTexts, { y: '0%', duration: 1.2, stagger: 0.05, ease: 'power4.out' });
+          }
+          if (newHeroFades.length > 0) {
+            gsap.set(newHeroFades, { y: 20, opacity: 0 });
+            heroTl.to(newHeroFades, { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out' }, '-=0.8');
+          }
+        }
+
         if (hasNew) ScrollTrigger.refresh();
       });
       observer.observe(document.body, { childList: true, subtree: true });

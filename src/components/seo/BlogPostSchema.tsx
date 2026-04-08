@@ -36,6 +36,7 @@ export function BlogPostSchema({ title, slug, locale, excerpt, publishedAt, upda
     publisher: {
       '@type': 'Organization',
       name: '0ggi Web & AI',
+      alternateName: ['Oggi Web & AI', 'Oggi'],
       url: 'https://0ggi.ch',
       logo: {
         '@type': 'ImageObject',

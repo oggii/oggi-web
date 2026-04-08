@@ -29,7 +29,7 @@ export function BlogPostSchema({ title, slug, locale, excerpt, publishedAt, upda
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     author: {
       '@type': 'Person',
-      name: 'Oggi Arifi',
+      name: 'O. Arifi',
       url: 'https://0ggi.ch',
       jobTitle: 'Web Developer & AI Automation',
     },

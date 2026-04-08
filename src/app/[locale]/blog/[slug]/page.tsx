@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
       description: post.excerpt || '',
       type: 'article',
       publishedTime: post.publishedAt,
-      authors: ['Oggi Arifi'],
+      authors: ['O. Arifi'],
       ...(post.featuredImage?.url && { images: [{ url: post.featuredImage.url }] }),
     },
   };

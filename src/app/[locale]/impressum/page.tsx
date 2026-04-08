@@ -23,18 +23,13 @@ export default async function ImpressumPage({ params }: { params: Promise<{ loca
 
           <section className="space-y-2">
             <h2 className="text-white font-medium text-lg">Verantwortlich für den Inhalt</h2>
-            <p>Oggi Arifi<br />
+            <p>O. Arifi<br />
             Basel, Schweiz<br />
             E-Mail: <a href="mailto:kontakt@0ggi.ch" className="text-luxota-accent hover:underline">kontakt@0ggi.ch</a><br />
             Web: <a href="https://0ggi.ch" className="text-luxota-accent hover:underline">0ggi.ch</a></p>
           </section>
 
-          <section className="space-y-2">
-            <h2 className="text-white font-medium text-lg">Unternehmensform</h2>
-            <p>Einzelunternehmen (Selbstständig erwerbend)</p>
-          </section>
-
-          <section className="space-y-2">
+<section className="space-y-2">
             <h2 className="text-white font-medium text-lg">Haftungsausschluss</h2>
             <p>
               Die Inhalte dieser Website wurden mit grösster Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit

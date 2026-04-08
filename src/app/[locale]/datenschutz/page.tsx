@@ -25,7 +25,7 @@ export default async function DatenschutzPage({ params }: { params: Promise<{ lo
             <h2 className="text-white font-medium text-lg">1. Verantwortliche Stelle</h2>
             <p>
               Verantwortlich für die Datenverarbeitung auf dieser Website ist:<br />
-              Oggi Arifi, Basel, Schweiz<br />
+              O. Arifi, Basel, Schweiz<br />
               E-Mail: <a href="mailto:kontakt@0ggi.ch" className="text-luxota-accent hover:underline">kontakt@0ggi.ch</a>
             </p>
           </section>

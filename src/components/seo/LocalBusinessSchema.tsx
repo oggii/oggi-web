@@ -38,7 +38,7 @@ export function LocalBusinessSchema() {
     ],
     founder: {
       '@type': 'Person',
-      name: 'Oggi Arifi',
+      name: 'O. Arifi',
       jobTitle: 'Web Developer & AI Automation',
     },
     sameAs: ['https://github.com/oggii/oggi-web'],

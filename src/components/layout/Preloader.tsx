@@ -26,10 +26,8 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
     });
 
     // 1. Letters slide up into view
-    tl.fromTo(letters, {
+    tl.from(letters, {
       yPercent: 110,
-    }, {
-      yPercent: 0,
       stagger: 0.03,
       duration: 0.7,
     });
@@ -106,8 +104,8 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       >
         {/* Left letters: "og" */}
         <div ref={startRef} className="flex justify-end overflow-hidden" style={{ width: '1.1em' }}>
-          <span ref={setLetterRef(0)} className="block" style={{ transform: 'translateY(110%)' }}>o</span>
-          <span ref={setLetterRef(1)} className="block" style={{ transform: 'translateY(110%)' }}>g</span>
+          <span ref={setLetterRef(0)} className="block">o</span>
+          <span ref={setLetterRef(1)} className="block">g</span>
         </div>
 
         {/* Growing image box */}
@@ -137,8 +135,8 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
 
         {/* Right letters: "gi" */}
         <div ref={endRef} className="flex justify-start overflow-hidden" style={{ width: '0.8em' }}>
-          <span ref={setLetterRef(2)} className="block" style={{ transform: 'translateY(110%)' }}>g</span>
-          <span ref={setLetterRef(3)} className="block" style={{ transform: 'translateY(110%)' }}>i</span>
+          <span ref={setLetterRef(2)} className="block">g</span>
+          <span ref={setLetterRef(3)} className="block">i</span>
         </div>
       </div>
     </div>

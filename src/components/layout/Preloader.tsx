@@ -26,8 +26,10 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
     });
 
     // 1. Letters slide up into view
-    tl.from(letters, {
+    tl.fromTo(letters, {
       yPercent: 110,
+    }, {
+      yPercent: 0,
       stagger: 0.03,
       duration: 0.7,
     });

@@ -268,13 +268,6 @@ export default function Navbar() {
               >
                 <Icon icon="mdi:instagram" className="text-lg" />
               </a>
-              <a
-                href="#"
-                aria-label="LinkedIn"
-                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shadow-[0_12px_24px_rgba(0,0,0,0.22)]"
-              >
-                <Icon icon="mdi:linkedin" className="text-lg" />
-              </a>
             </div>
           </div>
         </div>

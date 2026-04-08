@@ -7,6 +7,7 @@ import Lenis from '@studio-freight/lenis';
 import Preloader from './Preloader';
 import CustomCursor from './CustomCursor';
 import Navbar from './Navbar';
+import PageTransition from './PageTransition';
 import { usePathname } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import type { Locale } from '@/i18n/config';
@@ -225,6 +226,7 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
   return (
     <TranslationProvider locale={locale} dictionary={dictionary}>
       {loading && routePath === '' && <Preloader onComplete={() => setLoading(false)} />}
+      <PageTransition pathname={pathname ?? ''} />
 
       <div className={`transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         <div className="fixed inset-0 z-0 bg-luxota-bg">

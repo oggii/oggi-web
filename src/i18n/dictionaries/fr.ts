@@ -72,7 +72,9 @@ export const fr: Dictionary = {
     },
     process: {
         tag: '[ MÉTHODOLOGIE ]', title: 'Le Processus',
-        desc: 'J\'ai perfectionné ce flux de travail pour te garantir – solopreneur ou PME – un', descBold: 'déroulement absolument fluide',
+        desc: 'J\'ai perfectionné ce flux de travail pour te garantir – solopreneur ou PME – un',
+        descBold: 'déroulement absolument fluide',
+        descEnd: '– du premier kickoff au système qui scale.',
         s1t: 'Analyse & Stratégie', s1d: 'Compréhension profonde de ta configuration. Nous évaluons les goulots d\'étranglement et définissons une architecture exacte.',
         s2t: 'Concept & Design', s2d: 'L\'esthétique rencontre la conversion. Je développe des identités visuelles et des parcours utilisateurs qui créent la confiance.',
         s3t: 'Développement & Intégration', s3d: 'Du code qui performe. De l\'architecture frontend Next.js à l\'intégration transparente de n8n, OpenAI et CMS Headless.',

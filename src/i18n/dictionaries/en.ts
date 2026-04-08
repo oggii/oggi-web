@@ -72,7 +72,9 @@ export const en: Dictionary = {
     },
     process: {
         tag: '[ METHODOLOGY ]', title: 'The Process',
-        desc: 'I\'ve perfected this workflow over years to guarantee you – whether solopreneur or SME – a', descBold: 'completely seamless workflow',
+        desc: 'I\'ve perfected this workflow over years to guarantee you – whether solopreneur or SME – a',
+        descBold: 'completely seamless workflow',
+        descEnd: '– from the first kickoff to a scaling system.',
         s1t: 'Analysis & Strategy', s1d: 'Deep understanding of your setup. We evaluate current bottlenecks and define an exact architecture for web & automation.',
         s2t: 'Concept & Design', s2d: 'Aesthetics meets conversion. I develop visual identities and user journeys that build trust and are smooth to use.',
         s3t: 'Development & Integration', s3d: 'Code that performs. From Next.js frontend architecture to seamless integration of n8n, OpenAI, and Headless CMS.',

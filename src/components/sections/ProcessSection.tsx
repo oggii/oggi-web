@@ -24,7 +24,7 @@ export default function ProcessSection() {
           <span className="text-xs text-luxota-accent font-mono mb-4 block tracking-widest">{t('process.tag')}</span>
           <h2 className="text-4xl md:text-6xl font-medium tracking-tight text-white mb-8">{t('process.title')}</h2>
           <p className="text-xl text-luxota-dim font-light leading-relaxed">
-            {t('process.desc')} <strong className="text-white font-medium">{t('process.descBold')}</strong> – vom ersten Kickoff bis zum skalierenden System.
+            {t('process.desc')} <strong className="text-white font-medium">{t('process.descBold')}</strong> {t('process.descEnd')}
           </p>
         </div>
 

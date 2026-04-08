@@ -80,8 +80,9 @@ export const de = {
     },
     process: {
         tag: '[ METHODIK ]', title: 'Der Prozess',
-        desc: 'Ich habe diesen Ablauf über Jahre perfektioniert, um dir – ob Solopreneur oder KMU – einen absolut reibungslosen Ablauf zu garantieren – vom ersten Kickoff bis zum skalierenden System.',
+        desc: 'Ich habe diesen Ablauf über Jahre perfektioniert, um dir – ob Solopreneur oder KMU – einen',
         descBold: 'absolut reibungslosen Ablauf',
+        descEnd: 'zu garantieren – vom ersten Kickoff bis zum skalierenden System.',
         s1t: 'Analyse & Strategie', s1d: 'Tiefes Verständnis für dein Setup. Wir evaluieren aktuelle Engpässe und definieren eine exakte Architektur für Web & Automatisierung.',
         s2t: 'Konzept & Design', s2d: 'Ästhetik trifft auf Konversion. Ich entwickle visuelle Identitäten und User Journeys, die Vertrauen schaffen und glatt bedienbar sind.',
         s3t: 'Entwicklung & Integration', s3d: 'Code, der performt. Von der Next.js Frontend-Architektur bis hin zur nahtlosen Anbindung von n8n, OpenAI und Headless CMS.',

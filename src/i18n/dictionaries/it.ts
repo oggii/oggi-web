@@ -72,7 +72,9 @@ export const it: Dictionary = {
     },
     process: {
         tag: '[ METODOLOGIA ]', title: 'Il Processo',
-        desc: 'Ho perfezionato questo flusso di lavoro per garantirti – solopreneur o PMI – un', descBold: 'percorso assolutamente fluido',
+        desc: 'Ho perfezionato questo flusso di lavoro per garantirti – solopreneur o PMI – un',
+        descBold: 'percorso assolutamente fluido',
+        descEnd: '– dal primo kickoff al sistema che scala.',
         s1t: 'Analisi & Strategia', s1d: 'Comprensione profonda del tuo setup. Valutiamo i colli di bottiglia e definiamo un\'architettura esatta.',
         s2t: 'Concept & Design', s2d: 'L\'estetica incontra la conversione. Sviluppo identità visive e percorsi utente che creano fiducia.',
         s3t: 'Sviluppo & Integrazione', s3d: 'Codice che performa. Dall\'architettura frontend Next.js all\'integrazione di n8n, OpenAI e CMS Headless.',

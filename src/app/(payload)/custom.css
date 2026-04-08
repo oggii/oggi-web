@@ -1,0 +1,179 @@
+/* ── Payload Admin – shadcn-inspired theme overrides ── */
+
+/* ── Typography ── */
+:root {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+
+  /* shadcn-style neutral palette */
+  --theme-bg: #09090b;
+  --theme-elevation-0: #09090b;
+  --theme-elevation-50: #0a0a0c;
+  --theme-elevation-100: #18181b;
+  --theme-elevation-150: #1e1e22;
+  --theme-elevation-200: #27272a;
+  --theme-elevation-250: #2e2e32;
+  --theme-elevation-300: #3f3f46;
+  --theme-elevation-350: #4a4a52;
+  --theme-elevation-400: #52525b;
+  --theme-elevation-500: #71717a;
+  --theme-elevation-600: #a1a1aa;
+  --theme-elevation-650: #b4b4bc;
+  --theme-elevation-700: #d4d4d8;
+  --theme-elevation-750: #e0e0e4;
+  --theme-elevation-800: #e4e4e7;
+  --theme-elevation-850: #ececef;
+  --theme-elevation-900: #f4f4f5;
+  --theme-elevation-950: #fafafa;
+  --theme-elevation-1000: #ffffff;
+
+  /* Brand accent */
+  --theme-success-500: #22c55e;
+  --theme-error-500: #ef4444;
+  --theme-warning-500: #eab308;
+
+  --font-body: var(--font-sans);
+}
+
+/* Import Inter from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ── Global feel ── */
+body {
+  font-family: var(--font-sans) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Softer border radius (shadcn uses 0.5rem default) ── */
+.field-type,
+.card,
+[class*="cell"],
+.btn,
+button,
+input,
+textarea,
+select,
+.popup,
+.drawer__content {
+  border-radius: 0.5rem;
+}
+
+/* ── Buttons – shadcn style ── */
+.btn {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 150ms ease;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+/* ── Input fields ── */
+input:not([type="checkbox"]):not([type="radio"]),
+textarea,
+select,
+.react-select__control {
+  border-radius: 0.375rem !important;
+  font-family: var(--font-sans) !important;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+input:not([type="checkbox"]):not([type="radio"]):focus,
+textarea:focus,
+.react-select__control--is-focused {
+  box-shadow: 0 0 0 2px rgba(161, 161, 170, 0.2) !important;
+}
+
+/* ── Richtext / Lexical editor area ── */
+.rich-text-lexical,
+.ContentEditable__root,
+[contenteditable="true"] {
+  font-family: var(--font-sans) !important;
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: -0.01em;
+}
+
+/* ── Table list view ── */
+.collection-list .table {
+  font-size: 0.875rem;
+}
+
+.collection-list .table th {
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  font-size: 0.8125rem;
+}
+
+/* ── Sidebar ── */
+.nav-group__label {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.6875rem;
+  letter-spacing: 0.05em;
+}
+
+/* ── Upload/Media thumbnails in relationship fields – compact ── */
+.upload-relationship-details .file-meta__thumbnail,
+.field-type.upload .thumbnail,
+.upload .file-details .thumbnail,
+.relationship--has-many .thumbnail,
+.rich-text-lexical .upload-rich-text-component .lexical-upload__imageWrapper,
+.lexical-upload__imageWrapper {
+  display: none !important;
+}
+
+/* Show filename clearly when thumbnail is hidden */
+.upload-relationship-details .file-meta__content,
+.field-type.upload .file-details,
+.lexical-upload__topRow {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+/* ── Cards / Drawers – subtle shadow ── */
+.drawer__content,
+.popup__content {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.2);
+  border-radius: 0.75rem;
+}
+
+/* ── Field labels ── */
+.field-type label,
+.field-label {
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: -0.01em;
+}
+
+/* ── Field descriptions ── */
+.field-description {
+  font-size: 0.75rem;
+  opacity: 0.6;
+}
+
+/* ── Smoother transitions ── */
+a, button, .btn, input, textarea, select {
+  transition: all 150ms ease;
+}
+
+/* ── Scrollbar styling ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-elevation-300);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-elevation-400);
+}

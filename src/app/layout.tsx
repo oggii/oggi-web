@@ -9,7 +9,7 @@ import { isLocale } from '@/i18n/routing';
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit', display: 'swap' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', style: ['normal', 'italic'], display: 'swap', preload: false });
 const shareTechMono = Share_Tech_Mono({ weight: '400', subsets: ['latin'], variable: '--font-share-tech-mono', display: 'swap', preload: false });
-const dongle = Dongle({ weight: '300', subsets: ['latin'], variable: '--font-dongle', display: 'swap', preload: false });
+const dongle = Dongle({ weight: '400', subsets: ['latin'], variable: '--font-dongle', display: 'swap', preload: false });
 
 export const metadata: Metadata = createRootMetadata();
 

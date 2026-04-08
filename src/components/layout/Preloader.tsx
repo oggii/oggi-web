@@ -117,12 +117,19 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
           >
             <div
               ref={imageRef}
-              className="absolute w-full h-full"
+              className="absolute w-full h-full flex items-center justify-center"
               style={{
                 minWidth: '0.9em',
-                background: 'radial-gradient(circle at center, rgba(157,78,221,0.4) 0%, rgba(10,2,22,0.95) 70%)',
+                background: '#0a0216',
               }}
-            />
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/oggi-logo.webp"
+                alt=""
+                className="w-[70%] h-[70%] object-contain"
+              />
+            </div>
           </div>
         </div>
 

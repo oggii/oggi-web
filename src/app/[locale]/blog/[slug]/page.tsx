@@ -1,26 +1,33 @@
 import type { Locale } from '@/i18n/config';
 import type { Metadata } from 'next';
+import { cache } from 'react';
 import { getPayloadClient } from '@/lib/payload';
 import BlogPostPage from '@/components/pages/BlogPostPage';
 import { BlogPostSchema } from '@/components/seo/BlogPostSchema';
 import { notFound } from 'next/navigation';
 
+export const revalidate = 600; // ISR: revalidate every 10 minutes
+
 type Args = {
   params: Promise<{ locale: Locale; slug: string }>;
 };
 
-export async function generateMetadata({ params }: Args): Promise<Metadata> {
-  const { slug } = await params;
+const getPost = cache(async (slug: string) => {
   const payload = await getPayloadClient();
   const { docs } = await payload.find({
     collection: 'posts',
     where: { slug: { equals: slug }, status: { equals: 'published' } },
     limit: 1,
   });
+  return docs[0] as any | undefined;
+});
 
-  if (!docs.length) return { title: 'Post not found' };
+export async function generateMetadata({ params }: Args): Promise<Metadata> {
+  const { slug } = await params;
+  const post = await getPost(slug);
 
-  const post = docs[0] as any;
+  if (!post) return { title: 'Post not found' };
+
   return {
     title: post.title,
     description: post.excerpt || '',
@@ -36,23 +43,17 @@ export async function generateMetadata({ params }: Args): Promise<Metadata> {
 }
 
 export default async function LocalizedBlogPostPage({ params }: Args) {
-  const { slug } = await params;
-  const payload = await getPayloadClient();
-  const { docs } = await payload.find({
-    collection: 'posts',
-    where: { slug: { equals: slug }, status: { equals: 'published' } },
-    limit: 1,
-  });
+  const { locale, slug } = await params;
+  const post = await getPost(slug);
 
-  if (!docs.length) notFound();
-
-  const post = docs[0] as any;
+  if (!post) notFound();
 
   return (
     <>
       <BlogPostSchema
         title={post.title}
         slug={post.slug}
+        locale={locale}
         excerpt={post.excerpt}
         publishedAt={post.publishedAt}
         updatedAt={post.updatedAt}

@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from '@/i18n/TranslationContext';
@@ -16,20 +15,8 @@ type Post = {
   publishedAt?: string;
 };
 
-export default function BlogListPage() {
+export default function BlogListPage({ posts }: { posts: Post[] }) {
   const { t, locale } = useTranslation();
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('/api/posts?where[status][equals]=published&sort=-publishedAt&limit=50')
-      .then((res) => res.json())
-      .then((data) => {
-        setPosts(data.docs || []);
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
 
   return (
     <main className="pt-40 min-h-screen">
@@ -48,11 +35,7 @@ export default function BlogListPage() {
       {/* Posts Grid */}
       <section className="py-16 lg:py-24 relative z-10 bg-[#020203]">
         <div className="max-w-7xl mx-auto px-6">
-          {loading ? (
-            <div className="flex justify-center py-20">
-              <div className="w-8 h-8 border-2 border-luxota-accent/30 border-t-luxota-accent rounded-full animate-spin" />
-            </div>
-          ) : posts.length === 0 ? (
+          {posts.length === 0 ? (
             <p className="text-luxota-dim text-center py-20 text-lg">{t('blog.noPosts')}</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

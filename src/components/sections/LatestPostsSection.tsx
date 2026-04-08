@@ -1,6 +1,5 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from '@/i18n/TranslationContext';
@@ -15,16 +14,8 @@ type Post = {
   publishedAt?: string;
 };
 
-export default function LatestPostsSection() {
+export default function LatestPostsSection({ posts }: { posts: Post[] }) {
   const { t, locale } = useTranslation();
-  const [posts, setPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-    fetch('/api/posts?where[status][equals]=published&sort=-publishedAt&limit=3&depth=1')
-      .then((res) => res.json())
-      .then((data) => setPosts(data.docs || []))
-      .catch(() => {});
-  }, []);
 
   if (!posts.length) return null;
 

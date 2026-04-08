@@ -11,7 +11,16 @@ const FooterSection = dynamic(() => import('@/components/sections/FooterSection'
 const ServicesOverviewSection = dynamic(() => import('@/components/sections/ServicesOverviewSection'));
 const ServicesCtaSection = dynamic(() => import('@/components/sections/ServicesCtaSection'));
 
-export default function HomePage() {
+type Post = {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt?: string;
+  featuredImage?: { url: string } | null;
+  publishedAt?: string;
+};
+
+export default function HomePage({ latestPosts }: { latestPosts: Post[] }) {
   return (
     <main>
       <HeroSection />
@@ -22,7 +31,7 @@ export default function HomePage() {
       <PricingMaturitySection />
       <CommercialModelSection />
       <FAQSection />
-      <LatestPostsSection />
+      <LatestPostsSection posts={latestPosts} />
       <FooterSection />
     </main>
   );

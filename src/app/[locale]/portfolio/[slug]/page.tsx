@@ -6,6 +6,8 @@ import FooterSection from '@/components/sections/FooterSection';
 import { portfolioProjects } from '@/data/portfolioProjects';
 import { getDictionary } from '@/i18n/dictionaries';
 import { isLocale } from '@/i18n/routing';
+import type { Metadata } from 'next';
+import type { Locale } from '@/i18n/config';
 
 type Props = {
   params: Promise<{ locale: string; slug: string }>;
@@ -13,6 +15,37 @@ type Props = {
 
 export async function generateStaticParams() {
   return portfolioProjects.map((p) => ({ slug: p.slug }));
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale, slug } = await params;
+  const project = portfolioProjects.find((p) => p.slug === slug);
+  if (!project) return { title: 'Project not found' };
+
+  const dict = isLocale(locale) ? await getDictionary(locale as Locale) : await getDictionary('de');
+  const getTranslation = (key: string): string => {
+    const keys = key.split('.');
+    let value: unknown = dict;
+    for (const k of keys) {
+      if (typeof value !== 'object' || value === null || !(k in value)) return key;
+      value = (value as Record<string, unknown>)[k];
+    }
+    return typeof value === 'string' ? value : key;
+  };
+
+  const description = getTranslation(project.descriptionKey);
+
+  return {
+    title: project.title,
+    description,
+    openGraph: {
+      title: project.title,
+      description,
+      type: 'website',
+      url: `https://0ggi.ch/${locale}/portfolio/${slug}`,
+      ...(project.image && { images: [{ url: `https://0ggi.ch${project.image}` }] }),
+    },
+  };
 }
 
 export default async function PortfolioDetailPage({ params }: Props) {

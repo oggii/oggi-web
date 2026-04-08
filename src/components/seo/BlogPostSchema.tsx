@@ -1,16 +1,25 @@
 import Script from 'next/script';
+import type { Locale } from '@/i18n/config';
+
+const localeToLanguage: Record<Locale, string> = {
+  de: 'de-CH',
+  en: 'en',
+  fr: 'fr-CH',
+  it: 'it-CH',
+};
 
 type BlogPostSchemaProps = {
   title: string;
   slug: string;
+  locale: Locale;
   excerpt?: string;
   publishedAt?: string;
   updatedAt?: string;
   featuredImage?: { url: string } | null;
 };
 
-export function BlogPostSchema({ title, slug, excerpt, publishedAt, updatedAt, featuredImage }: BlogPostSchemaProps) {
-  const url = `https://0ggi.ch/de/blog/${slug}`;
+export function BlogPostSchema({ title, slug, locale, excerpt, publishedAt, updatedAt, featuredImage }: BlogPostSchemaProps) {
+  const url = `https://0ggi.ch/${locale}/blog/${slug}`;
 
   const data: Record<string, unknown> = {
     '@context': 'https://schema.org',
@@ -33,7 +42,7 @@ export function BlogPostSchema({ title, slug, excerpt, publishedAt, updatedAt, f
         url: 'https://0ggi.ch/opengraph-image',
       },
     },
-    inLanguage: 'de-CH',
+    inLanguage: localeToLanguage[locale],
   };
 
   if (excerpt) data.description = excerpt;

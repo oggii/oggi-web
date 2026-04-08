@@ -106,8 +106,8 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       >
         {/* Left letters: "og" */}
         <div ref={startRef} className="flex justify-end overflow-hidden" style={{ width: '1.1em' }}>
-          <span ref={setLetterRef(0)} className="block translate-y-full">o</span>
-          <span ref={setLetterRef(1)} className="block translate-y-full">g</span>
+          <span ref={setLetterRef(0)} className="block" style={{ transform: 'translateY(110%)' }}>o</span>
+          <span ref={setLetterRef(1)} className="block" style={{ transform: 'translateY(110%)' }}>g</span>
         </div>
 
         {/* Growing image box */}
@@ -137,8 +137,8 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
 
         {/* Right letters: "gi" */}
         <div ref={endRef} className="flex justify-start overflow-hidden" style={{ width: '0.8em' }}>
-          <span ref={setLetterRef(2)} className="block translate-y-full">g</span>
-          <span ref={setLetterRef(3)} className="block translate-y-full">i</span>
+          <span ref={setLetterRef(2)} className="block" style={{ transform: 'translateY(110%)' }}>g</span>
+          <span ref={setLetterRef(3)} className="block" style={{ transform: 'translateY(110%)' }}>i</span>
         </div>
       </div>
     </div>

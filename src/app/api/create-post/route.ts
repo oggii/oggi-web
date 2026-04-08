@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
     }
 
     const payload = await getPayloadClient();
-    const lexicalContent = await htmlToLexical(html);
+    const lexicalContent = body._rawContent || await htmlToLexical(html);
 
     // Update existing post or create new one
     if (id) {

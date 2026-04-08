@@ -2,7 +2,7 @@ import type { Locale } from '@/i18n/config';
 import { defaultLocale, locales } from '@/i18n/config';
 import { localizePath, type PUBLIC_ROUTES } from '@/i18n/routing';
 
-export const SITE_URL = 'https://0ggi.ch';
+export const SITE_URL = 'https://www.0ggi.ch';
 export const SITE_NAME = '0ggi Web & AI';
 
 type RouteKey = (typeof PUBLIC_ROUTES)[number];

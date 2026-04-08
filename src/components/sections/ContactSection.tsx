@@ -27,6 +27,7 @@ const INITIAL_FORM: FormState = {
 export default function ContactSection() {
   const { t } = useTranslation();
   const [form, setForm] = useState<FormState>(INITIAL_FORM);
+  const [phoneRevealed, setPhoneRevealed] = useState(false);
   const [submitState, setSubmitState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [submitMessage, setSubmitMessage] = useState('');
 
@@ -239,13 +240,23 @@ export default function ContactSection() {
               </p>
 
               <div className="space-y-5">
-                <a href="tel:+41762292893" className="flex items-start gap-4 rounded-[1.5rem] border border-white/8 bg-black/20 px-5 py-4 transition-colors hover:border-luxota-accent/30 hover:bg-white/[0.04]">
-                  <Icon icon="solar:phone-bold-duotone" className="mt-1 text-2xl text-luxota-accent" />
-                  <div>
-                    <div className="text-xs font-mono uppercase tracking-[0.24em] text-white/40">{t('contactPage.phoneLabel')}</div>
-                    <div className="mt-2 text-lg font-medium text-white">+41 76 229 28 93</div>
-                  </div>
-                </a>
+                {phoneRevealed ? (
+                  <a href="tel:+41762292893" className="flex items-start gap-4 rounded-[1.5rem] border border-white/8 bg-black/20 px-5 py-4 transition-colors hover:border-luxota-accent/30 hover:bg-white/[0.04]">
+                    <Icon icon="solar:phone-bold-duotone" className="mt-1 text-2xl text-luxota-accent" />
+                    <div>
+                      <div className="text-xs font-mono uppercase tracking-[0.24em] text-white/40">{t('contactPage.phoneLabel')}</div>
+                      <div className="mt-2 text-lg font-medium text-white">+41 76 229 28 93</div>
+                    </div>
+                  </a>
+                ) : (
+                  <button onClick={() => setPhoneRevealed(true)} className="flex items-start gap-4 rounded-[1.5rem] border border-white/8 bg-black/20 px-5 py-4 transition-colors hover:border-luxota-accent/30 hover:bg-white/[0.04] w-full text-left cursor-pointer">
+                    <Icon icon="solar:phone-bold-duotone" className="mt-1 text-2xl text-luxota-accent" />
+                    <div>
+                      <div className="text-xs font-mono uppercase tracking-[0.24em] text-white/40">{t('contactPage.phoneLabel')}</div>
+                      <div className="mt-2 text-lg font-medium text-white select-none blur-[6px] transition-all duration-300">+41 76 229 28 93</div>
+                    </div>
+                  </button>
+                )}
 
                 <div className="flex items-start gap-4 rounded-[1.5rem] border border-white/8 bg-black/20 px-5 py-4">
                   <Icon icon="solar:map-point-bold-duotone" className="mt-1 text-2xl text-luxota-accent" />

@@ -14,7 +14,7 @@ export default async function LocalizedBlogPage() {
   const payload = await getPayloadClient();
   const { docs } = await payload.find({
     collection: 'posts',
-    where: { status: { equals: 'published' } },
+    where: { _status: { equals: 'published' } },
     sort: '-publishedAt',
     limit: 50,
     depth: 1,

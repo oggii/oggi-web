@@ -1141,3 +1141,24 @@ html.light .bg-\[\#050507\] .border-white\/10 {
 html.light .bg-\[\#050507\] .bg-white\/5 {
   background-color: rgba(0, 0, 0, 0.03) !important;
 }
+
+/* ─── Services discover button ──────────────────────── */
+html.light .svc-discover-btn {
+  color: #1a1a2e !important;
+  border-color: rgba(157, 78, 221, 0.4) !important;
+}
+
+html.light .svc-discover-btn:hover {
+  color: #FFFFFF !important;
+}
+
+/* ─── Arrow buttons (service list etc) ──────────────── */
+html.light .border-white\/20.rounded-full {
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  color: #1a1a2e !important;
+}
+
+/* ─── Preloader — handled in component, but override noise ─ */
+html.light #preloader .noise {
+  opacity: 0.01 !important;
+}

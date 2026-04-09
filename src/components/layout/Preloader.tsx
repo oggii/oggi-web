@@ -1,8 +1,11 @@
 'use client';
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { useTheme } from '@/components/ThemeContext';
 
 export default function Preloader({ onComplete }: { onComplete: () => void }) {
+  const { theme } = useTheme();
+  const isLight = theme === 'light';
   const containerRef = useRef<HTMLDivElement>(null);
   const lettersRef = useRef<(HTMLSpanElement | null)[]>([]);
   const boxRef = useRef<HTMLDivElement>(null);
@@ -92,14 +95,14 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       id="preloader"
       ref={containerRef}
       className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
-      style={{ backgroundColor: '#0a0216' }}
+      style={{ backgroundColor: isLight ? '#F8F8FA' : '#0a0216' }}
     >
       {/* Noise overlay */}
       <div className="absolute inset-0 noise opacity-[0.04] mix-blend-overlay pointer-events-none" />
 
       {/* Main heading with growing image box */}
       <div
-        className="relative z-10 flex items-center justify-center whitespace-nowrap font-[family-name:var(--font-dongle)] font-medium text-white leading-[0.75]"
+        className={`relative z-10 flex items-center justify-center whitespace-nowrap font-[family-name:var(--font-dongle)] font-medium leading-[0.75] ${isLight ? 'text-[#1a1a2e]' : 'text-white'}`}
         style={{ fontSize: 'clamp(5rem, 14vw, 12rem)', letterSpacing: '-0.05em' }}
       >
         {/* Left letters: "og" */}
@@ -120,7 +123,9 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
               className="absolute w-full h-full flex items-center justify-center"
               style={{
                 minWidth: '0.9em',
-                background: 'radial-gradient(circle at center, rgba(157,78,221,0.4) 0%, rgba(10,2,22,0.95) 70%)',
+                background: isLight
+                  ? 'radial-gradient(circle at center, rgba(157,78,221,0.2) 0%, rgba(248,248,250,0.95) 70%)'
+                  : 'radial-gradient(circle at center, rgba(157,78,221,0.4) 0%, rgba(10,2,22,0.95) 70%)',
               }}
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}

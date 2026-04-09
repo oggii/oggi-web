@@ -287,14 +287,15 @@ export default function Navbar() {
                 {mobileLangOpen && (
                   <div className="absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 bg-[#1a1a2e] border border-white/10 rounded-xl p-2 w-max shadow-2xl z-[200]">
                     {locales.map((value) => (
-                      <a
+                      <Link
                         key={value}
                         href={localizePath(value, currentRoute)}
+                        onClick={() => { setMobileLangOpen(false); setMenuOpen(false); }}
                         className={`flex items-center gap-3 text-[10px] font-bold tracking-widest px-4 py-2.5 rounded-lg transition-colors ${locale === value ? 'bg-white/10 text-white' : 'text-white/50 active:bg-white/5 active:text-white'}`}
                       >
                         {renderFlag(value)}
                         <span>{localeNames[value]}</span>
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 )}

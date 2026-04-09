@@ -41,14 +41,7 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
 
     return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   });
-  // Skip preloader on mobile/touch devices to avoid blocking LCP for ~3s.
-  // Bots (Lighthouse, Googlebot) also emulate mobile touch devices, so this
-  // ensures PageSpeed and real mobile users see content immediately.
-  const [loading, setLoading] = useState(() => {
-    if (typeof window === 'undefined') return true;
-    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    return !isTouch; // desktop: show preloader; mobile: skip it
-  });
+  const [loading, setLoading] = useState(true);
   const pathname = usePathname();
   const routePath = stripLocaleFromPathname(pathname ?? '');
   const lenisRef = useRef<Lenis | null>(null);
@@ -61,7 +54,11 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
       }
       ScrollTrigger.refresh();
 
-      if (routePath !== '') {
+      // Skip preloader on mobile/touch devices to avoid blocking LCP for ~3s.
+      // Bots (Lighthouse, Googlebot) emulate mobile touch, so this also
+      // ensures PageSpeed sees content immediately.
+      const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+      if (routePath !== '' || isTouch) {
         setLoading(false);
       }
     });

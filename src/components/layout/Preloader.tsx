@@ -130,7 +130,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/oggi-logo.webp"
+                src="/oggi-logo-sm.webp"
                 alt=""
                 className="w-[60%] h-[60%] object-contain relative z-10"
               />

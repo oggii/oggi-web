@@ -27,7 +27,6 @@ type ClientWrapperProps = {
 };
 
 export function ClientWrapper({ children, locale, dictionary }: ClientWrapperProps) {
-  const [loading, setLoading] = useState(true);
   const [isTouchDevice] = useState(() => {
     if (typeof window === 'undefined') {
       return false;
@@ -41,6 +40,14 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
     }
 
     return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  });
+  // Skip preloader on mobile/touch devices to avoid blocking LCP for ~3s.
+  // Bots (Lighthouse, Googlebot) also emulate mobile touch devices, so this
+  // ensures PageSpeed and real mobile users see content immediately.
+  const [loading, setLoading] = useState(() => {
+    if (typeof window === 'undefined') return true;
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    return !isTouch; // desktop: show preloader; mobile: skip it
   });
   const pathname = usePathname();
   const routePath = stripLocaleFromPathname(pathname ?? '');

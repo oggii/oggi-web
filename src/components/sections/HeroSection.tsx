@@ -1,7 +1,15 @@
 'use client';
 
-import { Icon } from '@iconify/react';
 import { useTranslation } from '@/i18n/TranslationContext';
+
+// Inline SVG to avoid runtime fetch from Iconify CDN (solar:arrow-right-linear)
+function ArrowRightIcon({ className }: { className?: string }) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" className={className}>
+      <path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 12h16m0 0l-6-6m6 6l-6 6" />
+    </svg>
+  );
+}
 
 export default function HeroSection() {
   const { t, href } = useTranslation();
@@ -29,8 +37,8 @@ export default function HeroSection() {
             <div className="btn-glow"></div>
             <span className="relative z-10 text-sm font-bold flex items-center gap-2">
               {t('hero.actionAudit')}
-              <span className="iconify-container group-hover:translate-x-1 transition-transform">
-                <Icon icon="solar:arrow-right-linear" />
+              <span className="group-hover:translate-x-1 transition-transform">
+                <ArrowRightIcon />
               </span>
             </span>
             <div className="absolute inset-0 bg-luxota-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo"></div>

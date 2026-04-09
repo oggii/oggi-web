@@ -24,6 +24,10 @@ export default async function RootLayout({
 
   return (
     <html lang={locale} className={`${outfit.variable} ${playfair.variable} ${shareTechMono.variable} ${dongle.variable} antialiased`}>
+      <head>
+        {/* Pre-resolve Iconify CDN DNS for below-fold Icon components */}
+        <link rel="dns-prefetch" href="https://api.iconify.design" />
+      </head>
       <body className="selection:bg-luxota-accent/30 selection:text-luxota-accent text-[#E5E5E5] bg-[#020203] overflow-x-hidden lg:cursor-none">
         <div className="ambient-light">
           <div className="blob blob-1"></div>

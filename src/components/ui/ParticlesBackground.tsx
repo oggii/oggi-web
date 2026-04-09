@@ -20,11 +20,23 @@ export default function ParticlesBackground({
   const [init, setInit] = useState(false);
 
   useEffect(() => {
-    initParticlesEngine(async (engine) => {
-      await loadSlim(engine);
-    }).then(() => {
-      setInit(true);
-    });
+    // Defer particle engine init until the browser is idle to avoid blocking
+    // the main thread during initial page load (reduces TBT significantly).
+    const initFn = () => {
+      initParticlesEngine(async (engine) => {
+        await loadSlim(engine);
+      }).then(() => {
+        setInit(true);
+      });
+    };
+
+    if ('requestIdleCallback' in window) {
+      const id = window.requestIdleCallback(initFn, { timeout: 3000 });
+      return () => window.cancelIdleCallback(id);
+    } else {
+      const id = window.setTimeout(initFn, 2000);
+      return () => window.clearTimeout(id);
+    }
   }, []);
 
   const options = useMemo(() => ({

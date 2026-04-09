@@ -7,6 +7,13 @@ import { lexicalEditor, EXPERIMENTAL_TableFeature } from '@payloadcms/richtext-l
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import sharp from 'sharp';
 
+// New collections, globals, plugins
+import { Categories } from './collections/Categories';
+import { Pages } from './collections/Pages';
+import { Header } from './Header/config';
+import { Footer } from './Footer/config';
+import { plugins } from './plugins';
+
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -160,6 +167,7 @@ export default buildConfig({
     features: ({ defaultFeatures }) => [...defaultFeatures, EXPERIMENTAL_TableFeature()],
   }),
   db: postgresAdapter({
+    push: true,
     pool: {
       connectionString: process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.og_POSTGRES_URL || '',
     },
@@ -170,9 +178,11 @@ export default buildConfig({
       collections: { media: true },
       token: process.env.BLOB_READ_WRITE_TOKEN || '',
     }),
+    ...plugins,
   ],
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },
-  collections: [Users, Media, Posts],
+  collections: [Users, Media, Posts, Categories, Pages],
+  globals: [Header, Footer],
 });

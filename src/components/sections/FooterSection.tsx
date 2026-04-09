@@ -88,7 +88,7 @@ export default function FooterSection() {
             </div>
           </div>
 
-          <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-xs text-luxota-dim/60 font-mono tracking-wider gap-4">
+          <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-center text-xs text-luxota-dim/60 font-mono tracking-wider gap-4">
             <div className="flex items-center gap-3">
               <span className="w-1.5 h-1.5 rounded-full bg-luxota-accent animate-pulse"></span>
               <span className="uppercase">0ggi Web & AI Services</span>

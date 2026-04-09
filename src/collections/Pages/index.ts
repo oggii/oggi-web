@@ -7,7 +7,7 @@ import { Content } from '../../blocks/Content/config'
 import { FormBlock } from '../../blocks/Form/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { hero } from '../../heros/config'
-import { slugField } from 'payload'
+// Using manual slug field instead of slugField() for reliable auto-generation
 import { populatePublishedAt } from '../../hooks/populatePublishedAt'
 import { generatePreviewPath } from '../../utilities/generatePreviewPath'
 import { revalidateDelete, revalidatePage } from './hooks/revalidatePage'
@@ -82,11 +82,32 @@ export const Pages: CollectionConfig = {
       ],
     },
     { name: 'publishedAt', type: 'date', admin: { position: 'sidebar' } },
-    slugField({ required: false }),
+    {
+      name: 'slug',
+      type: 'text',
+      unique: true,
+      index: true,
+      admin: {
+        position: 'sidebar',
+        description: 'Auto-generated from title. Edit to customize.',
+      },
+    },
   ],
   hooks: {
     afterChange: [revalidatePage],
-    beforeChange: [populatePublishedAt],
+    beforeChange: [
+      populatePublishedAt,
+      ({ data, operation }) => {
+        if (data?.title && (!data.slug || operation === 'create')) {
+          data.slug = data.title
+            .toLowerCase()
+            .replace(/[äöü]/g, (c: string) => ({ ä: 'ae', ö: 'oe', ü: 'ue' })[c] || c)
+            .replace(/[^a-z0-9]+/g, '-')
+            .replace(/(^-|-$)/g, '')
+        }
+        return data
+      },
+    ],
     afterDelete: [revalidateDelete],
   },
   versions: {

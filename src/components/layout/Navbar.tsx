@@ -194,7 +194,7 @@ export default function Navbar() {
         )}
       </header>
 
-      <div className={`fixed inset-0 z-[110] md:hidden ${menuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
+      <div className={`fixed inset-0 z-[110] md:hidden dark-keep ${menuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
         <div
           className={`absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(157,78,221,0.18),transparent_42%),rgba(4,1,10,0.82)] backdrop-blur-sm transition-opacity duration-300 ease-out ${
             menuOpen ? 'opacity-100' : 'opacity-0'

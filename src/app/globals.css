@@ -720,9 +720,92 @@ html.light ::selection {
   color: #6B21A8 !important;
 }
 
-/* Mobile menu - keep dark */
-html.light .bg-\[\#0a0216\]\/\[0\.96\] {
+/* Mobile menu — force dark colors even in light mode */
+html.light .dark-keep,
+html.light .dark-keep * {
+  --dk-reset: true;
+}
+
+html.light .dark-keep .text-white {
+  color: #FFFFFF !important;
+}
+
+html.light .dark-keep .text-white\/50 {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+html.light .dark-keep .text-white\/60 {
+  color: rgba(255, 255, 255, 0.6) !important;
+}
+
+html.light .dark-keep .text-white\/70 {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+html.light .dark-keep .text-white\/80 {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+html.light .dark-keep .text-white\/90 {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+html.light .dark-keep .text-white\/30 {
+  color: rgba(255, 255, 255, 0.3) !important;
+}
+
+html.light .dark-keep .border-white\/10,
+html.light .dark-keep .border-white\/30 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html.light .dark-keep .border-white\/30 {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+html.light .dark-keep .bg-white {
+  background-color: #FFFFFF !important;
+  color: #0a0216 !important;
+}
+
+html.light .dark-keep .text-luxota-bg {
+  color: #020203 !important;
+}
+
+html.light .dark-keep .text-luxota-accent {
+  color: #9D4EDD !important;
+}
+
+html.light .dark-keep .border-luxota-accent {
+  border-color: #9D4EDD !important;
+}
+
+html.light .dark-keep .bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+html.light .dark-keep .bg-white\/10 {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html.light .dark-keep .hover\:bg-white\/10:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html.light .dark-keep .hover\:bg-white\/5:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+html.light .dark-keep .hover\:text-white:hover {
+  color: #FFFFFF !important;
+}
+
+html.light .dark-keep .bg-\[\#0a0216\]\/\[0\.96\] {
   background-color: rgba(10, 2, 22, 0.96) !important;
+}
+
+html.light .dark-keep .font-\[family-name\:var\(--font-dongle\)\] {
+  color: #FFFFFF !important;
 }
 
 /* Dimmed text */

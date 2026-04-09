@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url';
 import { buildConfig } from 'payload';
 import type { CollectionConfig } from 'payload';
 import { postgresAdapter } from '@payloadcms/db-postgres';
-import { lexicalEditor, EXPERIMENTAL_TableFeature } from '@payloadcms/richtext-lexical';
+import { lexicalEditor, EXPERIMENTAL_TableFeature, BlocksFeature, FixedToolbarFeature, HeadingFeature, HorizontalRuleFeature, InlineToolbarFeature } from '@payloadcms/richtext-lexical';
 import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob';
 import sharp from 'sharp';
 
@@ -13,6 +13,17 @@ import { Pages } from './collections/Pages';
 import { Header } from './Header/config';
 import { Footer } from './Footer/config';
 import { plugins } from './plugins';
+import { Banner } from './blocks/Banner/config';
+import { Code } from './blocks/Code/config';
+import { MediaBlock } from './blocks/MediaBlock/config';
+
+import {
+  MetaDescriptionField,
+  MetaImageField,
+  MetaTitleField,
+  OverviewField,
+  PreviewField,
+} from '@payloadcms/plugin-seo/fields';
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -46,6 +57,17 @@ const Media: CollectionConfig = {
   slug: 'media',
   upload: {
     mimeTypes: ['image/*'],
+    adminThumbnail: 'thumbnail',
+    focalPoint: true,
+    imageSizes: [
+      { name: 'thumbnail', width: 300 },
+      { name: 'square', width: 500, height: 500 },
+      { name: 'small', width: 600 },
+      { name: 'medium', width: 900 },
+      { name: 'large', width: 1400 },
+      { name: 'xlarge', width: 1920 },
+      { name: 'og', width: 1200, height: 630, crop: 'center' },
+    ],
   },
   admin: {
     useAsTitle: 'alt',
@@ -102,6 +124,87 @@ const Posts: CollectionConfig = {
       required: true,
     },
     {
+      type: 'tabs',
+      tabs: [
+        {
+          label: 'Content',
+          fields: [
+            {
+              name: 'featuredImage',
+              type: 'upload',
+              relationTo: 'media',
+            },
+            {
+              name: 'content',
+              type: 'richText',
+              required: true,
+              editor: lexicalEditor({
+                features: ({ rootFeatures }) => [
+                  ...rootFeatures,
+                  HeadingFeature({ enabledHeadingSizes: ['h1', 'h2', 'h3', 'h4'] }),
+                  BlocksFeature({ blocks: [Banner, Code, MediaBlock] }),
+                  FixedToolbarFeature(),
+                  InlineToolbarFeature(),
+                  HorizontalRuleFeature(),
+                ],
+              }),
+            },
+          ],
+        },
+        {
+          label: 'Meta',
+          fields: [
+            {
+              name: 'excerpt',
+              type: 'textarea',
+              admin: {
+                description: 'Short summary shown on the blog listing page.',
+              },
+            },
+            {
+              name: 'relatedPosts',
+              type: 'relationship',
+              filterOptions: ({ id }) => ({ id: { not_in: [id] } }),
+              hasMany: true,
+              relationTo: 'posts',
+            },
+            {
+              name: 'categories',
+              type: 'relationship',
+              hasMany: true,
+              relationTo: 'categories',
+            },
+            {
+              name: 'authors',
+              type: 'relationship',
+              hasMany: true,
+              relationTo: 'users',
+            },
+          ],
+        },
+        {
+          name: 'meta',
+          label: 'SEO',
+          fields: [
+            OverviewField({
+              titlePath: 'meta.title',
+              descriptionPath: 'meta.description',
+              imagePath: 'meta.image',
+            }),
+            MetaTitleField({ hasGenerateFn: true }),
+            MetaImageField({ relationTo: 'media' }),
+            MetaDescriptionField({}),
+            PreviewField({
+              hasGenerateFn: true,
+              titlePath: 'meta.title',
+              descriptionPath: 'meta.description',
+            }),
+          ],
+        },
+      ],
+    },
+    // Sidebar fields
+    {
       name: 'slug',
       type: 'text',
       required: true,
@@ -111,23 +214,6 @@ const Posts: CollectionConfig = {
         position: 'sidebar',
         description: 'Auto-generated from title. Edit to customize.',
       },
-    },
-    {
-      name: 'excerpt',
-      type: 'textarea',
-      admin: {
-        description: 'Short summary shown on the blog listing page.',
-      },
-    },
-    {
-      name: 'featuredImage',
-      type: 'upload',
-      relationTo: 'media',
-    },
-    {
-      name: 'content',
-      type: 'richText',
-      required: true,
     },
     {
       name: 'status',
@@ -167,7 +253,7 @@ export default buildConfig({
     features: ({ defaultFeatures }) => [...defaultFeatures, EXPERIMENTAL_TableFeature()],
   }),
   db: postgresAdapter({
-    push: false,
+    push: process.env.PAYLOAD_PUSH === 'true',
     pool: {
       connectionString: process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.og_POSTGRES_URL || '',
     },

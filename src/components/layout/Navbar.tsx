@@ -219,34 +219,6 @@ export default function Navbar() {
             </Link>
 
             <div className="flex items-center gap-2 ml-auto">
-              {/* Language dropdown */}
-              <div className="relative">
-                <button
-                  onClick={() => setMobileLangOpen(!mobileLangOpen)}
-                  className="flex items-center gap-2 bg-white/5 rounded-full px-3 py-2 border border-white/10 transition-colors hover:bg-white/10"
-                >
-                  {renderFlag(locale)}
-                  <span className="text-[9px] font-bold tracking-widest text-white">{localeNames[locale]}</span>
-                  <Icon icon="mdi:chevron-down" className={`text-xs text-white/60 transition-transform duration-300 ${mobileLangOpen ? 'rotate-180' : ''}`} />
-                </button>
-
-                {mobileLangOpen && (
-                  <div className="absolute top-[calc(100%+6px)] right-0 bg-[#1a1a2e]/95 backdrop-blur-md border border-white/10 rounded-xl p-1.5 w-max shadow-2xl z-[200]">
-                    {locales.map((value) => (
-                      <a
-                        key={value}
-                        href={localizePath(value, currentRoute)}
-                        onClick={() => setMobileLangOpen(false)}
-                        className={`flex items-center gap-2.5 text-[9px] font-bold tracking-widest px-3 py-2 rounded-lg transition-colors ${locale === value ? 'bg-white/10 text-white' : 'text-white/50 hover:bg-white/5 hover:text-white'}`}
-                      >
-                        {renderFlag(value)}
-                        <span>{localeNames[value]}</span>
-                      </a>
-                    ))}
-                  </div>
-                )}
-              </div>
-
               {/* Theme toggle */}
               <button
                 onClick={toggleTheme}
@@ -290,24 +262,53 @@ export default function Navbar() {
           </div>
 
           <div
-            className={`px-6 py-8 border-t border-white/10 flex justify-between items-end mt-auto transform-gpu transition-[transform,opacity] duration-[360ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            className={`px-6 py-8 border-t border-white/10 mt-auto transform-gpu transition-[transform,opacity] duration-[360ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
               menuOpen ? 'translate-y-0 opacity-100' : 'translate-y-3 opacity-0'
             }`}
             style={{ transitionDelay: menuOpen ? '220ms' : '0ms' }}
           >
-            <div className="flex flex-col gap-2">
-              <span className="text-[10px] font-bold tracking-widest text-white/50 uppercase">{t('nav.contactUs')}</span>
-              <a href="mailto:info@0ggi.ch" className="text-white text-sm font-medium hover:opacity-80 tracking-wide">info@0ggi.ch</a>
-            </div>
+            <div className="flex justify-between items-end">
+              <div className="flex flex-col gap-2">
+                <span className="text-[10px] font-bold tracking-widest text-white/50 uppercase">{t('nav.contactUs')}</span>
+                <a href="mailto:info@0ggi.ch" className="text-white text-sm font-medium hover:opacity-80 tracking-wide">info@0ggi.ch</a>
+              </div>
 
-            <div className="flex gap-3">
-              <a
-                href="#"
-                aria-label="Instagram"
-                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shadow-[0_12px_24px_rgba(0,0,0,0.22)]"
-              >
-                <Icon icon="mdi:instagram" className="text-lg" />
-              </a>
+              {/* Language selector — center bottom */}
+              <div className="relative">
+                <button
+                  onClick={() => setMobileLangOpen(!mobileLangOpen)}
+                  className="flex items-center gap-2 bg-white/5 rounded-full px-4 py-2.5 border border-white/10 transition-colors active:bg-white/10"
+                >
+                  {renderFlag(locale)}
+                  <span className="text-[10px] font-bold tracking-widest text-white">{localeNames[locale]}</span>
+                  <Icon icon="mdi:chevron-up" className={`text-xs text-white/60 transition-transform duration-300 ${mobileLangOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {mobileLangOpen && (
+                  <div className="absolute bottom-[calc(100%+8px)] left-1/2 -translate-x-1/2 bg-[#1a1a2e] border border-white/10 rounded-xl p-2 w-max shadow-2xl z-[200]">
+                    {locales.map((value) => (
+                      <a
+                        key={value}
+                        href={localizePath(value, currentRoute)}
+                        className={`flex items-center gap-3 text-[10px] font-bold tracking-widest px-4 py-2.5 rounded-lg transition-colors ${locale === value ? 'bg-white/10 text-white' : 'text-white/50 active:bg-white/5 active:text-white'}`}
+                      >
+                        {renderFlag(value)}
+                        <span>{localeNames[value]}</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              <div className="flex gap-3">
+                <a
+                  href="#"
+                  aria-label="Instagram"
+                  className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shadow-[0_12px_24px_rgba(0,0,0,0.22)]"
+                >
+                  <Icon icon="mdi:instagram" className="text-lg" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

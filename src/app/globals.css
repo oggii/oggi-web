@@ -867,3 +867,124 @@ html.light ::-webkit-scrollbar-track {
 html.light ::-webkit-scrollbar-thumb {
   background: #C0C0CC;
 }
+
+/* ─── Gradient text overrides ───────────────────────── */
+
+/* White-to-white/40 gradient text → dark gradient in light mode */
+html.light .text-transparent.bg-clip-text {
+  -webkit-text-fill-color: transparent !important;
+}
+
+html.light .bg-gradient-to-r.from-white.to-white\/40,
+html.light .bg-gradient-to-r.from-white.to-white\/30,
+html.light .bg-gradient-to-b.from-white.to-white\/30 {
+  background-image: linear-gradient(to right, #1a1a2e, rgba(26, 26, 46, 0.4)) !important;
+}
+
+html.light .bg-gradient-to-r.from-luxota-accent.to-white\/40,
+html.light .bg-gradient-to-r.from-luxota-accent.to-white\/30 {
+  background-image: linear-gradient(to right, #9D4EDD, rgba(157, 78, 221, 0.4)) !important;
+}
+
+html.light .bg-gradient-to-r.from-white.to-luxota-accent {
+  background-image: linear-gradient(to right, #1a1a2e, #9D4EDD) !important;
+}
+
+/* Custom text-gradient-premium class */
+html.light .text-gradient-premium {
+  background-image: linear-gradient(135deg, #1a1a2e 0%, #9D4EDD 50%, #1a1a2e 100%) !important;
+  background-size: 200% auto !important;
+}
+
+/* ─── Italic serif headings (hero subtitles) ────────── */
+html.light .italic.font-serif.text-white\/30,
+html.light .italic.font-serif.text-white\/40 {
+  color: rgba(26, 26, 46, 0.35) !important;
+}
+
+html.light .italic.font-serif {
+  color: #9D4EDD !important;
+}
+
+/* ─── Blog post prose overrides ─────────────────────── */
+html.light .prose strong,
+html.light .prose b,
+html.light .prose-strong\:text-white strong {
+  color: #1a1a2e !important;
+}
+
+html.light .prose a {
+  color: #9D4EDD !important;
+}
+
+html.light .prose p,
+html.light .prose li {
+  color: #374151 !important;
+}
+
+html.light .prose h1,
+html.light .prose h2,
+html.light .prose h3,
+html.light .prose h4 {
+  color: #1a1a2e !important;
+}
+
+html.light .prose blockquote {
+  border-color: #9D4EDD !important;
+  color: #4B5563 !important;
+}
+
+html.light .prose code {
+  color: #9D4EDD !important;
+  background-color: rgba(157, 78, 221, 0.08) !important;
+}
+
+/* ─── Client marquee strip ──────────────────────────── */
+html.light .from-\[\#020203\] {
+  --tw-gradient-from: #F8F8FA !important;
+}
+
+html.light .to-\[\#020203\] {
+  --tw-gradient-to: #F8F8FA !important;
+}
+
+/* Portfolio dark gradient overlays */
+html.light .from-\[\#0e0e10\] {
+  --tw-gradient-from: rgba(248, 248, 250, 0.9) !important;
+}
+
+html.light .from-black\/90 {
+  --tw-gradient-from: rgba(248, 248, 250, 0.9) !important;
+}
+
+html.light .via-black\/60 {
+  --tw-gradient-via: rgba(248, 248, 250, 0.6) !important;
+}
+
+/* ─── Contact form inputs ───────────────────────────── */
+html.light input,
+html.light textarea,
+html.light select {
+  color: #1a1a2e !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: rgba(26, 26, 46, 0.35) !important;
+}
+
+/* ─── Misc remaining white text patterns ────────────── */
+html.light .text-white\/55 {
+  color: rgba(26, 26, 46, 0.48) !important;
+}
+
+html.light .text-white\/20 {
+  color: rgba(26, 26, 46, 0.18) !important;
+}
+
+/* Ensure all SVG icons invert */
+html.light .text-white .text-xl,
+html.light .text-white .text-lg,
+html.light .text-white .text-2xl {
+  color: inherit !important;
+}

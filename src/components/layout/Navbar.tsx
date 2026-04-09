@@ -14,6 +14,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [mobileLangOpen, setMobileLangOpen] = useState(false);
   const pathname = usePathname();
   const { t, locale, href } = useTranslation();
   const { theme, toggleTheme } = useTheme();
@@ -217,34 +218,51 @@ export default function Navbar() {
               {renderLogo(118, 32)}
             </Link>
 
-            <div className="flex bg-white/5 rounded-full p-1 ml-auto mr-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
-              {locales.map((value, index) => (
-                <Link
-                  key={value}
-                  href={localizePath(value, currentRoute)}
-                  className={`text-[9px] font-bold tracking-widest px-3 py-1.5 rounded-full transition-colors ${locale === value ? 'bg-white text-luxota-bg' : 'text-white/50 hover:text-white'}`}
-                  style={{ transitionDelay: menuOpen ? `${140 + index * 30}ms` : '0ms' }}
+            <div className="flex items-center gap-2 ml-auto">
+              {/* Language dropdown */}
+              <div className="relative">
+                <button
+                  onClick={() => setMobileLangOpen(!mobileLangOpen)}
+                  className="flex items-center gap-2 bg-white/5 rounded-full px-3 py-2 border border-white/10 transition-colors hover:bg-white/10"
                 >
-                  {localeNames[value]}
-                </Link>
-              ))}
+                  {renderFlag(locale)}
+                  <span className="text-[9px] font-bold tracking-widest text-white">{localeNames[locale]}</span>
+                  <Icon icon="mdi:chevron-down" className={`text-xs text-white/60 transition-transform duration-300 ${mobileLangOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                <div className={`absolute top-[calc(100%+6px)] right-0 bg-[#1a1a2e]/95 backdrop-blur-md border border-white/10 rounded-xl p-1.5 w-max shadow-2xl transition-all duration-200 origin-top-right z-50 ${mobileLangOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
+                  {locales.map((value) => (
+                    <Link
+                      key={value}
+                      href={localizePath(value, currentRoute)}
+                      onClick={() => { setMobileLangOpen(false); setMenuOpen(false); }}
+                      className={`flex items-center gap-2.5 text-[9px] font-bold tracking-widest px-3 py-2 rounded-lg transition-colors ${locale === value ? 'bg-white/10 text-white' : 'text-white/50 hover:bg-white/5 hover:text-white'}`}
+                    >
+                      {renderFlag(value)}
+                      <span>{localeNames[value]}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Theme toggle */}
+              <button
+                onClick={toggleTheme}
+                aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shrink-0 shadow-[0_12px_32px_rgba(0,0,0,0.28)]"
+              >
+                <Icon icon={theme === 'dark' ? 'solar:sun-bold' : 'solar:moon-bold'} className="text-lg" />
+              </button>
+
+              {/* Close menu */}
+              <button
+                onClick={() => setMenuOpen(false)}
+                aria-label="Menü schließen"
+                className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shrink-0 shadow-[0_12px_32px_rgba(0,0,0,0.28)]"
+              >
+                <Icon icon="mdi:close" className={`text-xl transition-transform duration-500 ${menuOpen ? 'rotate-0 scale-100' : 'rotate-90 scale-75'}`} />
+              </button>
             </div>
-
-            <button
-              onClick={toggleTheme}
-              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
-              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shrink-0 shadow-[0_12px_32px_rgba(0,0,0,0.28)]"
-            >
-              <Icon icon={theme === 'dark' ? 'solar:sun-bold' : 'solar:moon-bold'} className="text-lg" />
-            </button>
-
-            <button
-              onClick={() => setMenuOpen(false)}
-              aria-label="Menü schließen"
-              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shrink-0 shadow-[0_12px_32px_rgba(0,0,0,0.28)]"
-            >
-              <Icon icon="mdi:close" className={`text-xl transition-transform duration-500 ${menuOpen ? 'rotate-0 scale-100' : 'rotate-90 scale-75'}`} />
-            </button>
           </div>
 
           <div className="relative flex-1 px-6 py-10 flex flex-col justify-center gap-8">

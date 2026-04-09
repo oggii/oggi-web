@@ -30,13 +30,8 @@ export default function ParticlesBackground({
       });
     };
 
-    if ('requestIdleCallback' in window) {
-      const id = window.requestIdleCallback(initFn, { timeout: 3000 });
-      return () => window.cancelIdleCallback(id);
-    } else {
-      const id = window.setTimeout(initFn, 2000);
-      return () => window.clearTimeout(id);
-    }
+    const id = window.requestIdleCallback(initFn, { timeout: 3000 });
+    return () => window.cancelIdleCallback(id);
   }, []);
 
   const options = useMemo(() => ({

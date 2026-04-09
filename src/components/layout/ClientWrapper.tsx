@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from '@studio-freight/lenis';
@@ -27,6 +27,13 @@ type ClientWrapperProps = {
 
 export function ClientWrapper({ children, locale, dictionary }: ClientWrapperProps) {
   const [loading, setLoading] = useState(true);
+
+  // Skip preloader for returning visitors — runs before paint to avoid flash
+  useLayoutEffect(() => {
+    if (sessionStorage.getItem('og-visited')) {
+      setLoading(false);
+    }
+  }, []);
   const [isTouchDevice] = useState(() => {
     if (typeof window === 'undefined') {
       return false;
@@ -66,15 +73,17 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
       const revealText = gsap.utils.toArray<HTMLElement>('.reveal-text');
       const revealHeroFade = gsap.utils.toArray<HTMLElement>('.reveal-hero-fade');
 
-      // Set initial invisibility via GSAP immediately on mount to avoid flash
-      if (revealText.length > 0) {
-        gsap.set(revealText, { y: '100%' });
+      // Only hide-then-reveal hero elements when preloader is active.
+      // When preloader is skipped, let content be visible immediately (critical for LCP).
+      if (loading) {
+        if (revealText.length > 0) {
+          gsap.set(revealText, { y: '100%' });
+        }
+        if (revealHeroFade.length > 0) {
+          gsap.set(revealHeroFade, { y: 20, opacity: 0 });
+        }
+        return;
       }
-      if (revealHeroFade.length > 0) {
-        gsap.set(revealHeroFade, { y: 20, opacity: 0 });
-      }
-
-      if (loading) return;
 
       // Parallax text
       gsap.utils.toArray('.parallax-text').forEach((el: unknown) => {
@@ -94,7 +103,7 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
         );
       });
 
-      const tl = gsap.timeline({ delay: 0.1 }); 
+      const tl = gsap.timeline({ delay: 0.1 });
       tl.fromTo('.reveal-nav', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' });
 
       if (revealText.length > 0) {
@@ -224,9 +233,9 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
 
   return (
     <TranslationProvider locale={locale} dictionary={dictionary}>
-      {loading && routePath === '' && <Preloader onComplete={() => setLoading(false)} />}
+      {loading && routePath === '' && <Preloader onComplete={() => { sessionStorage.setItem('og-visited', '1'); setLoading(false); }} />}
 
-      <div className={`transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
+      <div className="transition-opacity duration-700 opacity-100">
         <div className="fixed inset-0 z-0 bg-luxota-bg">
           {/* On mobile: show reduced particles hero-only. On desktop: full background. */}
           <ParticlesBackground

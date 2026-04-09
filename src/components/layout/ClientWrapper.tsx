@@ -18,6 +18,7 @@ const ParticlesBackground = dynamic(() => import('@/components/ui/ParticlesBackg
 });
 
 import { TranslationProvider } from '@/i18n/TranslationContext';
+import { ThemeProvider, useTheme } from '@/components/ThemeContext';
 
 type ClientWrapperProps = {
   children: React.ReactNode;
@@ -224,14 +225,53 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
 
   return (
     <TranslationProvider locale={locale} dictionary={dictionary}>
+      <ThemeProvider>
+        <ClientWrapperInner
+          loading={loading}
+          routePath={routePath}
+          setLoading={setLoading}
+          isTouchDevice={isTouchDevice}
+          hasFinePointer={hasFinePointer}
+          pathname={pathname}
+        >
+          {children}
+        </ClientWrapperInner>
+      </ThemeProvider>
+    </TranslationProvider>
+  );
+}
+
+function ClientWrapperInner({
+  children,
+  loading,
+  routePath,
+  setLoading,
+  isTouchDevice,
+  hasFinePointer,
+  pathname,
+}: {
+  children: React.ReactNode;
+  loading: boolean;
+  routePath: string;
+  setLoading: (v: boolean) => void;
+  isTouchDevice: boolean;
+  hasFinePointer: boolean;
+  pathname: string | null;
+}) {
+  const { theme } = useTheme();
+  const isLight = theme === 'light';
+
+  return (
+    <>
       {loading && routePath === '' && <Preloader onComplete={() => setLoading(false)} />}
 
       <div className={`transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
         <div className="fixed inset-0 z-0 bg-luxota-bg">
-          {/* On mobile: show reduced particles hero-only. On desktop: full background. */}
           <ParticlesBackground
             count={isTouchDevice ? 30 : 80}
             heroOnly={isTouchDevice}
+            particleColor={isLight ? '#9D4EDD' : '#ffffff'}
+            linkColor={isLight ? '#9D4EDD' : '#ffffff'}
           />
         </div>
 
@@ -240,10 +280,9 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
         <div className="relative z-10">
           {hasFinePointer && <CustomCursor />}
           <Navbar key={pathname} />
-          {/* PAGE CONTENT */}
           {children}
         </div>
       </div>
-    </TranslationProvider>
+    </>
   );
 }

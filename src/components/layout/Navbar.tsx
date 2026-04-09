@@ -8,6 +8,7 @@ import { Icon } from '@iconify/react';
 import { useTranslation } from '@/i18n/TranslationContext';
 import { locales, localeNames } from '@/i18n/config';
 import { localizePath, stripLocaleFromPathname } from '@/i18n/routing';
+import { useTheme } from '@/components/ThemeContext';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,6 +16,7 @@ export default function Navbar() {
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
   const pathname = usePathname();
   const { t, locale, href } = useTranslation();
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     let lastY = window.scrollY;
@@ -125,7 +127,17 @@ export default function Navbar() {
             </div>
           </div>
 
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 z-40">
+          <div className="absolute right-0 top-1/2 -translate-y-1/2 z-40 flex items-center gap-3">
+            <button
+              onClick={toggleTheme}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="bg-[#1A1A1A]/95 backdrop-blur-md border border-white/5 rounded-full w-10 h-10 flex items-center justify-center shadow-lg transition-all hover:bg-white/10"
+            >
+              <Icon
+                icon={theme === 'dark' ? 'solar:sun-bold' : 'solar:moon-bold'}
+                className="text-lg text-white/80 transition-transform duration-500"
+              />
+            </button>
             <Link
               href={contactLink.href}
               className={`rounded-full px-5 py-3 text-xs font-semibold shadow-2xl transition-all ${
@@ -217,6 +229,14 @@ export default function Navbar() {
                 </Link>
               ))}
             </div>
+
+            <button
+              onClick={toggleTheme}
+              aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+              className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white hover:bg-white/10 transition-colors shrink-0 shadow-[0_12px_32px_rgba(0,0,0,0.28)]"
+            >
+              <Icon icon={theme === 'dark' ? 'solar:sun-bold' : 'solar:moon-bold'} className="text-lg" />
+            </button>
 
             <button
               onClick={() => setMenuOpen(false)}

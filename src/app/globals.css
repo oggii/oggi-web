@@ -586,3 +586,165 @@ iconify-icon {
     inset 0 0 5px 2px hsl(var(--glow-hue) 100% 70%);
   z-index: 2;
 }
+
+/* ─── Light Theme ─────────────────────────────────────── */
+html.light body {
+  background-color: #F8F8FA;
+  color: #1a1a2e;
+}
+
+html.light .bg-luxota-bg,
+html.light .bg-\[\#020203\] {
+  background-color: #F8F8FA !important;
+}
+
+/* Navbar */
+html.light .bg-\[\#1A1A1A\]\/95,
+html.light .bg-\[\#1A1A1A\]\/95 {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light .text-white {
+  color: #1a1a2e !important;
+}
+
+html.light .text-white\/70 {
+  color: rgba(26, 26, 46, 0.6) !important;
+}
+
+html.light .text-white\/50 {
+  color: rgba(26, 26, 46, 0.45) !important;
+}
+
+html.light .text-white\/60 {
+  color: rgba(26, 26, 46, 0.5) !important;
+}
+
+html.light .text-white\/80 {
+  color: rgba(26, 26, 46, 0.7) !important;
+}
+
+html.light .text-\[\#E5E5E5\] {
+  color: #1a1a2e !important;
+}
+
+/* Borders */
+html.light .border-white\/5,
+html.light .border-white\/10,
+html.light .border-white\/30 {
+  border-color: rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Backgrounds with transparency */
+html.light .bg-white\/5 {
+  background-color: rgba(0, 0, 0, 0.03) !important;
+}
+
+html.light .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* Cards and surfaces */
+html.light .bg-luxota-card {
+  background-color: #FFFFFF !important;
+}
+
+/* Active nav items */
+html.light .bg-white {
+  background-color: #1a1a2e !important;
+  color: #FFFFFF !important;
+}
+
+html.light .text-luxota-bg {
+  color: #FFFFFF !important;
+}
+
+/* Hover states */
+html.light .hover\:bg-white\/5:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .hover\:bg-white\/10:hover {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+html.light .hover\:bg-white:hover {
+  background-color: #1a1a2e !important;
+  color: #FFFFFF !important;
+}
+
+html.light .hover\:text-white:hover {
+  color: #1a1a2e !important;
+}
+
+/* Blobs - softer in light mode */
+html.light .blob-1 {
+  background: radial-gradient(circle, rgba(157, 78, 221, 0.08) 0%, transparent 70%) !important;
+}
+
+html.light .blob-2 {
+  background: radial-gradient(circle, rgba(157, 78, 221, 0.04) 0%, transparent 70%) !important;
+}
+
+html.light .blob-3 {
+  background: radial-gradient(circle, rgba(157, 78, 221, 0.06) 0%, transparent 70%) !important;
+}
+
+/* Noise overlay - lighter */
+html.light .noise {
+  opacity: 0.015 !important;
+}
+
+/* Prose / typography */
+html.light .prose-invert {
+  --tw-prose-body: #374151 !important;
+  --tw-prose-headings: #1a1a2e !important;
+  --tw-prose-links: #9D4EDD !important;
+  --tw-prose-bold: #1a1a2e !important;
+}
+
+/* Custom cursor */
+html.light .cursor-dot {
+  background-color: #1a1a2e !important;
+  box-shadow: 0 0 6px rgba(26, 26, 46, 0.3) !important;
+}
+
+html.light .cursor-outline {
+  border-color: rgba(26, 26, 46, 0.25) !important;
+}
+
+/* Selection */
+html.light ::selection {
+  background-color: rgba(157, 78, 221, 0.2) !important;
+  color: #6B21A8 !important;
+}
+
+/* Mobile menu - keep dark */
+html.light .bg-\[\#0a0216\]\/\[0\.96\] {
+  background-color: rgba(10, 2, 22, 0.96) !important;
+}
+
+/* Dimmed text */
+html.light .text-luxota-dim {
+  color: #6b7280 !important;
+}
+
+/* Divider lines */
+html.light .bg-white\/10 {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+/* Accent stays the same */
+html.light .text-luxota-accent {
+  color: #9D4EDD !important;
+}
+
+html.light .border-luxota-accent {
+  border-color: #9D4EDD !important;
+}
+
+/* Logo text in navbar */
+html.light .font-\[family-name\:var\(--font-dongle\)\] {
+  color: #1a1a2e !important;
+}

@@ -1,15 +1,22 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 
 interface Props {
   count?: number;
-  heroOnly?: boolean; // limit canvas height to 100vh (hero area)
+  heroOnly?: boolean;
+  particleColor?: string;
+  linkColor?: string;
 }
 
-export default function ParticlesBackground({ count = 80, heroOnly = false }: Props) {
+export default function ParticlesBackground({
+  count = 80,
+  heroOnly = false,
+  particleColor = '#ffffff',
+  linkColor = '#ffffff',
+}: Props) {
   const [init, setInit] = useState(false);
 
   useEffect(() => {
@@ -19,6 +26,30 @@ export default function ParticlesBackground({ count = 80, heroOnly = false }: Pr
       setInit(true);
     });
   }, []);
+
+  const options = useMemo(() => ({
+    particles: {
+      number: { value: count, density: { enable: true, width: 800 }, limit: { value: count + 40 } },
+      color: { value: particleColor },
+      shape: { type: 'circle' },
+      opacity: { value: 0.2 },
+      size: { value: { min: 1, max: 3 } },
+      links: { enable: true, distance: 150, color: linkColor, opacity: 0.1, width: 1 },
+      move: { enable: true, speed: 0.5, direction: 'none' as const, outModes: 'out' as const },
+    },
+    interactivity: {
+      events: {
+        onHover: { enable: !heroOnly, mode: 'grab' },
+        onClick: { enable: !heroOnly, mode: 'repulse' },
+      },
+      modes: {
+        grab: { distance: 200, links: { opacity: 0.3 } },
+        repulse: { distance: 200, duration: 0.4 },
+      },
+    },
+    detectRetina: false,
+    background: { color: 'transparent' },
+  }), [count, heroOnly, particleColor, linkColor]);
 
   if (!init) return null;
 
@@ -36,30 +67,9 @@ export default function ParticlesBackground({ count = 80, heroOnly = false }: Pr
     >
       <Particles
         id="tsparticles"
+        key={`${particleColor}-${linkColor}`}
         style={{ height: '100%' }}
-        options={{
-          particles: {
-            number: { value: count, density: { enable: true, width: 800 }, limit: { value: count + 40 } },
-            color: { value: '#ffffff' },
-            shape: { type: 'circle' },
-            opacity: { value: 0.2 },
-            size: { value: { min: 1, max: 3 } },
-            links: { enable: true, distance: 150, color: '#ffffff', opacity: 0.1, width: 1 },
-            move: { enable: true, speed: 0.5, direction: 'none', outModes: 'out' },
-          },
-          interactivity: {
-            events: {
-              onHover: { enable: !heroOnly, mode: 'grab' },
-              onClick: { enable: !heroOnly, mode: 'repulse' },
-            },
-            modes: {
-              grab: { distance: 200, links: { opacity: 0.3 } },
-              repulse: { distance: 200, duration: 0.4 },
-            },
-          },
-          detectRetina: false, // disable on mobile for perf
-          background: { color: 'transparent' }
-        }}
+        options={options}
       />
     </div>
   );

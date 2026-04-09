@@ -16,7 +16,7 @@ const getPost = cache(async (slug: string) => {
   const payload = await getPayloadClient();
   const { docs } = await payload.find({
     collection: 'posts',
-    where: { slug: { equals: slug }, _status: { equals: 'published' } },
+    where: { slug: { equals: slug }, status: { equals: 'published' } },
     limit: 1,
   });
   return docs[0] as any | undefined;

@@ -52,7 +52,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const payload = await getPayloadClient();
     const { docs } = await payload.find({
       collection: 'posts',
-      where: { _status: { equals: 'published' } },
+      where: { status: { equals: 'published' } },
       sort: '-publishedAt',
       limit: 100,
       depth: 0,

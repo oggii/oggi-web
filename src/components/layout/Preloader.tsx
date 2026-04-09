@@ -25,34 +25,34 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       defaults: { ease: 'expo.inOut' },
     });
 
-    // 1. Letters slide up into view (shortened for faster LCP)
+    // 1. Letters slide up into view
     tl.from(letters, {
       yPercent: 110,
-      stagger: 0.02,
-      duration: 0.4,
+      stagger: 0.03,
+      duration: 0.7,
     });
 
     // 2. Box expands between letter groups, image grows inside
     tl.fromTo(box,
       { width: '0em' },
-      { width: '0.9em', duration: 0.4 },
-      '<0.3'
+      { width: '0.9em', duration: 0.7 },
+      '<0.6'
     );
     tl.fromTo(imageWrap,
       { width: '0%' },
-      { width: '100%', duration: 0.4 },
+      { width: '100%', duration: 0.7 },
       '<'
     );
 
     // 3. Letter groups shift apart slightly
     tl.fromTo(start,
       { x: '0em' },
-      { x: '-0.03em', duration: 0.4 },
+      { x: '-0.03em', duration: 0.7 },
       '<'
     );
     tl.fromTo(end,
       { x: '0em' },
-      { x: '0.03em', duration: 0.4 },
+      { x: '0.03em', duration: 0.7 },
       '<'
     );
 
@@ -60,25 +60,25 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
     tl.to(imageWrap, {
       width: '100vw',
       height: '100dvh',
-      duration: 0.5,
-    }, '<0.35');
+      duration: 0.9,
+    }, '<0.65');
     tl.to(box, {
       width: '110vw',
-      duration: 0.5,
+      duration: 0.9,
     }, '<');
 
     // 5. Fade the expanded image to the site background and complete
     tl.to(image, {
       opacity: 0,
-      duration: 0.25,
+      duration: 0.4,
       ease: 'power2.inOut',
-    }, '-=0.2');
+    }, '-=0.3');
     tl.to(el, {
       opacity: 0,
-      duration: 0.2,
+      duration: 0.3,
       ease: 'power2.in',
       onComplete,
-    }, '-=0.1');
+    }, '-=0.15');
 
     return () => { tl.kill(); };
   }, [onComplete]);

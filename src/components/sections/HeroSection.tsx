@@ -20,11 +20,11 @@ export default function HeroSection() {
           </div>
         </h1>
 
-        <p className="text-lg md:text-xl text-luxota-dim max-w-xl mx-auto leading-relaxed mb-14 font-light reveal-hero-fade">
+        <p className="text-lg md:text-xl text-luxota-dim max-w-xl mx-auto leading-relaxed mb-14 font-light opacity-0 reveal-hero-fade translate-y-4">
           {t('hero.subtitle')}
         </p>
 
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-6 reveal-hero-fade">
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-6 opacity-0 reveal-hero-fade">
           <a href="#action" className="group relative px-9 py-4 bg-white text-luxota-bg rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(255,255,255,0.4)]">
             <div className="btn-glow"></div>
             <span className="relative z-10 text-sm font-bold flex items-center gap-2">
@@ -41,7 +41,7 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3 reveal-hero-fade z-20">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3 opacity-0 reveal-hero-fade z-20">
         <span className="text-[9px] text-white/30 tracking-[0.3em] uppercase">{t('hero.scroll')}</span>
         <div className="w-[1px] h-12 bg-gradient-to-b from-transparent via-white/20 to-transparent"></div>
       </div>

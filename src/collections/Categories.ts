@@ -14,6 +14,6 @@ export const Categories: CollectionConfig = {
   admin: { useAsTitle: 'title' },
   fields: [
     { name: 'title', type: 'text', required: true },
-    slugField(),
+    slugField({ required: false }),
   ],
 }

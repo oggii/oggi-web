@@ -82,7 +82,7 @@ export const Pages: CollectionConfig = {
       ],
     },
     { name: 'publishedAt', type: 'date', admin: { position: 'sidebar' } },
-    slugField(),
+    slugField({ required: false }),
   ],
   hooks: {
     afterChange: [revalidatePage],

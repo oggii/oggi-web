@@ -13,15 +13,15 @@ import { authenticated } from './access/authenticated'
 
 // Collections
 import { Categories } from './collections/Categories'
-import { Pages } from './collections/Pages'
-import { Posts } from './collections/Posts'
+import { Pages } from './collections/Pages/index'
+import { Posts } from './collections/Posts/index'
 
 // Globals
 import { Header } from './Header/config'
 import { Footer } from './Footer/config'
 
 // Plugins
-import { plugins } from './plugins'
+import { plugins } from './plugins/index'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -95,6 +95,7 @@ export default buildConfig({
     features: ({ defaultFeatures }) => [...defaultFeatures, EXPERIMENTAL_TableFeature()],
   }),
   db: postgresAdapter({
+    push: true,
     pool: {
       connectionString:
         process.env.DATABASE_URL || process.env.POSTGRES_URL || process.env.og_POSTGRES_URL || '',

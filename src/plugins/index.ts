@@ -7,10 +7,10 @@ import type { Plugin } from 'payload'
 import type { GenerateTitle, GenerateURL } from '@payloadcms/plugin-seo/types'
 import { FixedToolbarFeature, HeadingFeature, lexicalEditor } from '@payloadcms/richtext-lexical'
 
-import { revalidateRedirects } from '@/hooks/revalidateRedirects'
-import { searchFields } from '@/search/fieldOverrides'
-import { beforeSyncWithSearch } from '@/search/beforeSync'
-import { getServerSideURL } from '@/utilities/getURL'
+import { revalidateRedirects } from '../hooks/revalidateRedirects'
+import { searchFields } from '../search/fieldOverrides'
+import { beforeSyncWithSearch } from '../search/beforeSync'
+import { getServerSideURL } from '../utilities/getURL'
 
 const generateTitle: GenerateTitle = ({ doc }) => {
   return doc?.title ? `${doc.title} | 0ggi` : '0ggi'

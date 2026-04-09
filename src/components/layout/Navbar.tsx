@@ -230,19 +230,21 @@ export default function Navbar() {
                   <Icon icon="mdi:chevron-down" className={`text-xs text-white/60 transition-transform duration-300 ${mobileLangOpen ? 'rotate-180' : ''}`} />
                 </button>
 
-                <div className={`absolute top-[calc(100%+6px)] right-0 bg-[#1a1a2e]/95 backdrop-blur-md border border-white/10 rounded-xl p-1.5 w-max shadow-2xl transition-all duration-200 origin-top-right z-50 ${mobileLangOpen ? 'opacity-100 scale-100' : 'opacity-0 scale-95 pointer-events-none'}`}>
-                  {locales.map((value) => (
-                    <Link
-                      key={value}
-                      href={localizePath(value, currentRoute)}
-                      onClick={() => { setMobileLangOpen(false); setMenuOpen(false); }}
-                      className={`flex items-center gap-2.5 text-[9px] font-bold tracking-widest px-3 py-2 rounded-lg transition-colors ${locale === value ? 'bg-white/10 text-white' : 'text-white/50 hover:bg-white/5 hover:text-white'}`}
-                    >
-                      {renderFlag(value)}
-                      <span>{localeNames[value]}</span>
-                    </Link>
-                  ))}
-                </div>
+                {mobileLangOpen && (
+                  <div className="absolute top-[calc(100%+6px)] right-0 bg-[#1a1a2e]/95 backdrop-blur-md border border-white/10 rounded-xl p-1.5 w-max shadow-2xl z-[200]">
+                    {locales.map((value) => (
+                      <a
+                        key={value}
+                        href={localizePath(value, currentRoute)}
+                        onClick={() => setMobileLangOpen(false)}
+                        className={`flex items-center gap-2.5 text-[9px] font-bold tracking-widest px-3 py-2 rounded-lg transition-colors ${locale === value ? 'bg-white/10 text-white' : 'text-white/50 hover:bg-white/5 hover:text-white'}`}
+                      >
+                        {renderFlag(value)}
+                        <span>{localeNames[value]}</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Theme toggle */}

@@ -35,6 +35,35 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        // Baseline security headers for every response. Covers Lighthouse's
+        // HSTS, COOP, X-Frame-Options and nosniff "Best Practices" audits.
+        // CSP and Trusted Types are intentionally omitted — they need a
+        // tailored policy and can break Payload admin / inline scripts.
+        source: '/:path*',
+        headers: [
+          {
+            key: 'Strict-Transport-Security',
+            value: 'max-age=63072000; includeSubDomains; preload',
+          },
+          {
+            key: 'X-Content-Type-Options',
+            value: 'nosniff',
+          },
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+          {
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
+          },
+          {
+            key: 'Cross-Origin-Opener-Policy',
+            value: 'same-origin',
+          },
+        ],
+      },
     ];
   },
   async redirects() {

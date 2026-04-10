@@ -62,20 +62,57 @@ export default function Navbar() {
   const mobileNavLinks = [...navLinks, contactLink];
   const isContactActive = pathname === contactLink.href || pathname?.startsWith(`${contactLink.href}/`);
 
-  const getFlag = (value: (typeof locales)[number]) =>
-    value === 'de' ? 'https://flagcdn.com/w20/ch.png' : `https://flagcdn.com/w20/${value === 'en' ? 'us' : value}.png`;
-
-  const renderFlag = (value: (typeof locales)[number]) => (
-    <Image
-      src={getFlag(value)}
-      alt=""
-      width={20}
-      height={15}
-      className="rounded-sm brightness-90 saturate-150"
-      style={{ width: '14px', height: 'auto' }}
-      unoptimized
-    />
-  );
+  // Inline SVG locale flags. Replaces the previous flagcdn.com fetch which
+  // (a) added a third-party DNS+TLS handshake, (b) failed Lighthouse's
+  // aspect-ratio audit (20x20 source displayed at 14x10), and (c) failed the
+  // low-resolution audit. Each flag is ~150 B inline. Visual sizing matches
+  // the previous 14px-wide rendering.
+  const renderFlag = (value: (typeof locales)[number]) => {
+    const cls = 'rounded-sm brightness-90 saturate-150 shrink-0';
+    const w = 14;
+    switch (value) {
+      case 'de': // Switzerland (DE locale = Swiss German)
+        return (
+          <svg className={cls} width={w} height={w} viewBox="0 0 32 32" aria-hidden="true">
+            <rect width="32" height="32" fill="#D52B1E" />
+            <rect x="13" y="6" width="6" height="20" fill="#fff" />
+            <rect x="6" y="13" width="20" height="6" fill="#fff" />
+          </svg>
+        );
+      case 'en': // United States
+        return (
+          <svg className={cls} width={w} height={Math.round(w * 10 / 19)} viewBox="0 0 19 10" aria-hidden="true">
+            <rect width="19" height="10" fill="#fff" />
+            <g fill="#B22234">
+              <rect y="0" width="19" height="0.77" />
+              <rect y="1.54" width="19" height="0.77" />
+              <rect y="3.08" width="19" height="0.77" />
+              <rect y="4.62" width="19" height="0.77" />
+              <rect y="6.15" width="19" height="0.77" />
+              <rect y="7.69" width="19" height="0.77" />
+              <rect y="9.23" width="19" height="0.77" />
+            </g>
+            <rect width="7.6" height="5.38" fill="#3C3B6E" />
+          </svg>
+        );
+      case 'fr': // France
+        return (
+          <svg className={cls} width={w} height={Math.round(w * 2 / 3)} viewBox="0 0 3 2" aria-hidden="true">
+            <rect width="1" height="2" fill="#0055A4" />
+            <rect x="1" width="1" height="2" fill="#fff" />
+            <rect x="2" width="1" height="2" fill="#EF4135" />
+          </svg>
+        );
+      case 'it': // Italy
+        return (
+          <svg className={cls} width={w} height={Math.round(w * 2 / 3)} viewBox="0 0 3 2" aria-hidden="true">
+            <rect width="1" height="2" fill="#009246" />
+            <rect x="1" width="1" height="2" fill="#fff" />
+            <rect x="2" width="1" height="2" fill="#CE2B37" />
+          </svg>
+        );
+    }
+  };
 
   const renderLogo = (width: number, _height: number, fontScale = 0.48) => (
     <span className="flex items-center gap-3">

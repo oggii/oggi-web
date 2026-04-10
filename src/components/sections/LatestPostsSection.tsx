@@ -59,7 +59,7 @@ export default function LatestPostsSection({ posts }: { posts: Post[] }) {
               )}
               <div className="p-6">
                 {post.publishedAt && (
-                  <p className="text-xs text-luxota-dim/60 font-mono mb-2">
+                  <p className="text-xs text-white/70 font-mono mb-2">
                     {new Date(post.publishedAt).toLocaleDateString(locale, { year: 'numeric', month: 'long', day: 'numeric' })}
                   </p>
                 )}

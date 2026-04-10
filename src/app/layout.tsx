@@ -25,9 +25,12 @@ export default function RootLayout({
   return (
     <html lang={defaultLocale} className={`${outfit.variable} ${playfair.variable} ${shareTechMono.variable} ${dongle.variable} antialiased`}>
       <head>
-        {/* Iconify icons are fetched at runtime by below-fold <Icon> components.
-            preconnect (TCP+TLS) shaves ~300 ms vs dns-prefetch on mobile per PSI. */}
-        <link rel="preconnect" href="https://api.iconify.design" crossOrigin="" />
+        {/* Iconify icons are fetched at runtime by <Icon> components from
+            @iconify/react. The fetches are made WITHOUT credentials, so the
+            preconnect must NOT carry crossOrigin="" — otherwise the browser
+            opens a separate anonymous connection that the actual XHR cannot
+            reuse, and Lighthouse correctly reports the preconnect as unused. */}
+        <link rel="preconnect" href="https://api.iconify.design" />
       </head>
       <body className="selection:bg-luxota-accent/30 selection:text-luxota-accent text-[#E5E5E5] bg-[#020203] overflow-x-hidden lg:cursor-none">
         <div className="ambient-light">

@@ -249,23 +249,31 @@ function ClientWrapperInner({
     <>
       {loading && routePath === '' && <Preloader onComplete={() => setLoading(false)} />}
 
-      <div className={`transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}>
-        <div className="fixed inset-0 z-0 bg-luxota-bg">
-          <ParticlesBackground
-            count={isTouchDevice ? 30 : 80}
-            heroOnly={isTouchDevice}
-            particleColor={isLight ? '#9D4EDD' : '#ffffff'}
-            linkColor={isLight ? '#9D4EDD' : '#ffffff'}
-          />
-        </div>
+      {/*
+        Children render at full opacity from the SSR markup. The Preloader is
+        position:fixed inset-0 z-[9999] with a solid background, so it already
+        covers everything beneath while it animates and fades itself out via
+        its own GSAP timeline — we do not need an extra opacity wrapper.
 
-        <div className="noise pointer-events-none opacity-[0.035] mix-blend-overlay fixed inset-0 z-[1]"></div>
+        The previous CSS opacity-0 wrapper made the entire content tree
+        invisible to Chrome's LCP detector until after hydration + a 700ms
+        fade, which pushed mobile LCP from ~2 s to ~5.3 s in PSI.
+      */}
+      <div className="fixed inset-0 z-0 bg-luxota-bg">
+        <ParticlesBackground
+          count={isTouchDevice ? 30 : 80}
+          heroOnly={isTouchDevice}
+          particleColor={isLight ? '#9D4EDD' : '#ffffff'}
+          linkColor={isLight ? '#9D4EDD' : '#ffffff'}
+        />
+      </div>
 
-        <div className="relative z-10">
-          {hasFinePointer && <CustomCursor />}
-          <Navbar key={pathname} />
-          {children}
-        </div>
+      <div className="noise pointer-events-none opacity-[0.035] mix-blend-overlay fixed inset-0 z-[1]"></div>
+
+      <div className="relative z-10">
+        {hasFinePointer && <CustomCursor />}
+        <Navbar key={pathname} />
+        {children}
       </div>
     </>
   );

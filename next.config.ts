@@ -37,6 +37,17 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      // Bare root -> default locale. Defined here (not in middleware) so Vercel
+      // resolves it at the edge before middleware runs, saving a hop.
+      {
+        source: '/',
+        destination: '/de',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default withPayload(nextConfig);

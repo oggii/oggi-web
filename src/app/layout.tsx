@@ -1,10 +1,8 @@
 import type { Metadata } from 'next';
-import { headers } from 'next/headers';
 import { Outfit, Playfair_Display, Share_Tech_Mono, Dongle } from 'next/font/google';
 import './globals.css';
 import { createRootMetadata } from '@/seo/metadata';
 import { defaultLocale } from '@/i18n/config';
-import { isLocale } from '@/i18n/routing';
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit', display: 'swap' });
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', style: ['normal', 'italic'], display: 'swap', preload: false });
@@ -13,17 +11,16 @@ const dongle = Dongle({ weight: '400', subsets: ['latin'], variable: '--font-don
 
 export const metadata: Metadata = createRootMetadata();
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const headerStore = await headers();
-  const requestLocale = headerStore.get('x-0ggi-locale') ?? defaultLocale;
-  const locale = isLocale(requestLocale) ? requestLocale : defaultLocale;
-
+  // Hardcoded to defaultLocale ('de') so this layout stays statically rendered.
+  // Per-route hreflang alternates in createPageMetadata() handle locale signaling
+  // for search engines — that's the standard, not <html lang>.
   return (
-    <html lang={locale} className={`${outfit.variable} ${playfair.variable} ${shareTechMono.variable} ${dongle.variable} antialiased`}>
+    <html lang={defaultLocale} className={`${outfit.variable} ${playfair.variable} ${shareTechMono.variable} ${dongle.variable} antialiased`}>
       <head>
         {/* Pre-resolve Iconify CDN DNS for below-fold Icon components */}
         <link rel="dns-prefetch" href="https://api.iconify.design" />

@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { defaultLocale } from './src/i18n/config';
-import { getPathnameLocale, isLocale, localizePath } from './src/i18n/routing';
+import { isLocale, localizePath } from './src/i18n/routing';
 
 const PUBLIC_FILE = /\.(.*)$/;
 
@@ -24,14 +24,10 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(redirectUrl, 308);
   }
 
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set('x-0ggi-locale', getPathnameLocale(pathname));
-
-  return NextResponse.next({
-    request: {
-      headers: requestHeaders,
-    },
-  });
+  // No header mutation here on purpose — that would force every page into
+  // dynamic rendering and defeat the per-page `revalidate` ISR config.
+  // The locale is always available via the [locale] route param downstream.
+  return NextResponse.next();
 }
 
 export const config = {

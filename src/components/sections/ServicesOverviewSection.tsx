@@ -37,7 +37,7 @@ const getCards = (t: TranslateFn) => [
   {
     num: '03',
     iconType: 'img' as const,
-    icon: '/hermes-logo.png',
+    icon: '/hermes-logo.webp',
     title: t('servicesOverview.c4Title'),
     pillar: t('servicesOverview.c4Pillar'),
     desc: t('servicesOverview.c4Desc'),
@@ -250,7 +250,7 @@ function HermesGraphic() {
       {/* Logo with outer ping ring */}
       <div style={{ position: 'relative', width: '72px', height: '72px' }}>
         <div style={{ width: '72px', height: '72px', borderRadius: '50%', background: '#12121A', border: '1px solid rgba(157,78,221,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', animation: 'svc-logo-glow 2.8s ease-in-out infinite', overflow: 'hidden' }}>
-          <Image src="/hermes-logo.png" alt="Hermes" width={44} height={44} className="object-contain" unoptimized />
+          <Image src="/hermes-logo.webp" alt="Hermes" width={44} height={44} className="object-contain" />
         </div>
         <div style={{ position: 'absolute', inset: '-6px', borderRadius: '50%', border: '1px solid rgba(157,78,221,0.18)', animation: 'svc-orbit-ping 2.8s ease-in-out infinite' }} />
       </div>

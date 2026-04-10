@@ -35,6 +35,12 @@
     "sharp": "^0.34.5",
     "tailwind-merge": "^3.5.0"
   },
+  "browserslist": [
+    "Chrome >= 93",
+    "Edge >= 93",
+    "Firefox >= 92",
+    "Safari >= 15.4"
+  ],
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",

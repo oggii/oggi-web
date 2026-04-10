@@ -68,16 +68,10 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const revealText = gsap.utils.toArray<HTMLElement>('.reveal-text');
-      const revealHeroFade = gsap.utils.toArray<HTMLElement>('.reveal-hero-fade');
-
-      // Set initial invisibility via GSAP immediately on mount to avoid flash
-      if (revealText.length > 0) {
-        gsap.set(revealText, { y: '100%' });
-      }
-      if (revealHeroFade.length > 0) {
-        gsap.set(revealHeroFade, { y: 20, opacity: 0 });
-      }
+      // Hero entrance for .reveal-text and .reveal-hero-fade is handled by
+      // pure CSS animations in globals.css. That keeps the LCP element off
+      // the JS critical path (it was costing ~3 s of element-render-delay
+      // on mobile because the largest text was hidden until GSAP hydrated).
 
       if (loading) return;
 
@@ -99,18 +93,10 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
         );
       });
 
-      const tl = gsap.timeline({ delay: 0.1 }); 
-      tl.fromTo('.reveal-nav', { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' });
-
-      if (revealText.length > 0) {
-        tl.to(revealText, { y: '0%', duration: 1.2, stagger: 0.05, ease: 'power4.out' }, '-=0.8');
-      }
-
-      if (revealHeroFade.length > 0) {
-        tl.to(revealHeroFade, { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out' }, '-=0.8');
-      }
-
-      tl.add(() => ScrollTrigger.refresh(), "+=0.1");
+      gsap.fromTo('.reveal-nav',
+        { y: -20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1, delay: 0.1, ease: 'power3.out' },
+      );
 
       // Global Scroll Reveal for all other pages/sections
       const animateRevealUp = (el: HTMLElement) => {
@@ -134,8 +120,6 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
       // Watch for new elements added after Suspense resolves
       const observer = new MutationObserver((mutations) => {
         let hasNew = false;
-        const newRevealTexts: HTMLElement[] = [];
-        const newHeroFades: HTMLElement[] = [];
 
         for (const mutation of mutations) {
           for (const node of mutation.addedNodes) {
@@ -151,14 +135,6 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
               hasNew = true;
             });
 
-            // Collect .reveal-text
-            if (node.classList.contains('reveal-text')) newRevealTexts.push(node);
-            node.querySelectorAll<HTMLElement>('.reveal-text').forEach((el) => newRevealTexts.push(el));
-
-            // Collect .reveal-hero-fade
-            if (node.classList.contains('reveal-hero-fade')) newHeroFades.push(node);
-            node.querySelectorAll<HTMLElement>('.reveal-hero-fade').forEach((el) => newHeroFades.push(el));
-
             // Parallax text
             const parallaxEls = [
               ...(node.classList.contains('parallax-text') ? [node] : []),
@@ -170,20 +146,6 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
                 scrollTrigger: { trigger: element, start: 'top bottom', end: 'bottom top', scrub: true },
               });
             });
-          }
-        }
-
-        // Run hero entrance animation for newly added hero elements
-        if (newRevealTexts.length > 0 || newHeroFades.length > 0) {
-          hasNew = true;
-          const heroTl = gsap.timeline({ delay: 0.1 });
-          if (newRevealTexts.length > 0) {
-            gsap.set(newRevealTexts, { y: '100%' });
-            heroTl.to(newRevealTexts, { y: '0%', duration: 1.2, stagger: 0.05, ease: 'power4.out' });
-          }
-          if (newHeroFades.length > 0) {
-            gsap.set(newHeroFades, { y: 20, opacity: 0 });
-            heroTl.to(newHeroFades, { y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: 'power3.out' }, '-=0.8');
           }
         }
 

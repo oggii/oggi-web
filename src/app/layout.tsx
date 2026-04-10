@@ -5,9 +5,12 @@ import { createRootMetadata } from '@/seo/metadata';
 import { defaultLocale } from '@/i18n/config';
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit', display: 'swap' });
-const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', style: ['normal', 'italic'], display: 'swap', preload: false });
-const shareTechMono = Share_Tech_Mono({ weight: '400', subsets: ['latin'], variable: '--font-share-tech-mono', display: 'swap', preload: false });
-const dongle = Dongle({ weight: '400', subsets: ['latin'], variable: '--font-dongle', display: 'swap', preload: false });
+// Playfair (font-serif) is used in the hero title, Dongle in the navbar wordmark,
+// Share Tech Mono in blog card metadata. All sit above the fold on desktop, so
+// preloading them prevents the late font swap that drove desktop CLS up to 0.253.
+const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', style: ['normal', 'italic'], display: 'swap' });
+const shareTechMono = Share_Tech_Mono({ weight: '400', subsets: ['latin'], variable: '--font-share-tech-mono', display: 'swap' });
+const dongle = Dongle({ weight: '400', subsets: ['latin'], variable: '--font-dongle', display: 'swap' });
 
 export const metadata: Metadata = createRootMetadata();
 
@@ -22,8 +25,9 @@ export default function RootLayout({
   return (
     <html lang={defaultLocale} className={`${outfit.variable} ${playfair.variable} ${shareTechMono.variable} ${dongle.variable} antialiased`}>
       <head>
-        {/* Pre-resolve Iconify CDN DNS for below-fold Icon components */}
-        <link rel="dns-prefetch" href="https://api.iconify.design" />
+        {/* Iconify icons are fetched at runtime by below-fold <Icon> components.
+            preconnect (TCP+TLS) shaves ~300 ms vs dns-prefetch on mobile per PSI. */}
+        <link rel="preconnect" href="https://api.iconify.design" crossOrigin="" />
       </head>
       <body className="selection:bg-luxota-accent/30 selection:text-luxota-accent text-[#E5E5E5] bg-[#020203] overflow-x-hidden lg:cursor-none">
         <div className="ambient-light">

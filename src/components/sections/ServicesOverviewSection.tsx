@@ -374,7 +374,7 @@ export default function ServicesOverviewSection() {
                         {/* Icon badge */}
                         <div className="w-12 h-12 lg:w-14 lg:h-14 rounded-xl lg:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-5 lg:mb-7 shadow-xl overflow-hidden">
                           {card.iconType === 'img' ? (
-                            <Image src={card.icon} alt={card.title} width={32} height={32} className="object-contain" unoptimized />
+                            <Image src={card.icon} alt={card.title} width={32} height={32} className="object-contain" />
                           ) : (
                             <Icon icon={card.icon} className="text-2xl lg:text-3xl text-luxota-accent" />
                           )}

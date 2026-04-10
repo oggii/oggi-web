@@ -319,8 +319,12 @@ export default function ServicesOverviewSection() {
       });
 
       return () => {
+        // Kill only this section's tween (which carries its own scrollTrigger).
+        // gsap.matchMedia auto-reverts scoped animations on the outer revert,
+        // so we must NOT call ScrollTrigger.getAll().kill() here — that would
+        // nuke unrelated triggers (e.g. ClientWrapper's .reveal-up animations
+        // and Navbar reveal) and leave the next route stuck at CSS opacity 0.
         tween.kill();
-        ScrollTrigger.getAll().forEach((st) => st.kill());
       };
     });
 

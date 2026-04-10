@@ -18,8 +18,23 @@ export default function ParticlesBackground({
   linkColor = '#ffffff',
 }: Props) {
   const [init, setInit] = useState(false);
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   useEffect(() => {
+    // Honour prefers-reduced-motion: don't bootstrap the canvas / engine at
+    // all for users who opted out of motion. Saves the ~30 KB tsparticles
+    // chunk parse + the persistent RAF loop. Also reacts live in case the
+    // user toggles the setting.
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const update = () => setReducedMotion(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    if (reducedMotion) return;
+
     // Defer particle engine init until the browser is idle to avoid blocking
     // the main thread during initial page load (reduces TBT significantly).
     const initFn = () => {
@@ -32,7 +47,7 @@ export default function ParticlesBackground({
 
     const id = window.requestIdleCallback(initFn, { timeout: 3000 });
     return () => window.cancelIdleCallback(id);
-  }, []);
+  }, [reducedMotion]);
 
   const options = useMemo(() => ({
     particles: {

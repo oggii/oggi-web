@@ -330,7 +330,7 @@ html.lenis {
    and Lighthouse measured ~6 s on mobile waiting for GSAP to finish. */
 .reveal-text {
   transform: translateY(100%);
-  animation: hero-text-reveal 1.1s cubic-bezier(0.215, 0.61, 0.355, 1) 0.2s forwards;
+  animation: hero-text-reveal 1.1s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
 }
 
 @keyframes hero-text-reveal {
@@ -348,6 +348,22 @@ html.lenis {
 }
 
 /* Stagger via per-element delay set inline in HeroSection.tsx */
+
+/* Respect users who prefer reduced motion: drop hero entrance animations
+   entirely (instant paint) and neutralise the inline animation-delay
+   overrides set in HeroSection.tsx so nothing waits to appear. */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-text {
+    transform: none;
+    animation: none;
+  }
+  .reveal-hero-fade {
+    opacity: 1;
+    transform: none;
+    animation: none;
+    animation-delay: 0s !important;
+  }
+}
 
 .reveal-up {
   opacity: 0;

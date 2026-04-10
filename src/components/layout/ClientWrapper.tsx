@@ -41,6 +41,13 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
 
     return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   });
+  const [prefersReducedMotion] = useState(() => {
+    if (typeof window === 'undefined') {
+      return false;
+    }
+
+    return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  });
   const [loading, setLoading] = useState(true);
   const pathname = usePathname();
   const routePath = stripLocaleFromPathname(pathname ?? '');
@@ -56,15 +63,17 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
 
       // Skip preloader on mobile/touch devices to avoid blocking LCP for ~3s.
       // Bots (Lighthouse, Googlebot) emulate mobile touch, so this also
-      // ensures PageSpeed sees content immediately.
+      // ensures PageSpeed sees content immediately. Also skip when the user
+      // has prefers-reduced-motion set — they explicitly opted out of this
+      // kind of intro animation, and it would otherwise block their LCP.
       const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-      if (routePath !== '' || isTouch) {
+      if (routePath !== '' || isTouch || prefersReducedMotion) {
         setLoading(false);
       }
     });
 
     return () => window.cancelAnimationFrame(frame);
-  }, [pathname, routePath]);
+  }, [pathname, routePath, prefersReducedMotion]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -162,9 +171,12 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Skip Lenis on touch/mobile — native scroll is faster and more fluid
+    // Skip Lenis on touch/mobile — native scroll is faster and more fluid.
+    // Also skip when the user prefers reduced motion: Lenis hijacks the
+    // native scroll and adds RAF + easing on every frame, which is exactly
+    // what reduced-motion users are asking us not to do.
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (isTouchDevice) return;
+    if (isTouchDevice || prefersReducedMotion) return;
 
     // Lenis Smooth Scroll Setup (Desktop only)
     const lenis = new Lenis({
@@ -176,18 +188,24 @@ export function ClientWrapper({ children, locale, dictionary }: ClientWrapperPro
 
     lenisRef.current = lenis;
 
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add((time) => {
+    // Hold a stable reference to the ticker callback so cleanup actually
+    // removes it. The previous code passed a fresh arrow function to
+    // gsap.ticker.remove(), so the callback was never detached and leaked
+    // across navigations.
+    const tick = (time: number) => {
       lenis.raf(time * 1000);
-    });
+    };
+
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(tick);
     gsap.ticker.lagSmoothing(0);
 
     return () => {
       lenisRef.current = null;
+      gsap.ticker.remove(tick);
       lenis.destroy();
-      gsap.ticker.remove((time) => lenis.raf(time * 1000));
     };
-  }, []);
+  }, [prefersReducedMotion]);
 
   return (
     <TranslationProvider locale={locale} dictionary={dictionary}>

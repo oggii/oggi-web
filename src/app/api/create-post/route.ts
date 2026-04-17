@@ -4,7 +4,7 @@ import { getPayloadClient } from '@/lib/payload';
 import { convertHTMLToLexical } from '@payloadcms/richtext-lexical';
 import { editorConfigFactory } from '@payloadcms/richtext-lexical';
 
-const API_SECRET = process.env.POST_API_SECRET || 'oggi-create-post-2026';
+const API_SECRET = process.env.POST_API_SECRET;
 
 async function htmlToLexical(html: string) {
   const payload = await getPayloadClient();
@@ -14,6 +14,11 @@ async function htmlToLexical(html: string) {
 }
 
 export async function POST(request: NextRequest) {
+  if (!API_SECRET) {
+    console.error('POST_API_SECRET env var is not set — refusing request');
+    return NextResponse.json({ error: 'Server misconfigured' }, { status: 500 });
+  }
+
   const authHeader = request.headers.get('x-api-secret');
   if (authHeader !== API_SECRET) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

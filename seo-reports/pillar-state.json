@@ -1,0 +1,4 @@
+{
+  "_comment": "Current week's pillar topic. The discover phase replaces this when running in pillar mode (Monday morning trigger). All spoke runs reference current_pillar.",
+  "current_pillar": null
+}

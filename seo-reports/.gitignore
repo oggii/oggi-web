@@ -1,0 +1,10 @@
+# Ignore everything in this folder by default
+*
+
+# Except the structural files, per-run summaries, and the persistent state files
+!.gitignore
+!README.md
+!used-keywords.json
+!pillar-state.json
+!**/summary.md
+!*/

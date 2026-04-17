@@ -1,0 +1,4 @@
+{
+  "_comment": "Append-only ledger of keywords already targeted by /seo-workflow runs. The discover phase excludes any keyword whose publishedAt is within the last 90 days. Do not edit by hand unless you know what you're doing.",
+  "entries": []
+}

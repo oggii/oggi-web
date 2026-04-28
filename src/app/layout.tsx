@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import { Outfit, Playfair_Display, Share_Tech_Mono, Dongle } from 'next/font/google';
 import './globals.css';
 import { createRootMetadata } from '@/seo/metadata';
@@ -42,6 +43,13 @@ export default function RootLayout({
         <div className="noise"></div>
 
         {children}
+        <Script
+          src="https://analytics.yoxy.ch/js/pa-zfbh7g_qpNTvm9F4Rxu__.js"
+          strategy="afterInteractive"
+        />
+        <Script id="plausible-init" strategy="afterInteractive">
+          {`window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()`}
+        </Script>
       </body>
     </html>
   );

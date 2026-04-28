@@ -2,6 +2,7 @@
 import { Icon } from '@iconify/react';
 import Link from 'next/link';
 import { useTranslation } from '@/i18n/TranslationContext';
+import { track } from '@/lib/analytics';
 export default function FooterSection() {
   const { t, href } = useTranslation();
   return (
@@ -31,7 +32,7 @@ export default function FooterSection() {
 
             <div className="text-sm text-luxota-dim tracking-wide">
               {t('footer.sub')}
-              <a href="mailto:kontakt@0ggi.ch" className="text-white border-b border-white/30 pb-0.5 hover:border-white transition-all hover:text-luxota-accent ml-1">
+              <a href="mailto:kontakt@0ggi.ch" onClick={() => track('CTA: Email Click', { source: 'footer-cta' })} className="text-white border-b border-white/30 pb-0.5 hover:border-white transition-all hover:text-luxota-accent ml-1">
                 {t('footer.mail')}
               </a>
             </div>
@@ -74,7 +75,7 @@ export default function FooterSection() {
               <ul className="space-y-5 text-sm text-luxota-dim font-light">
                 <li><Link href={href('/purpose')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.aboutMe')}</Link></li>
                 <li><Link href={href('/portfolio')} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.portfolioRef')}</Link></li>
-                <li><a href="mailto:kontakt@0ggi.ch" className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.contactEmail')}</a></li>
+                <li><a href="mailto:kontakt@0ggi.ch" onClick={() => track('CTA: Email Click', { source: 'footer-list' })} className="hover:text-white transition-colors duration-300 flex items-center gap-2 group"><span className="w-0 h-[1px] bg-luxota-accent transition-all duration-300 group-hover:w-3"></span>{t('footer.contactEmail')}</a></li>
               </ul>
             </div>
 

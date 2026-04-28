@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from '@/i18n/TranslationContext';
 import { Icon } from '@iconify/react';
+import { track } from '@/lib/analytics';
 
 type Post = {
   id: string;
@@ -45,6 +46,7 @@ export default function LatestPostsSection({ posts }: { posts: Post[] }) {
             <Link
               key={post.id}
               href={`/${locale}/blog/${post.slug}`}
+              onClick={() => track('Blog: Article Click', { slug: post.slug, source: 'latest-posts' })}
               className="group rounded-2xl overflow-hidden border border-white/5 hover:border-luxota-accent/30 bg-white/[0.02] hover:bg-white/[0.04] transition-all duration-500 hover:shadow-[0_0_30px_rgba(157,78,221,0.08)]"
             >
               {post.featuredImage?.url && (

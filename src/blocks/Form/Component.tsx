@@ -2,6 +2,7 @@
 import React, { useCallback, useState } from 'react'
 import { RichText } from '@payloadcms/richtext-lexical/react'
 import { getClientSideURL } from '@/utilities/getURL'
+import { track } from '@/lib/analytics'
 
 type FormBlockProps = {
   enableIntro?: boolean
@@ -45,6 +46,7 @@ export const FormBlock: React.FC<FormBlockProps> = ({ enableIntro, form, introCo
         setError(json.errors?.[0]?.message || 'Something went wrong.')
         return
       }
+      track('Lead: Form Submitted', { form_id: form.id })
       setHasSubmitted(true)
       if (form.confirmationType === 'redirect' && form.redirect?.url) {
         window.location.href = form.redirect.url

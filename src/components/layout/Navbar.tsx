@@ -9,6 +9,7 @@ import { useTranslation } from '@/i18n/TranslationContext';
 import { locales, localeNames } from '@/i18n/config';
 import { localizePath, stripLocaleFromPathname } from '@/i18n/routing';
 import { useTheme } from '@/components/ThemeContext';
+import { track } from '@/lib/analytics';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -155,7 +156,10 @@ export default function Navbar() {
                 <Link
                   key={value}
                   href={localizePath(value, currentRoute)}
-                  onClick={() => setLangDropdownOpen(false)}
+                  onClick={() => {
+                    if (value !== locale) track('Language Switched', { from: locale, to: value, source: 'desktop' });
+                    setLangDropdownOpen(false);
+                  }}
                   className={`flex items-center gap-3 text-[10px] font-bold tracking-widest px-4 py-2.5 rounded-xl text-left transition-colors ${locale === value ? 'bg-white/10 text-white' : 'text-white/50 hover:bg-white/5 hover:text-white'}`}
                 >
                   <span>{localeNames[value]}</span>
@@ -178,6 +182,7 @@ export default function Navbar() {
             </button>
             <Link
               href={contactLink.href}
+              onClick={() => track('CTA: Contact Click', { source: 'navbar' })}
               className={`rounded-full px-5 py-3 text-xs font-semibold shadow-2xl transition-all ${
                 isContactActive
                   ? 'bg-white text-luxota-bg border border-white'
@@ -327,7 +332,11 @@ export default function Navbar() {
                       <Link
                         key={value}
                         href={localizePath(value, currentRoute)}
-                        onClick={() => { setMobileLangOpen(false); setMenuOpen(false); }}
+                        onClick={() => {
+                          if (value !== locale) track('Language Switched', { from: locale, to: value, source: 'mobile' });
+                          setMobileLangOpen(false);
+                          setMenuOpen(false);
+                        }}
                         className={`flex items-center gap-3 text-[10px] font-bold tracking-widest px-4 py-2.5 rounded-lg transition-colors ${locale === value ? 'bg-white/10 text-white' : 'text-white/50 active:bg-white/5 active:text-white'}`}
                       >
                         {renderFlag(value)}

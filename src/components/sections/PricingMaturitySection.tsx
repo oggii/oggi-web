@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslation } from '@/i18n/TranslationContext';
+import { track } from '@/lib/analytics';
 
 export default function PricingMaturitySection() {
   const { t } = useTranslation();
@@ -38,7 +39,7 @@ export default function PricingMaturitySection() {
               <span className="text-white/80 border-l-2 border-luxota-accent pl-4 block">{t('maturity.desc2')}</span>
             </p>
 
-            <a href="#action" className="group inline-flex items-center gap-3 text-white text-sm font-medium hover:text-luxota-accent transition-colors">
+            <a href="#action" onClick={() => track('CTA: Audit Click', { source: 'maturity' })} className="group inline-flex items-center gap-3 text-white text-sm font-medium hover:text-luxota-accent transition-colors">
               <div className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center group-hover:border-luxota-accent group-hover:bg-luxota-accent/10 transition-all bg-white/5">
 
                 <Icon icon="solar:arrow-right-linear" className="group-hover:translate-x-0.5 transition-transform"></Icon>

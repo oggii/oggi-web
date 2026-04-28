@@ -1,6 +1,7 @@
 'use client';
 
 import { useTranslation } from '@/i18n/TranslationContext';
+import { track } from '@/lib/analytics';
 
 // Inline SVG to avoid runtime fetch from Iconify CDN (solar:arrow-right-linear)
 function ArrowRightIcon({ className }: { className?: string }) {
@@ -33,7 +34,7 @@ export default function HeroSection() {
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center items-center gap-6 reveal-hero-fade" style={{ animationDelay: '0.5s' }}>
-          <a href="#action" className="group relative px-9 py-4 bg-white text-luxota-bg rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(255,255,255,0.4)]">
+          <a href="#action" onClick={() => track('CTA: Audit Click', { source: 'hero' })} className="group relative px-9 py-4 bg-white text-luxota-bg rounded-full overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-[0_0_40px_-10px_rgba(255,255,255,0.4)]">
             <div className="btn-glow"></div>
             <span className="relative z-10 text-sm font-bold flex items-center gap-2">
               {t('hero.actionAudit')}
@@ -43,7 +44,7 @@ export default function HeroSection() {
             </span>
             <div className="absolute inset-0 bg-luxota-accent translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-expo"></div>
           </a>
-          <a href={href('/portfolio')} className="px-9 py-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all text-white font-medium text-sm hover:border-white/30 hover:shadow-lg">
+          <a href={href('/portfolio')} onClick={() => track('CTA: Portfolio Click', { source: 'hero' })} className="px-9 py-4 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 transition-all text-white font-medium text-sm hover:border-white/30 hover:shadow-lg">
             {t('hero.actionResults')}
           </a>
         </div>

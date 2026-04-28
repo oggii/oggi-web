@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { Icon } from '@iconify/react';
 import { useTranslation } from '@/i18n/TranslationContext';
+import { track } from '@/lib/analytics';
 
 export default function ServicesCtaSection() {
   const { t, href } = useTranslation();
@@ -23,7 +24,7 @@ export default function ServicesCtaSection() {
       </p>
 
       {/* Shimmer CTA Button */}
-          <Link href={href('/services')} className="reveal-up">
+          <Link href={href('/services')} onClick={() => track('CTA: Service Click', { source: 'services-cta', service: 'all' })} className="reveal-up">
         <button className="shimmer-btn inline-flex items-center gap-3">
           <span className="shimmer-text flex items-center gap-3">
             <Icon icon="solar:layers-bold-duotone" className="text-xl" />
@@ -36,12 +37,12 @@ export default function ServicesCtaSection() {
 
       {/* Secondary ghost link */}
       <div className="mt-8 flex flex-col sm:flex-row items-center gap-4 text-sm text-luxota-dim">
-        <Link href={href('/hermes')} className="hover:text-white transition-colors flex items-center gap-1.5 group">
+        <Link href={href('/hermes')} onClick={() => track('CTA: Service Click', { source: 'services-cta', service: 'hermes' })} className="hover:text-white transition-colors flex items-center gap-1.5 group">
           <span className="w-1.5 h-1.5 rounded-full bg-luxota-accent/60 group-hover:bg-luxota-accent transition-colors" />
           {t('cta.link2')}
         </Link>
         <span className="hidden sm:block text-white/10">·</span>
-        <Link href={href('/contact')} className="hover:text-white transition-colors flex items-center gap-1.5 group">
+        <Link href={href('/contact')} onClick={() => track('CTA: Contact Click', { source: 'services-cta' })} className="hover:text-white transition-colors flex items-center gap-1.5 group">
           <span className="w-1.5 h-1.5 rounded-full bg-luxota-accent/60 group-hover:bg-luxota-accent transition-colors" />
           {t('cta.link3')}
         </Link>

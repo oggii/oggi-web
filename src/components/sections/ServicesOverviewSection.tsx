@@ -7,12 +7,14 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTranslation } from '@/i18n/TranslationContext';
+import { track } from '@/lib/analytics';
 
 /* ─── Card data ─────────────────────────────────────────────────────────── */
 type TranslateFn = (key: string) => string;
 
 const getCards = (t: TranslateFn) => [
   {
+    id: 'webdesign',
     num: '01',
     iconType: 'solar' as const,
     icon: 'solar:laptop-minimalistic-bold-duotone',
@@ -24,6 +26,7 @@ const getCards = (t: TranslateFn) => [
     linkLabel: t('servicesOverview.c1Btn'),
   },
   {
+    id: 'seo',
     num: '02',
     iconType: 'solar' as const,
     icon: 'solar:ranking-bold-duotone',
@@ -35,6 +38,7 @@ const getCards = (t: TranslateFn) => [
     linkLabel: t('servicesOverview.c2Btn'),
   },
   {
+    id: 'hermes',
     num: '03',
     iconType: 'img' as const,
     icon: '/hermes-logo.webp',
@@ -408,7 +412,7 @@ export default function ServicesOverviewSection() {
                           ))}
                         </ul>
 
-                        <Link href={href(card.link)}>
+                        <Link href={href(card.link)} onClick={() => track('CTA: Service Click', { source: 'services-overview', service: card.id })}>
                           <button className="svc-discover-btn w-full lg:w-auto justify-center py-2.5 lg:py-3 font-bold">
                             <span>{card.linkLabel}</span>
                             <Icon icon="solar:arrow-right-linear" className="text-luxota-accent text-sm" />

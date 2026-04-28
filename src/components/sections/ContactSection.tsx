@@ -3,6 +3,7 @@
 import { ChangeEvent, FormEvent, useMemo, useState } from 'react';
 import { Icon } from '@iconify/react';
 import { useTranslation } from '@/i18n/TranslationContext';
+import { track } from '@/lib/analytics';
 
 const WEB3FORMS_ACCESS_KEY = 'd5624671-36a5-4df2-b594-8506a2287d04';
 
@@ -74,6 +75,7 @@ export default function ContactSection() {
       const result = await response.json();
 
       if (result.success) {
+        track('Lead: Form Submitted', { topic: form.topic || 'unspecified' });
         setSubmitState('success');
         setSubmitMessage(t('contactPage.formSuccess'));
         setForm(INITIAL_FORM);
@@ -249,7 +251,7 @@ export default function ContactSection() {
                     </div>
                   </a>
                 ) : (
-                  <button onClick={() => setPhoneRevealed(true)} className="flex items-start gap-4 rounded-[1.5rem] border border-white/8 bg-black/20 px-5 py-4 transition-colors hover:border-luxota-accent/30 hover:bg-white/[0.04] w-full text-left cursor-pointer">
+                  <button onClick={() => { track('CTA: Phone Reveal'); setPhoneRevealed(true); }} className="flex items-start gap-4 rounded-[1.5rem] border border-white/8 bg-black/20 px-5 py-4 transition-colors hover:border-luxota-accent/30 hover:bg-white/[0.04] w-full text-left cursor-pointer">
                     <Icon icon="solar:phone-bold-duotone" className="mt-1 text-2xl text-luxota-accent" />
                     <div>
                       <div className="text-xs font-mono uppercase tracking-[0.24em] text-white/40">{t('contactPage.phoneLabel')}</div>

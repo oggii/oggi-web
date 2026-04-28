@@ -37,9 +37,11 @@ const nextConfig: NextConfig = {
       },
       {
         // Baseline security headers for every response. Covers Lighthouse's
-        // HSTS, COOP, X-Frame-Options and nosniff "Best Practices" audits.
-        // CSP and Trusted Types are intentionally omitted — they need a
-        // tailored policy and can break Payload admin / inline scripts.
+        // HSTS, COOP, frame-ancestors and nosniff "Best Practices" audits.
+        // frame-ancestors replaces X-Frame-Options because XFO on top-level
+        // navigations breaks LinkedIn's iOS in-app WKWebView. COOP uses
+        // allow-popups for the same reason — strict same-origin breaks
+        // window.opener handoff in embedded webviews.
         source: '/:path*',
         headers: [
           {
@@ -51,8 +53,8 @@ const nextConfig: NextConfig = {
             value: 'nosniff',
           },
           {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
+            key: 'Content-Security-Policy',
+            value: "frame-ancestors 'self'",
           },
           {
             key: 'Referrer-Policy',
@@ -60,7 +62,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin',
+            value: 'same-origin-allow-popups',
           },
         ],
       },
